@@ -46,7 +46,7 @@ public class ItemRoadMap : MonoBehaviour
     
     public void configView(Map baichoi, GameObject map)
     {
-        gameObject.LeanMoveLocal(new Vector2(gameObject.transform.localPosition.x, gameObject.transform.localPosition.y+20), Random.Range(0.8f,1.2f)).setEaseOutQuart().setLoopPingPong();
+        gameObject.LeanMoveLocal(new Vector2(gameObject.transform.localPosition.x, gameObject.transform.localPosition.y + 20), Random.Range(0.8f, 1.4f)).setLoopPingPong();
         txt_manchoi.text = baichoi.Level;
         level = map;
         thislevel = baichoi;
