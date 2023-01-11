@@ -578,9 +578,27 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8416909399837585021}
     m_Modifications:
+    - target: {fileID: 1716864695083190308, guid: 58786e641756d714a922f78624c4eaf0, type: 3}
+      propertyPath: m_text
+      value: "Ghi nh\u1EADn th\xE0nh t\xEDch ho\xE0n h\u1EA3o c\u1EE7a b\u1EA1n khi
+        v\u01B0\u1EE3t qua t\u1EA5t c\u1EA3 c\xE1c m\xE0 ch\u01A1i v\u1EDBi s\u1ED1
+        sao tuy\u1EC7t \u0111\u1ED1i."
+      objectReference: {fileID: 0}
     - target: {fileID: 1810691931801967722, guid: 58786e641756d714a922f78624c4eaf0, type: 3}
       propertyPath: m_Name
       value: ItemMedal
+      objectReference: {fileID: 0}
+    - target: {fileID: 1810691931801967724, guid: 58786e641756d714a922f78624c4eaf0, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1810691931801967724, guid: 58786e641756d714a922f78624c4eaf0, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1810691931801967724, guid: 58786e641756d714a922f78624c4eaf0, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1810691931801967725, guid: 58786e641756d714a922f78624c4eaf0, type: 3}
       propertyPath: m_Pivot.x
@@ -665,6 +683,10 @@ PrefabInstance:
     - target: {fileID: 1810691931801967725, guid: 58786e641756d714a922f78624c4eaf0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2858178903264864480, guid: 58786e641756d714a922f78624c4eaf0, type: 3}
+      propertyPath: m_text
+      value: "Phi h\xE0nh gia ho\xE0n h\u1EA3o"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58786e641756d714a922f78624c4eaf0, type: 3}

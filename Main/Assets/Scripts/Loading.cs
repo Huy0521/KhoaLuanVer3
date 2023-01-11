@@ -9,7 +9,7 @@ public class Loading : MonoBehaviour
     {
         if(loadingSlider.value<100)
         {
-            loadingSlider.value = loadingSlider.value + 0.2f;
+            loadingSlider.value = loadingSlider.value + 22*Time.deltaTime;
         }
         else if(loadingSlider.value==100)
         {
