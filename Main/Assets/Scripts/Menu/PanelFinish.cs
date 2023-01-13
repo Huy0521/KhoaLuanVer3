@@ -6,6 +6,8 @@ using TMPro;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using BaseClass;
+using UnityEditor;
+
 public class PanelFinish : MonoBehaviour
 {
     [SerializeField] Image titleSprite;
@@ -49,16 +51,17 @@ public class PanelFinish : MonoBehaviour
                 {
                     PopupManager.Instance.listmap.tuantu[i].Star = numberStar;
                 }
-            }
+            } 
             string tojson = JsonUtility.ToJson(PopupManager.Instance.listmap);
             SaveFile(tojson);
         }
     }
     public void SaveFile(string data)
     {
-        string destination = "Assets/Json/Manchoi.json";
+        string destination = "Assets/Resources/Json/Manchoi.json";
         StreamWriter write = new StreamWriter(destination);
         write.Write(data);
         write.Close();
+        AssetDatabase.ImportAsset(destination);
     }
 }

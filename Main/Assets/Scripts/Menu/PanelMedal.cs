@@ -6,6 +6,7 @@ public class PanelMedal : MonoBehaviour
 {
     [SerializeField] Button btn_Back;
     [SerializeField] List<GameObject> listMedal;
+    int playstar;
     void Start()
     {
         btn_Back.onClick.AddListener(() =>
@@ -14,14 +15,11 @@ public class PanelMedal : MonoBehaviour
             Destroy(gameObject);
         });
     }
-    public void ScaleMiddle()
+    void CheckMedal()
     {
-       /* for(int i=0;i<listMedal.Count;i++)
+        for (int i = 0; i < PopupManager.Instance.listmap.tuantu.Length; i++)
         {
-            if (listMedal[i].transform.localPosition == new Vector3(775, -295.765f, 0))
-            {
-                LeanTween.scale(listMedal[i], new Vector3(1.2f, 1.2f, 1.2f), 1f);
-            }
-        }*/
+
+        }
     }
 }

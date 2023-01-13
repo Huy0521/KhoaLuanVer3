@@ -5,11 +5,7 @@ using UnityEngine;
 public class SwitchScreen : MonoBehaviour
 {
     public List<GameObject> listScreen;
-
-    void Start()
-    {
-        
-    }
+    [SerializeField] private GameObject btnX;
     public void ShowMainScreen()
     {
         for(int i=0;i<listScreen.Count;i++)
@@ -20,6 +16,7 @@ public class SwitchScreen : MonoBehaviour
                 listScreen[i].SetActive(true);
             }
         }
+        btnX.SetActive(false);
     }
     public void ShowIfScreen()
     {
@@ -31,6 +28,7 @@ public class SwitchScreen : MonoBehaviour
                 listScreen[i].SetActive(true);
             }
         }
+        btnX.SetActive(true);
     }
     public void ShowLoopScreen()
     {

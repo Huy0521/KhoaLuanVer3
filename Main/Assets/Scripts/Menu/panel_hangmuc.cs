@@ -24,19 +24,22 @@ public class panel_hangmuc : MonoBehaviour
     void tuantu_Click()
     {
         AudioManager.Instance.PlaySound(Sound.Button);
-        Instantiate(selectLevel.gameObject,PopupManager.Instance.canvas.transform);
         PopupManager.Instance.loaibai = Loaibai.tuantu;
+        Instantiate(selectLevel.gameObject,PopupManager.Instance.canvas.transform);
+       
     }
     void vonglap_Click()
     {
         AudioManager.Instance.PlaySound(Sound.Button);
-        Instantiate(selectLevel.gameObject, PopupManager.Instance.canvas.transform);
         PopupManager.Instance.loaibai = Loaibai.vonglap;
+        Instantiate(selectLevel.gameObject, PopupManager.Instance.canvas.transform);
+       
     }
     void renhanh_Click()
     {
         AudioManager.Instance.PlaySound(Sound.Button);
-        Instantiate(selectLevel.gameObject, PopupManager.Instance.canvas.transform);
         PopupManager.Instance.loaibai = Loaibai.renhanh;
+        Instantiate(selectLevel.gameObject, PopupManager.Instance.canvas.transform);
+       
     }
 }

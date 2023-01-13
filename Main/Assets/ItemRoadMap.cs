@@ -20,11 +20,13 @@ public class ItemRoadMap : MonoBehaviour
     [SerializeField] private Sprite rightStar_Active;
     [SerializeField] private Map thislevel;
     [SerializeField] private GameObject level;
+    [HideInInspector] public GameObject panelSelectlevel;
     public void Item_Click()
     {
         AudioManager.Instance.PlaySound(Sound.Button);
         PopupManager.Instance.currentLevel = thislevel;
         PopupManager.Instance.currentMap = Instantiate(level);
+        Destroy(panelSelectlevel);
         Instantiate(PopupManager.Instance.userPlay, PopupManager.Instance.canvas.transform);
         PlayerPrefs.SetFloat("LastMapClick",float.Parse(txt_manchoi.text));
     }

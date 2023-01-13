@@ -6,16 +6,19 @@ public class menu_Controller : MonoBehaviour
 {
     [SerializeField] private selectLevel_Controller popup_SelectLV;
     [SerializeField] private panel_hangmuc panelHangmuc;
+    [SerializeField] private PanelSetting panelSetting;
     [SerializeField] private GameObject medalPanel;
     [SerializeField] private Button btn_NewGame;
     [SerializeField] private Button btn_Medal;
     [SerializeField] private Button btn_Exit;
+    [SerializeField] private Button btn_Setting;
     [SerializeField] private GameObject Menu;
     void Start()
     {
         btn_Exit.onClick.AddListener(exit_Click);
         btn_NewGame.onClick.AddListener(newgame_Click); 
         btn_Medal.onClick.AddListener(medal_Click);
+        btn_Setting.onClick.AddListener(setting_Click);
         AudioManager.Instance.PlaySound(Sound.Start);
     }
     void newgame_Click()
@@ -34,6 +37,10 @@ public class menu_Controller : MonoBehaviour
     {
         AudioManager.Instance.PlaySound(Sound.Button);
         Application.Quit();
+    }
+    void setting_Click()
+    {
+        panelSetting.gameObject.SetActive(true);
     }
 
 }

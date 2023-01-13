@@ -40,8 +40,12 @@ public class AudioManager : MonoBehaviour
                 break;
         }
     }
-    public void ChangeMasterVolume(float value)
+    public void ChangeMusicVolume(float value)
     {
-        AudioListener.volume = value;
+        musicSource.volume = value;
+    }
+    public void ChangeEffectVolume(float value)
+    {
+       effectsSource.volume = value;
     }
 }

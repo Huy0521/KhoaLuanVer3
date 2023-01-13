@@ -36,6 +36,7 @@ public class Panel_DieuKhien : MonoBehaviour
     [SerializeField] private GameObject loopScreen;
     [SerializeField] private GameObject contentForScreen;
     [SerializeField] private GameObject panelAllsetting;
+    [SerializeField] private GameObject panelSelectlevel;
     [SerializeField] private CountdownTimer Time;
     void Start()
     {
@@ -278,6 +279,8 @@ public class Panel_DieuKhien : MonoBehaviour
         AudioManager.Instance.PlaySound(Sound.Button);
         Destroy(gameObject);
         Destroy(PopupManager.Instance.currentMap);
+        Instantiate(panelSelectlevel, PopupManager.Instance.canvas.transform);
+        
     }
     public void panelIf_click()
     {

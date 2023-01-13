@@ -15,7 +15,5 @@ public class Loading : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
-      
-
     }
 }
