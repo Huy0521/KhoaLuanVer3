@@ -1730,12 +1730,13 @@ MonoBehaviour:
   loaibai: 0
   userPlay: {fileID: 3555005754327426440, guid: 662c912f9c78ac3488b569942d94f72b, type: 3}
   currentLevel:
-    Level: 
-    Sobuoc: 0
-    Star: 0
-    Time: 0
-    Sobuoc_an: 0
-    BuocAo: []
+    level: 
+    sobuoc: 0
+    star: 0
+    time: 0
+    playertime: 0
+    sobuoc_an: 0
+    buocAo: []
   currentMap: {fileID: 0}
   timeRemaining: 0
 --- !u!114 &781540742

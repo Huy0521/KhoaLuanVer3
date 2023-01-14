@@ -11,12 +11,13 @@ namespace BaseClass
     [Serializable]
     public class Map
     {
-        public string Level;
-        public int Sobuoc;
-        public int Star;
-        public int Time;
-        public int Sobuoc_an;
-        public string[] BuocAo;
+        public string level;
+        public int sobuoc;
+        public int star;
+        public int time;
+        public int playertime;
+        public int sobuoc_an;
+        public string[] buocAo;
     }
 }
 

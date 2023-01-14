@@ -109,6 +109,10 @@ MonoBehaviour:
   - {fileID: 6313704746557071017, guid: d85fc1f77fe828946a1dbdf6c9b468c5, type: 3}
   - {fileID: 6361207778162641041, guid: 7487934573f5755468e3aab4556b1a93, type: 3}
   btn_Back: {fileID: 2662452532738340461}
+  background: {fileID: 1885724615937197054}
+  lavaEnvironment: {fileID: 21300000, guid: 0e6e0bde255c9ed48b967b7e708f996d, type: 3}
+  earthEnvironment: {fileID: 21300000, guid: e345a27f115ff0a45affba4483706fb4, type: 3}
+  spaceEnvironment: {fileID: 21300000, guid: cd3bb1b12cd2dec4ea4ad534b7ca30da, type: 3}
   listItem:
   - {fileID: 3695423391706572101}
   - {fileID: 2536336692072423252}

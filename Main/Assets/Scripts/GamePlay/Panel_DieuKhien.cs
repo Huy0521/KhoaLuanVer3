@@ -43,7 +43,7 @@ public class Panel_DieuKhien : MonoBehaviour
         GameController.Instance.listButton.Clear();
         GameController.Instance.chooseBtn = SpecialBtn.none;
         PopupManager.Instance.playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-        for (int i = 0; i < PopupManager.Instance.currentLevel.Sobuoc; i++)
+        for (int i = 0; i < PopupManager.Instance.currentLevel.sobuoc; i++)
         {
             GameObject gb = Instantiate(postisionForbtn.gameObject, Zone.transform);
             Listposition.Add(gb);
@@ -62,9 +62,9 @@ public class Panel_DieuKhien : MonoBehaviour
         vitriLoop = 0;
         if (PopupManager.Instance.loaibai == Loaibai.renhanh)
         {
-            for (int i = 0; i < PopupManager.Instance.currentLevel.BuocAo.Length; i++)
+            for (int i = 0; i < PopupManager.Instance.currentLevel.buocAo.Length; i++)
             {
-                switch (PopupManager.Instance.currentLevel.BuocAo[i])
+                switch (PopupManager.Instance.currentLevel.buocAo[i])
                 {
                     case "up":
                         move(btn_Up);

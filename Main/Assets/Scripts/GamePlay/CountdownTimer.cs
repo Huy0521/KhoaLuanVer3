@@ -26,5 +26,5 @@ public class CountdownTimer : MonoBehaviour
         PopupManager.Instance.timeRemaining = timeRemaining;
         timerIsRunning = false;
         timeRemaining = 0;
-}
+    }
 }

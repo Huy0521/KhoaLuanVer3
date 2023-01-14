@@ -20,7 +20,7 @@ public class PanelFinish : MonoBehaviour
     int numberStar = 3;
     public void configView(bool result)
     {
-        txt1.text = "Hoàn thành màn chơi dưới " + PopupManager.Instance.currentLevel.Time + " giây";
+        txt1.text = "Hoàn thành màn chơi dưới " + PopupManager.Instance.currentLevel.time + " giây";
         if (result==true)
         {
             AudioManager.Instance.PlaySound(Sound.Win);
@@ -33,12 +33,12 @@ public class PanelFinish : MonoBehaviour
             star2.color = new Color(0.273f, 0.273f, 0.273f);
             numberStar = numberStar - 3;
         }
-        if(PopupManager.Instance.currentLevel.Time<PopupManager.Instance.timeRemaining)
+        if(PopupManager.Instance.currentLevel.time<PopupManager.Instance.timeRemaining)
         {
             star1.color = new Color(0.273f, 0.273f, 0.273f);
             numberStar = numberStar - 1;
         }
-        if (PopupManager.Instance.currentLevel.Sobuoc_an < PopupManager.Instance.playerController.futurePosition.Count)
+        if (PopupManager.Instance.currentLevel.sobuoc_an < PopupManager.Instance.playerController.futurePosition.Count)
         {
             star2.color = new Color(0.273f, 0.273f, 0.273f);
             numberStar = numberStar - 1;
@@ -47,9 +47,10 @@ public class PanelFinish : MonoBehaviour
         {
             for (int i = 0; i < PopupManager.Instance.listmap.tuantu.Length; i++)
             {
-                if (PopupManager.Instance.currentLevel.Level == PopupManager.Instance.listmap.tuantu[i].Level)
+                if (PopupManager.Instance.currentLevel.level == PopupManager.Instance.listmap.tuantu[i].level)
                 {
-                    PopupManager.Instance.listmap.tuantu[i].Star = numberStar;
+                    PopupManager.Instance.listmap.tuantu[i].star = numberStar;
+                    PopupManager.Instance.listmap.tuantu[i].playertime = (int)PopupManager.Instance.timeRemaining;
                 }
             } 
             string tojson = JsonUtility.ToJson(PopupManager.Instance.listmap);
@@ -62,6 +63,6 @@ public class PanelFinish : MonoBehaviour
         StreamWriter write = new StreamWriter(destination);
         write.Write(data);
         write.Close();
-        AssetDatabase.ImportAsset(destination);
+        Resources.Load(destination);
     }
 }

@@ -18,10 +18,10 @@ public class ItemLevel : MonoBehaviour
 
     public void configView(Map baichoi,GameObject map)
     {
-        levelNumber.text = baichoi.Level;
+        levelNumber.text = baichoi.level;
         level = map;
         thislevel = baichoi;
-        switch(baichoi.Star)
+        switch(baichoi.star)
         {
             case 0:
                 OnandOff_Star(false, false, false);

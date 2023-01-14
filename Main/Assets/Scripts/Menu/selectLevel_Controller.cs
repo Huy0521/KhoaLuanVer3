@@ -9,12 +9,17 @@ public class selectLevel_Controller : MonoBehaviour
     [SerializeField] private List<GameObject> ListMap_Vonglap;
     [SerializeField] private List<GameObject> ListMap_Renhanh;
     [SerializeField] private Button btn_Back;
+    [SerializeField] private Image background;
+    [SerializeField] private Sprite lavaEnvironment;
+    [SerializeField] private Sprite earthEnvironment;
+    [SerializeField] private Sprite spaceEnvironment;
     [SerializeField] private List<ItemRoadMap> listItem;
     private void OnEnable()
     {
         switch (PopupManager.Instance.loaibai)
         {
             case Loaibai.tuantu:
+                background.sprite = spaceEnvironment;
                 for (int i = 0; i < PopupManager.Instance.listmap.tuantu.Length; i++)
                 {
                     listItem[i].configView(PopupManager.Instance.listmap.tuantu[i], ListMap_Tuantu[i]);
@@ -23,6 +28,7 @@ public class selectLevel_Controller : MonoBehaviour
                 }
                 break;
             case Loaibai.vonglap:
+                background.sprite = lavaEnvironment;
                 for (int i = 0; i < PopupManager.Instance.listmap.vonglap.Length; i++)
                 {
                     listItem[i].configView(PopupManager.Instance.listmap.vonglap[i], ListMap_Vonglap[i]);
@@ -31,6 +37,7 @@ public class selectLevel_Controller : MonoBehaviour
                 }
                 break;
             case Loaibai.renhanh:
+                background.sprite = earthEnvironment;
                 for (int i = 0; i < PopupManager.Instance.listmap.renhanh.Length; i++)
                 {
                     listItem[i].configView(PopupManager.Instance.listmap.renhanh[i], ListMap_Renhanh[i]);
