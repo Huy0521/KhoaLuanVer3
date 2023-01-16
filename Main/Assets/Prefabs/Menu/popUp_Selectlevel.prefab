@@ -110,7 +110,7 @@ MonoBehaviour:
   - {fileID: 6361207778162641041, guid: 7487934573f5755468e3aab4556b1a93, type: 3}
   btn_Back: {fileID: 2662452532738340461}
   background: {fileID: 1885724615937197054}
-  lavaEnvironment: {fileID: 21300000, guid: 0e6e0bde255c9ed48b967b7e708f996d, type: 3}
+  lavaEnvironment: {fileID: 21300000, guid: 2d3e83fc71deb7f4eac25d6b0e0dd3d5, type: 3}
   earthEnvironment: {fileID: 21300000, guid: e345a27f115ff0a45affba4483706fb4, type: 3}
   spaceEnvironment: {fileID: 21300000, guid: cd3bb1b12cd2dec4ea4ad534b7ca30da, type: 3}
   listItem:
@@ -194,10 +194,10 @@ RectTransform:
   m_Father: {fileID: 1705985579974649767}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -30}
-  m_SizeDelta: {x: 2445.4, y: 1811.27}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -45.5}
+  m_SizeDelta: {x: 40, y: 743}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3096898804409039394
 CanvasRenderer:
