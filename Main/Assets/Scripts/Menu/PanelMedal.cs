@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using BaseClass;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,9 +7,21 @@ public class PanelMedal : MonoBehaviour
 {
     [SerializeField] Button btn_Back;
     [SerializeField] List<ItemMedal> listMedal;
-   
+    [SerializeField] private List<Map> listAllMap;
     void Start()
     {
+        for(int i=0;i<PopupManager.Instance.listmap.tuantu.Length;i++)
+        {
+            listAllMap.Add(PopupManager.Instance.listmap.tuantu[i]);
+        }
+        for (int i = 0; i < PopupManager.Instance.listmap.vonglap.Length; i++)
+        {
+            listAllMap.Add(PopupManager.Instance.listmap.vonglap[i]);
+        }
+        for (int i = 0; i < PopupManager.Instance.listmap.renhanh.Length; i++)
+        {
+            listAllMap.Add(PopupManager.Instance.listmap.renhanh[i]);
+        }
         CheckMedal();
         btn_Back.onClick.AddListener(() =>
         {
@@ -22,26 +35,17 @@ public class PanelMedal : MonoBehaviour
         int tongstar = 0;
         int time = 0;
         int playertime = 0;
-        for (int i = 0; i < PopupManager.Instance.listmap.tuantu.Length; i++)
+        int check2sao = 0;
+        for(int i=0;i<listAllMap.Count;i++)
         {
-            playstar = playstar + PopupManager.Instance.listmap.tuantu[i].star;
+            playstar = playstar + listAllMap[i].star;
             tongstar = tongstar + 3;
-            time = time + PopupManager.Instance.listmap.tuantu[i].time;
-            playertime = playertime + PopupManager.Instance.listmap.tuantu[i].playertime;
-        }
-        for (int i = 0; i < PopupManager.Instance.listmap.vonglap.Length; i++)
-        {
-            playstar = playstar + PopupManager.Instance.listmap.vonglap[i].star;
-            tongstar = tongstar + 3;
-            time = time + PopupManager.Instance.listmap.vonglap[i].time;
-            playertime = playertime + PopupManager.Instance.listmap.vonglap[i].playertime;
-        }
-        for (int i = 0; i < PopupManager.Instance.listmap.renhanh.Length; i++)
-        {
-            playstar = playstar + PopupManager.Instance.listmap.renhanh[i].star;
-            tongstar = tongstar + 3;
-            time = time + PopupManager.Instance.listmap.renhanh[i].time;
-            playertime = playertime + PopupManager.Instance.listmap.renhanh[i].playertime;
+            time = time + listAllMap[i].time;
+            playertime = playertime + listAllMap[i].playertime;
+            if(listAllMap[i].star>=2)
+            {
+                check2sao++;
+            }
         }
         if(playstar==tongstar)
         {
@@ -49,7 +53,15 @@ public class PanelMedal : MonoBehaviour
         }
         if(time==playertime)
         {
-            listMedal[2].configView("Phi hành gia siêu tốc","Ghi nhận tư duy thần tốc của bạn khi hoàn thành bài chơi ít hơn thời gian quy định");
+            listMedal[2].configView("Phi hành gia siêu tốc","Ghi nhận tư duy thần tốc của bạn khi hoàn thành bài chơi ít hơn thời gian quy định.");
+        }
+        if(check2sao==listAllMap.Count)
+        {
+            listMedal[1].configView("Phi hành cao cấp", "Ghi nhận sự thông hiểu của bạn đối với các thuật toán được đưa ra.");
+        }
+        if(playstar>0)
+        {
+            listMedal[9].configView("Mọi câu truyện đều có khởi đầu", "Đánh dấu lần đầu tiên bạn hoàn thành 1 bài chơi.");
         }
     }
 }

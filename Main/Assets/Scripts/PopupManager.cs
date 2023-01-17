@@ -46,5 +46,6 @@ public class PopupManager : MonoBehaviour
     private void Start()
     {
         listmap = JsonUtility.FromJson<ListMap>(manchoi.text);
+        Application.targetFrameRate = 300;
     }
 }

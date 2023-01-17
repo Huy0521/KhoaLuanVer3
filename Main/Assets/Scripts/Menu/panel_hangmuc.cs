@@ -11,6 +11,9 @@ public class panel_hangmuc : MonoBehaviour
     [SerializeField] private selectLevel_Controller selectLevel;
     void Start()
     {
+        btn_Vonglap.gameObject.LeanMoveLocal(new Vector2(btn_Vonglap.transform.localPosition.x+ Random.Range(-10, 10), btn_Vonglap.transform.localPosition.y + 30), Random.Range(1f, 1.6f)).setLoopPingPong();
+        btn_Renhanh.gameObject.LeanMoveLocal(new Vector2(btn_Renhanh.transform.localPosition.x+ Random.Range(-10, 10), btn_Renhanh.transform.localPosition.y + 30), Random.Range(1f, 1.6f)).setLoopPingPong();
+        btn_Tuantu.gameObject.LeanMoveLocal(new Vector2(btn_Tuantu.transform.localPosition.x+ Random.Range(-10, 10), btn_Tuantu.transform.localPosition.y + 30), Random.Range(1f, 1.6f)).setLoopPingPong();
         btn_Tuantu.onClick.AddListener(tuantu_Click);
         btn_Vonglap.onClick.AddListener(vonglap_Click);
         btn_Renhanh.onClick.AddListener(renhanh_Click);
@@ -25,22 +28,22 @@ public class panel_hangmuc : MonoBehaviour
     {
         AudioManager.Instance.PlaySound(Sound.Button);
         PopupManager.Instance.loaibai = Loaibai.tuantu;
-        Instantiate(selectLevel.gameObject,PopupManager.Instance.canvas.transform);
-        gameObject.SetActive(false);
+        Instantiate(selectLevel,PopupManager.Instance.canvas.transform);
+        Destroy(gameObject);
     }
     void vonglap_Click()
     {
         AudioManager.Instance.PlaySound(Sound.Button);
         PopupManager.Instance.loaibai = Loaibai.vonglap;
-        Instantiate(selectLevel.gameObject, PopupManager.Instance.canvas.transform);
-        gameObject.SetActive(false);
+        Instantiate(selectLevel, PopupManager.Instance.canvas.transform);
+        Destroy(gameObject);
     }
     void renhanh_Click()
     {
         AudioManager.Instance.PlaySound(Sound.Button);
         PopupManager.Instance.loaibai = Loaibai.renhanh;
-        Instantiate(selectLevel.gameObject, PopupManager.Instance.canvas.transform);
-        gameObject.SetActive(false);
-       
+        Instantiate(selectLevel, PopupManager.Instance.canvas.transform);
+        Destroy(gameObject);
+
     }
 }

@@ -14,6 +14,7 @@ public class selectLevel_Controller : MonoBehaviour
     [SerializeField] private Sprite earthEnvironment;
     [SerializeField] private Sprite spaceEnvironment;
     [SerializeField] private List<ItemRoadMap> listItem;
+    [SerializeField] private GameObject panelHangmuc;
     private void OnEnable()
     {
         switch (PopupManager.Instance.loaibai)
@@ -54,6 +55,7 @@ public class selectLevel_Controller : MonoBehaviour
      void Back_click()
     {
         AudioManager.Instance.PlaySound(Sound.Button);
+        Instantiate(panelHangmuc, PopupManager.Instance.canvas.transform);
         Destroy(gameObject);
     }
 }

@@ -119,6 +119,7 @@ MonoBehaviour:
   - {fileID: 8368858813888664101}
   - {fileID: 4782884436216345424}
   - {fileID: 2596209814046560631}
+  panelHangmuc: {fileID: 8554082471669163113, guid: 31f3e6818db8bc743aa53ee1161d9955, type: 3}
 --- !u!1 &3722639479349671816
 GameObject:
   m_ObjectHideFlags: 0
