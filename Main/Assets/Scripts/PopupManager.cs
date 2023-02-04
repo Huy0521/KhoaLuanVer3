@@ -17,7 +17,8 @@ public class PopupManager : MonoBehaviour
     public Panel_DieuKhien userPlay;
     public Map currentLevel;
     public GameObject currentMap;
-    public float timeRemaining; 
+    public float timeRemaining;
+    private Notification notification;
     public static PopupManager Instance
     {
         get
@@ -47,5 +48,10 @@ public class PopupManager : MonoBehaviour
     {
         listmap = JsonUtility.FromJson<ListMap>(manchoi.text);
         Application.targetFrameRate = 300;
+    }
+    public void ShowNotification(GameObject canvas,string message)
+    {
+        Instantiate(notification,canvas.transform);
+        notification.titel.text = message;
     }
 }

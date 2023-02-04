@@ -1737,7 +1737,7 @@ MonoBehaviour:
     playertime: 0
     sobuoc_an: 0
     buocAo: []
-  currentMap: {fileID: 0}
+  currentMap: {fileID: 8524736176676680989, guid: 22c5a3a54a69dee4ca65a8c9fd738112, type: 3}
   timeRemaining: 0
 --- !u!114 &781540742
 MonoBehaviour:

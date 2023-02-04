@@ -21,14 +21,23 @@ public class ItemRoadMap : MonoBehaviour
     [SerializeField] private Map thislevel;
     [SerializeField] private GameObject level;
     [HideInInspector] public GameObject panelSelectlevel;
+
+    public bool levelIslock;
     public void Item_Click()
     {
-        AudioManager.Instance.PlaySound(Sound.Button);
-        PopupManager.Instance.currentLevel = thislevel;
-        PopupManager.Instance.currentMap = Instantiate(level);
-        Destroy(panelSelectlevel);
-        Instantiate(PopupManager.Instance.userPlay, PopupManager.Instance.canvas.transform);
-        PlayerPrefs.SetFloat("LastMapClick",float.Parse(txt_manchoi.text));
+        if(levelIslock==true)
+        {
+
+        }
+        else
+        {
+            AudioManager.Instance.PlaySound(Sound.Button);
+            PopupManager.Instance.currentLevel = thislevel;
+            PopupManager.Instance.currentMap = Instantiate(level);
+            Destroy(panelSelectlevel);
+            Instantiate(PopupManager.Instance.userPlay, PopupManager.Instance.canvas.transform);
+            PlayerPrefs.SetFloat("LastMapClick", float.Parse(txt_manchoi.text));
+        }
     }
     void OnStar(bool star1, bool star2, bool star3)
     {
