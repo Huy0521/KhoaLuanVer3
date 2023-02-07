@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 public class selectLevel_Controller : MonoBehaviour
 {
-    [SerializeField] private ItemLevel itemLevel;
     [SerializeField] private List<GameObject> ListMap_Tuantu;
     [SerializeField] private List<GameObject> ListMap_Vonglap;
     [SerializeField] private List<GameObject> ListMap_Renhanh;
@@ -23,27 +22,83 @@ public class selectLevel_Controller : MonoBehaviour
                 background.sprite = spaceEnvironment;
                 for (int i = 0; i < PopupManager.Instance.listmap.tuantu.Length; i++)
                 {
-                    listItem[i].configView(PopupManager.Instance.listmap.tuantu[i], ListMap_Tuantu[i]);
-                    listItem[i].panelSelectlevel = gameObject;
-                    listItem[i].gameObject.SetActive(true);
+                    if(i>0)
+                    {
+                        if(PopupManager.Instance.listmap.tuantu[i-1].star<1)
+                        {
+                            listItem[i].configView2(PopupManager.Instance.listmap.tuantu[i], ListMap_Tuantu[i]);
+                            listItem[i].panelSelectlevel = gameObject;
+                            listItem[i].gameObject.SetActive(true);
+                        }
+                        else
+                        {
+                            listItem[i].configView(PopupManager.Instance.listmap.tuantu[i], ListMap_Tuantu[i]);
+                            listItem[i].panelSelectlevel = gameObject;
+                            listItem[i].gameObject.SetActive(true);
+                        }
+                    }
+                    else
+                    {
+                        listItem[i].configView(PopupManager.Instance.listmap.tuantu[i], ListMap_Tuantu[i]);
+                        listItem[i].panelSelectlevel = gameObject;
+                        listItem[i].gameObject.SetActive(true);
+                    }
+                    
                 }
                 break;
             case Loaibai.vonglap:
                 background.sprite = lavaEnvironment;
                 for (int i = 0; i < PopupManager.Instance.listmap.vonglap.Length; i++)
                 {
-                    listItem[i].configView(PopupManager.Instance.listmap.vonglap[i], ListMap_Vonglap[i]);
-                    listItem[i].panelSelectlevel = gameObject;
-                    listItem[i].gameObject.SetActive(true);
+                    if(i>0)
+                    {
+                        if(PopupManager.Instance.listmap.vonglap[i - 1].star < 1)
+                        {
+                            listItem[i].configView2(PopupManager.Instance.listmap.vonglap[i], ListMap_Vonglap[i]);
+                            listItem[i].panelSelectlevel = gameObject;
+                            listItem[i].gameObject.SetActive(true);
+                        }
+                        else
+                        {
+                            listItem[i].configView(PopupManager.Instance.listmap.vonglap[i], ListMap_Vonglap[i]);
+                            listItem[i].panelSelectlevel = gameObject;
+                            listItem[i].gameObject.SetActive(true);
+                        }
+                    }
+                    else
+                    {
+                        listItem[i].configView(PopupManager.Instance.listmap.vonglap[i], ListMap_Vonglap[i]);
+                        listItem[i].panelSelectlevel = gameObject;
+                        listItem[i].gameObject.SetActive(true);
+                    }
                 }
                 break;
             case Loaibai.renhanh:
                 background.sprite = earthEnvironment;
                 for (int i = 0; i < PopupManager.Instance.listmap.renhanh.Length; i++)
                 {
-                    listItem[i].configView(PopupManager.Instance.listmap.renhanh[i], ListMap_Renhanh[i]);
-                    listItem[i].panelSelectlevel = gameObject;
-                    listItem[i].gameObject.SetActive(true);
+                    if (i>0)
+                    {
+                        if (PopupManager.Instance.listmap.renhanh[i - 1].star < 1)
+                        {
+                            listItem[i].configView2(PopupManager.Instance.listmap.renhanh[i], ListMap_Renhanh[i]);
+                            listItem[i].panelSelectlevel = gameObject;
+                            listItem[i].gameObject.SetActive(true);
+                        }
+                        else
+                        {
+                            listItem[i].configView(PopupManager.Instance.listmap.renhanh[i], ListMap_Renhanh[i]);
+                            listItem[i].panelSelectlevel = gameObject;
+                            listItem[i].gameObject.SetActive(true);
+                        }
+                    }
+                    else
+                    {
+                        listItem[i].configView(PopupManager.Instance.listmap.renhanh[i], ListMap_Renhanh[i]);
+                        listItem[i].panelSelectlevel = gameObject;
+                        listItem[i].gameObject.SetActive(true);
+                    }
+                    
                 }
                 break;
         }

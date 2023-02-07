@@ -19,6 +19,7 @@ public class ItemRoadMap : MonoBehaviour
     [SerializeField] private Sprite middleStar_Active;
     [SerializeField] private Sprite rightStar_Active;
     [SerializeField] private Map thislevel;
+    [SerializeField] private GameObject imgLock;
     [SerializeField] private GameObject level;
     [HideInInspector] public GameObject panelSelectlevel;
 
@@ -61,7 +62,8 @@ public class ItemRoadMap : MonoBehaviour
         txt_manchoi.text = baichoi.level;
         level = map;
         thislevel = baichoi;
-       
+        imgLock.SetActive(false);
+        txt_manchoi.gameObject.SetActive(true);
         switch (baichoi.star)
         {
             case 0:
@@ -82,5 +84,16 @@ public class ItemRoadMap : MonoBehaviour
             middle.sprite = middleActive;
             bottom.sprite = bottomActive;
         }
+    }
+    public void configView2(Map baichoi, GameObject map)
+    {
+        gameObject.LeanMoveLocal(new Vector2(gameObject.transform.localPosition.x, gameObject.transform.localPosition.y + 20), Random.Range(0.8f, 1.4f)).setLoopPingPong();
+        txt_manchoi.text = baichoi.level;
+        level = map;
+        thislevel = baichoi;
+        imgLock.SetActive(true);
+        txt_manchoi.gameObject.SetActive(false);
+        middle.color = new Color(0.2735849f, 0.2735849f, 0.2735849f);
+        bottom.color = new Color(0.2735849f, 0.2735849f, 0.2735849f);
     }
 }
