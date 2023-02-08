@@ -27,7 +27,9 @@ public class AudioManager : MonoBehaviour
         switch (_sound)
         {
             case Sound.Start:
-                musicSource.PlayOneShot(startGame);
+                musicSource.clip = startGame;
+                musicSource.Play();
+                
                 break;
             case Sound.Button:
                 effectsSource.PlayOneShot(buttonSound);

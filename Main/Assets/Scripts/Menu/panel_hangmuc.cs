@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -74,7 +74,7 @@ public class panel_hangmuc : MonoBehaviour
     {
         if(tuantuStar<12)
         {
-
+            PopupManager.Instance.ShowNotification(gameObject, "Hãy hoàn thành thử thành ở hành tinh trước đó để mở khóa!");       
         }
         else
         {
@@ -89,7 +89,7 @@ public class panel_hangmuc : MonoBehaviour
     {
         if(vonglapStar<12)
         {
-
+            PopupManager.Instance.ShowNotification(gameObject, "Hãy hoàn thành thử thành ở hành tinh trước đó để mở khóa!");
         }
         else
         {

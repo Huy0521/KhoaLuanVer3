@@ -1,0 +1,68 @@
+dua choi dan.png
+size:693,210
+filter:Linear,Linear
+pma:true
+Body
+bounds:214,5,172,203
+offsets:1,1,174,205
+Eye Black L
+bounds:646,8,26,25
+offsets:1,1,28,27
+rotate:90
+Eye Black R
+bounds:664,181,27,27
+offsets:1,1,30,29
+Eye Close L
+bounds:621,82,42,43
+offsets:1,1,44,45
+Eye Close R
+bounds:599,16,45,46
+offsets:1,1,47,48
+Eye White L
+bounds:630,176,32,32
+offsets:1,1,34,34
+Eye White R
+bounds:562,27,35,35
+offsets:1,1,37,37
+Eyebrow L
+bounds:487,6,25,12
+offsets:1,1,27,14
+Eyebrow R
+bounds:463,3,22,15
+offsets:1,1,24,17
+Guitar
+bounds:2,11,210,197
+offsets:1,1,212,199
+Hand Arm LEFT
+bounds:646,36,39,44
+Hand LEFT
+bounds:550,2,23,26
+offsets:1,1,25,28
+rotate:90
+Hand RIGHT
+bounds:388,104,104,62
+rotate:90
+Leaf A
+bounds:511,27,49,80
+Leaf B
+bounds:388,14,73,88
+Leaf C
+bounds:463,20,46,87
+Leaf D
+bounds:529,127,44,82
+rotate:90
+Leaf E
+bounds:452,109,75,62
+Mouth
+bounds:514,2,34,23
+offsets:1,1,36,25
+Note A
+bounds:562,64,57,61
+offsets:1,1,59,63
+Note B
+bounds:613,127,44,65
+offsets:1,1,46,67
+rotate:90
+Shadow
+bounds:452,173,176,35
+offsets:1,1,178,37

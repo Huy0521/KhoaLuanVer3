@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -28,7 +28,7 @@ public class ItemRoadMap : MonoBehaviour
     {
         if(levelIslock==true)
         {
-
+            PopupManager.Instance.ShowNotification(PopupManager.Instance.canvas.gameObject, "Vượt qua màn chơi trước đó để mở khóa!");
         }
         else
         {
@@ -95,5 +95,6 @@ public class ItemRoadMap : MonoBehaviour
         txt_manchoi.gameObject.SetActive(false);
         middle.color = new Color(0.2735849f, 0.2735849f, 0.2735849f);
         bottom.color = new Color(0.2735849f, 0.2735849f, 0.2735849f);
+        levelIslock = true;
     }
 }

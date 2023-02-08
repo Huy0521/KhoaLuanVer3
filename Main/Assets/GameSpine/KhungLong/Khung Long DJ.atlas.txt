@@ -1,0 +1,70 @@
+Khung Long DJ.png
+size:473,396
+filter:Linear,Linear
+pma:true
+FX 01
+bounds:2,9,75,83
+offsets:1,1,77,85
+rotate:90
+FX02
+bounds:227,33,63,121
+offsets:1,1,65,123
+rotate:90
+KL-body
+bounds:78,98,278,296
+KL-eye-01-L
+bounds:416,124,44,44
+offsets:1,1,46,46
+KL-eye-01-R
+bounds:416,2,40,40
+offsets:1,1,42,42
+KL-eye-02-L
+bounds:164,2,29,23
+offsets:1,1,31,25
+KL-eye-02-R
+bounds:164,2,29,23
+offsets:1,1,31,25
+KL-hand-L
+bounds:100,6,62,90
+KL-hand-R
+bounds:164,27,69,61
+rotate:90
+KL-leg-L
+bounds:416,84,42,38
+KL-leg-R
+bounds:416,44,42,38
+KL-ma-L
+bounds:87,66,19,11
+offsets:1,1,21,13
+rotate:90
+KL-ma-R
+bounds:87,66,19,11
+offsets:1,1,21,13
+rotate:90
+KL-mouth
+bounds:416,170,86,50
+offsets:1,1,88,52
+rotate:90
+KL-tai nghe
+bounds:358,258,136,113
+offsets:1,1,138,115
+rotate:90
+ban DJ
+bounds:358,9,247,56
+offsets:1,1,249,58
+rotate:90
+nut bam 01
+bounds:78,87,9,20
+offsets:1,1,11,22
+rotate:90
+nut bam 03
+bounds:78,87,9,20
+offsets:1,1,11,22
+rotate:90
+nut bam 02
+bounds:87,44,9,20
+offsets:1,1,11,22
+table
+bounds:2,86,308,74
+offsets:1,1,310,76
+rotate:90
