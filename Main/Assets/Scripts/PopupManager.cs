@@ -18,6 +18,7 @@ public class PopupManager : MonoBehaviour
     public Map currentLevel;
     public GameObject currentMap;
     public float timeRemaining;
+    public bool notificationIsOn;
     [SerializeField] private Notification notification;
     public static PopupManager Instance
     {
@@ -51,9 +52,11 @@ public class PopupManager : MonoBehaviour
     }
     public void ShowNotification(GameObject canvas,string message)
     {
-        Notification gb = Instantiate(notification,canvas.transform);
-        gb.titel.text = message;
-    
-   
+        if(!notificationIsOn)
+        {
+            Notification gb = Instantiate(notification, canvas.transform);
+            gb.titel.text = message;
+            notificationIsOn = true;
+        }
     }
 }

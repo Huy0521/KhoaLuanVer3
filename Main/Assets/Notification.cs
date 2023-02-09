@@ -18,5 +18,6 @@ public class Notification : MonoBehaviour
     void Kill()
     {
         Destroy(gameObject);
+        PopupManager.Instance.notificationIsOn = false;
     }
 }
