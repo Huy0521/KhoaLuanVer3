@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     Vector3 currentposition;
     int cursorInMainList = 0;
     int check = 0;
+    [SerializeField] private ParticleSystem hitPartical;
     void Awake()
     {
         currentposition = transform.localPosition;
@@ -150,6 +151,7 @@ public class PlayerController : MonoBehaviour
                 GameObject panelLose = Instantiate(PopupManager.Instance.panel_Finish.gameObject, PopupManager.Instance.canvas.transform);
                 panelLose.GetComponent<PanelFinish>().configView(false);
                 GameController.Instance.run = false;
+               
                 break;
             case "Finish":
                 GetComponent<Animator>().Play("happy");
@@ -160,6 +162,7 @@ public class PlayerController : MonoBehaviour
             case "Boundary":
                 GameController.Instance.run = false;
                 ChangeAnimationState("idle_Up");
+                hitPartical.gameObject.SetActive(true);
                 break;
         }
     }

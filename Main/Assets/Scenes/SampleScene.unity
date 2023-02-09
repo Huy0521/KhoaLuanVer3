@@ -1741,6 +1741,7 @@ MonoBehaviour:
     buocAo: []
   currentMap: {fileID: 0}
   timeRemaining: 0
+  notificationIsOn: 0
   notification: {fileID: 1595768861641450270, guid: 22c5a3a54a69dee4ca65a8c9fd738112, type: 3}
 --- !u!114 &781540742
 MonoBehaviour:
