@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     int cursorInMainList = 0;
     int check = 0;
     [SerializeField] private ParticleSystem hitPartical;
+    [SerializeField] private ParticleSystem finnishPartical;
     void Awake()
     {
         currentposition = transform.localPosition;
@@ -155,8 +156,10 @@ public class PlayerController : MonoBehaviour
                 break;
             case "Finish":
                 GetComponent<Animator>().Play("happy");
-                GameObject panelWin = Instantiate(PopupManager.Instance.panel_Finish.gameObject, PopupManager.Instance.canvas.transform);
-                panelWin.GetComponent<PanelFinish>().configView(true);
+                //GameObject panelWin = Instantiate(PopupManager.Instance.panel_Finish.gameObject, PopupManager.Instance.canvas.transform);
+                finnishPartical.gameObject.SetActive(true);
+                AudioManager.Instance.PlaySound(Sound.Teleport);
+                //panelWin.GetComponent<PanelFinish>().configView(true);
                 GameController.Instance.run = false;
                 break;
             case "Boundary":
