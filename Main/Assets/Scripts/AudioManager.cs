@@ -1,19 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using UnityEngine;
-public enum Sound { Start,Button,Win,Lose,Teleport }
+public enum Sound { Start,Button,Win,Lose,Teleport,FootStep }
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
-    public AudioSource musicSource,effectsSource;
+    public AudioSource musicSource, effectsSource;
     [SerializeField] private AudioClip startGame;
     [SerializeField] private AudioClip buttonSound;
     [SerializeField] private AudioClip winSound;
     [SerializeField] private AudioClip loseSound;
     [SerializeField] private AudioClip teleport;
+    [SerializeField] private AudioClip footStep;
     private void Awake()
     {
-        if(Instance==null)
+        if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
@@ -30,7 +32,6 @@ public class AudioManager : MonoBehaviour
             case Sound.Start:
                 musicSource.clip = startGame;
                 musicSource.Play();
-                
                 break;
             case Sound.Button:
                 effectsSource.PlayOneShot(buttonSound);
@@ -44,7 +45,15 @@ public class AudioManager : MonoBehaviour
             case Sound.Teleport:
                 effectsSource.PlayOneShot(teleport);
                 break;
+            case Sound.FootStep:
+                effectsSource.clip = footStep;
+                effectsSource.Play();
+                break;
         }
+    }
+    public void StopEffect()
+    {
+        effectsSource.Stop();
     }
     public void ChangeMusicVolume(float value)
     {

@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     int check = 0;
     [SerializeField] private ParticleSystem hitPartical;
     [SerializeField] private ParticleSystem finnishPartical;
+    private bool checkFootStep = false; 
     void Awake()
     {
         currentposition = transform.localPosition;
@@ -79,7 +80,8 @@ public class PlayerController : MonoBehaviour
             {
                 CalculateMove(GameController.Instance.listButton[i].name);
             }
-            GameController.Instance.run = true;
+            GameController.Instance.run = true; 
+            AudioManager.Instance.PlaySound(Sound.FootStep);
         }
     }
     private void Update()
@@ -103,6 +105,7 @@ public class PlayerController : MonoBehaviour
                     ChangeAnimationState("walk_Down");
                     break;
             }
+            
             transform.localPosition = Vector3.MoveTowards(transform.localPosition, futurePosition[cursorInMainList], speed * Time.deltaTime);
             if (transform.localPosition == futurePosition[cursorInMainList])
             {
@@ -132,6 +135,11 @@ public class PlayerController : MonoBehaviour
                         ChangeAnimationState("idle_Side");
                     }
                 }
+               if(!checkFootStep)
+                {
+                    AudioManager.Instance.StopEffect();
+                    checkFootStep = true;
+                }
             }
         }
     }
@@ -158,6 +166,7 @@ public class PlayerController : MonoBehaviour
                 GetComponent<Animator>().Play("happy");
                 //GameObject panelWin = Instantiate(PopupManager.Instance.panel_Finish.gameObject, PopupManager.Instance.canvas.transform);
                 finnishPartical.gameObject.SetActive(true);
+                AudioManager.Instance.StopEffect();
                 AudioManager.Instance.PlaySound(Sound.Teleport);
                 //panelWin.GetComponent<PanelFinish>().configView(true);
                 GameController.Instance.run = false;

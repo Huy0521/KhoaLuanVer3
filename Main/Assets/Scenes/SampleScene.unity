@@ -1440,7 +1440,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.18
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1635,6 +1635,7 @@ MonoBehaviour:
   winSound: {fileID: 8300000, guid: 9f72db50d42d54b4da411304889f3b72, type: 3}
   loseSound: {fileID: 8300000, guid: 112a1c26e2c85e846ad8abe9a5a55230, type: 3}
   teleport: {fileID: 8300000, guid: 8b34e5b3373710545b1ba634da419082, type: 3}
+  footStep: {fileID: 8300000, guid: 2c165eebdb7607247be942118b5a92cf, type: 3}
 --- !u!4 &752390130
 Transform:
   m_ObjectHideFlags: 0
@@ -3084,7 +3085,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
