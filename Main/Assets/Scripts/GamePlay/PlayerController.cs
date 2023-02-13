@@ -164,11 +164,11 @@ public class PlayerController : MonoBehaviour
                 break;
             case "Finish":
                 GetComponent<Animator>().Play("happy");
-                //GameObject panelWin = Instantiate(PopupManager.Instance.panel_Finish.gameObject, PopupManager.Instance.canvas.transform);
+                GameObject panelWin = Instantiate(PopupManager.Instance.panel_Finish.gameObject, PopupManager.Instance.canvas.transform);
                 finnishPartical.gameObject.SetActive(true);
                 AudioManager.Instance.StopEffect();
                 AudioManager.Instance.PlaySound(Sound.Teleport);
-                //panelWin.GetComponent<PanelFinish>().configView(true);
+                panelWin.GetComponent<PanelFinish>().configView(true);
                 GameController.Instance.run = false;
                 break;
             case "Boundary":

@@ -14,6 +14,7 @@ public class selectLevel_Controller : MonoBehaviour
     [SerializeField] private Sprite spaceEnvironment;
     [SerializeField] private List<ItemRoadMap> listItem;
     [SerializeField] private GameObject panelHangmuc;
+
     private void OnEnable()
     {
         switch (PopupManager.Instance.loaibai)
@@ -45,6 +46,7 @@ public class selectLevel_Controller : MonoBehaviour
                     }
                     
                 }
+                PopupManager.Instance.listCurrentTopic = ListMap_Tuantu;
                 break;
             case Loaibai.vonglap:
                 background.sprite = lavaEnvironment;
@@ -72,6 +74,7 @@ public class selectLevel_Controller : MonoBehaviour
                         listItem[i].gameObject.SetActive(true);
                     }
                 }
+                PopupManager.Instance.listCurrentTopic = ListMap_Vonglap;
                 break;
             case Loaibai.renhanh:
                 background.sprite = earthEnvironment;
@@ -97,9 +100,9 @@ public class selectLevel_Controller : MonoBehaviour
                         listItem[i].configView(PopupManager.Instance.listmap.renhanh[i], ListMap_Renhanh[i]);
                         listItem[i].panelSelectlevel = gameObject;
                         listItem[i].gameObject.SetActive(true);
-                    }
-                    
+                    } 
                 }
+                PopupManager.Instance.listCurrentTopic = ListMap_Renhanh;
                 break;
         }
     }

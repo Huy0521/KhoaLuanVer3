@@ -36,7 +36,7 @@ public class ItemRoadMap : MonoBehaviour
             PopupManager.Instance.currentLevel = thislevel;
             PopupManager.Instance.currentMap = Instantiate(level);
             Destroy(panelSelectlevel);
-            Instantiate(PopupManager.Instance.userPlay, PopupManager.Instance.canvas.transform);
+            PopupManager.Instance.currentDashboard =  Instantiate(PopupManager.Instance.userPlay, PopupManager.Instance.canvas.transform);
             PlayerPrefs.SetFloat("LastMapClick", float.Parse(txt_manchoi.text));
         }
     }

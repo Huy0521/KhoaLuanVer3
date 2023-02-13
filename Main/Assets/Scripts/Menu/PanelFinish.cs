@@ -10,14 +10,21 @@ using UnityEditor;
 
 public class PanelFinish : MonoBehaviour
 {
-    [SerializeField] Image titleSprite;
-    [SerializeField] Image star1;
-    [SerializeField] Image star2;
-    [SerializeField] Image star3;
-    [SerializeField] Sprite win;
-    [SerializeField] Sprite lose;
-    [SerializeField] TMP_Text txt1;
+    [SerializeField] private Image titleSprite;
+    [SerializeField] private Image star1;
+    [SerializeField] private Image star2;
+    [SerializeField] private Image star3;
+    [SerializeField] private Sprite win;
+    [SerializeField] private Sprite lose;
+    [SerializeField] private TMP_Text txt1;
+    [SerializeField] private Button btnContinue;
+    [SerializeField] private Button btnBack;
     int numberStar = 3;
+    private void Start()
+    {
+        btnContinue.onClick.AddListener(ContinuePlay_click);
+        btnBack.onClick.AddListener(Back_click);
+    }
     public void configView(bool result)
     {
         txt1.text = "Hoàn thành màn chơi dưới " + PopupManager.Instance.currentLevel.time + " giây";
@@ -64,5 +71,40 @@ public class PanelFinish : MonoBehaviour
         write.Write(data);
         write.Close();
         Resources.Load(destination);
+
+    }
+    private void ContinuePlay_click()
+    {
+        int level = int.Parse(PopupManager.Instance.currentLevel.level);
+        Destroy(PopupManager.Instance.currentMap);
+        Destroy(PopupManager.Instance.currentDashboard.gameObject);
+         if(level <5)
+        {
+            switch (PopupManager.Instance.loaibai)
+            {
+                case Loaibai.tuantu:
+                    PopupManager.Instance.currentLevel = PopupManager.Instance.listmap.tuantu[level];
+                    break;
+                case Loaibai.vonglap:
+                    PopupManager.Instance.currentLevel = PopupManager.Instance.listmap.vonglap[level];
+                    break;
+                case Loaibai.renhanh:
+                    PopupManager.Instance.currentLevel = PopupManager.Instance.listmap.renhanh[level];
+                    break;
+            }
+            PopupManager.Instance.currentMap = Instantiate(PopupManager.Instance.listCurrentTopic[level]);
+            PopupManager.Instance.currentDashboard = Instantiate(PopupManager.Instance.userPlay, PopupManager.Instance.canvas.transform);
+        }
+        else
+        {
+
+        }
+    
+        Destroy(gameObject);
+       
+    }
+    private void Back_click()
+    {
+
     }
 }

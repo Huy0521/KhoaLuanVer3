@@ -18,7 +18,9 @@ public class PopupManager : MonoBehaviour
     public Map currentLevel;
     public GameObject currentMap;
     public float timeRemaining;
+    public List<GameObject> listCurrentTopic;
     public bool notificationIsOn;
+    public Panel_DieuKhien currentDashboard;
     [SerializeField] private Notification notification;
     public static PopupManager Instance
     {
