@@ -21,6 +21,7 @@ public class PopupManager : MonoBehaviour
     public List<GameObject> listCurrentTopic;
     public bool notificationIsOn;
     public Panel_DieuKhien currentDashboard;
+    public bool goFromCutScene;
     [SerializeField] private Notification notification;
     public static PopupManager Instance
     {
@@ -61,4 +62,5 @@ public class PopupManager : MonoBehaviour
             notificationIsOn = true;
         }
     }
+    
 }

@@ -1745,6 +1745,7 @@ MonoBehaviour:
   timeRemaining: 0
   listCurrentTopic: []
   notificationIsOn: 0
+  currentDashboard: {fileID: 0}
   notification: {fileID: 1595768861641450270, guid: 22c5a3a54a69dee4ca65a8c9fd738112, type: 3}
 --- !u!114 &781540742
 MonoBehaviour:
@@ -4602,7 +4603,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2073368000
 RectTransform:
   m_ObjectHideFlags: 0

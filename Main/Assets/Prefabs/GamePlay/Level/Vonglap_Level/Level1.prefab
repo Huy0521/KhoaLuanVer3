@@ -638,6 +638,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 913661884541090834, guid: b28f3ffcc3f876340b421235cf8aaa95, type: 3}
   m_PrefabInstance: {fileID: 1832888927847941006}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &8624785623381700371 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7989066952533372061, guid: b28f3ffcc3f876340b421235cf8aaa95, type: 3}
+  m_PrefabInstance: {fileID: 1832888927847941006}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3042979913733716197
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -649,6 +654,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2314842425626791427, guid: cf62ac755bc6a514ca3723178995ac8b, type: 3}
+      propertyPath: finnishPartical
+      value: 
+      objectReference: {fileID: 8624785623381700371}
     - target: {fileID: 2314842425626791455, guid: cf62ac755bc6a514ca3723178995ac8b, type: 3}
       propertyPath: m_RootOrder
       value: 5

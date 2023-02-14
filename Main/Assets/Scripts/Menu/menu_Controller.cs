@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class menu_Controller : MonoBehaviour
 {
     [SerializeField] private selectLevel_Controller popup_SelectLV;
@@ -20,12 +21,21 @@ public class menu_Controller : MonoBehaviour
         btn_Medal.onClick.AddListener(medal_Click);
         btn_Setting.onClick.AddListener(setting_Click);
         AudioManager.Instance.PlaySound(Sound.Start);
+        if (PopupManager.Instance.goFromCutScene)
+        {
+          /*  PopupManager.Instance.currentLevel = PopupManager.Instance.listmap.tuantu[0];
+            PopupManager.Instance.currentMap = Instantiate(level);
+            Destroy(panelSelectlevel);
+            PopupManager.Instance.currentDashboard = Instantiate(PopupManager.Instance.userPlay, PopupManager.Instance.canvas.transform);*/
+        }
+        
     }
     void newgame_Click()
     {
-        Instantiate(panelHangmuc.gameObject, PopupManager.Instance.canvas.transform);
-        Menu.SetActive(false);
-        AudioManager.Instance.PlaySound(Sound.Button);
+        /*Instantiate(panelHangmuc.gameObject, PopupManager.Instance.canvas.transform);
+        Menu.SetActive(false);*/
+        AudioManager.Instance.PlaySound(Sound.Button); 
+        SceneManager.LoadScene("CutScene");
     }
     void medal_Click()
     {

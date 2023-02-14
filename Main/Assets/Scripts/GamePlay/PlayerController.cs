@@ -160,7 +160,6 @@ public class PlayerController : MonoBehaviour
                 GameObject panelLose = Instantiate(PopupManager.Instance.panel_Finish.gameObject, PopupManager.Instance.canvas.transform);
                 panelLose.GetComponent<PanelFinish>().configView(false);
                 GameController.Instance.run = false;
-               
                 break;
             case "Finish":
                 GetComponent<Animator>().Play("happy");
