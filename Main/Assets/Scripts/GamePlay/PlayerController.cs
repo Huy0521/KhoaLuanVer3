@@ -8,19 +8,19 @@ public class PlayerController : MonoBehaviour
     private string currentAnimaton;
     public float speed = 6;
     public List<Vector3> futurePosition;
-    Vector3 currentposition;
-    int cursorInMainList = 0;
-    int check = 0;
+    private Vector3 currentposition;
+    private int cursorInMainList = 0;
+    private int check = 0;
     [SerializeField] private ParticleSystem hitPartical;
     [SerializeField] private ParticleSystem finnishPartical;
-    private bool checkFootStep = false; 
-    void Awake()
+    private bool checkFootStep = false;
+    private void Awake()
     {
         currentposition = transform.localPosition;
     }
-    void CalculateMove(string move)
+    private void CalculateMove(string move)
     {
-        switch(move)
+        switch (move)
         {
             case "btn_Left(Clone)":
                 currentposition = currentposition + new Vector3(-1.7f, 0, 0);
@@ -52,21 +52,21 @@ public class PlayerController : MonoBehaviour
                 }
                 break;
             case "btn_If(Clone)":
-               
-                    for (int i = 0; i < GameController.Instance.listBtnIf.Count; i++)
+
+                for (int i = 0; i < GameController.Instance.listBtnIf.Count; i++)
+                {
+                    if (string.Equals(GameController.Instance.listShadedIf[i], GameController.Instance.listBtnIf[i].name))
                     {
-                        if (string.Equals(GameController.Instance.listShadedIf[i], GameController.Instance.listBtnIf[i].name))
-                        {
-                            check++;
-                        }
+                        check++;
                     }
-                    if (check == GameController.Instance.listShadedIf.Count)
+                }
+                if (check == GameController.Instance.listShadedIf.Count)
+                {
+                    for (int i = 0; i < GameController.Instance.listBtndoIf.Count; i++)
                     {
-                        for (int i = 0; i < GameController.Instance.listBtndoIf.Count; i++)
-                        {
-                            CalculateMove(GameController.Instance.listBtndoIf[i].name);
-                        }
+                        CalculateMove(GameController.Instance.listBtndoIf[i].name);
                     }
+                }
                 break;
         }
     }
@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
             {
                 CalculateMove(GameController.Instance.listButton[i].name);
             }
-            GameController.Instance.run = true; 
+            GameController.Instance.run = true;
             AudioManager.Instance.PlaySound(Sound.FootStep);
         }
     }
@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour
                     ChangeAnimationState("walk_Down");
                     break;
             }
-            
+
             transform.localPosition = Vector3.MoveTowards(transform.localPosition, futurePosition[cursorInMainList], speed * Time.deltaTime);
             if (transform.localPosition == futurePosition[cursorInMainList])
             {
@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviour
                         ChangeAnimationState("idle_Side");
                     }
                 }
-               if(!checkFootStep)
+                if (!checkFootStep)
                 {
                     AudioManager.Instance.StopEffect();
                     checkFootStep = true;
@@ -143,7 +143,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-    void ChangeAnimationState(string newAnimation)
+    private void ChangeAnimationState(string newAnimation)
     {
         if (currentAnimaton == newAnimation) return;
 
@@ -153,7 +153,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        switch(collision.gameObject.tag)
+        switch (collision.gameObject.tag)
         {
             case "Enemy":
                 GetComponent<Animator>().Play("die");

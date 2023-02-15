@@ -19,6 +19,7 @@ public class PanelFinish : MonoBehaviour
     [SerializeField] private TMP_Text txt1;
     [SerializeField] private Button btnContinue;
     [SerializeField] private Button btnBack;
+    [SerializeField] private panel_hangmuc panelHangmuc;
     int numberStar = 3;
     private void Start()
     {
@@ -97,7 +98,9 @@ public class PanelFinish : MonoBehaviour
         }
         else
         {
-
+            Destroy(PopupManager.Instance.currentMap);
+            Destroy(PopupManager.Instance.currentDashboard.gameObject);
+            Instantiate(panelHangmuc, PopupManager.Instance.canvas.transform);
         }
     
         Destroy(gameObject);

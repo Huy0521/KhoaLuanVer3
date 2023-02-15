@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public enum Loaibai { tuantu,vonglap,renhanh };
+public enum Loaibai { tuantu,vonglap,renhanh,phuongthuc };
 public class PopupManager : MonoBehaviour
 {
     public static PopupManager instance = null;
-    public Canvas canvas;
+    public GameObject canvas;
     public PanelFinish panel_Finish;
     public TextAsset manchoi;
     [HideInInspector] public PlayerController playerController;

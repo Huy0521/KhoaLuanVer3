@@ -40,7 +40,7 @@ public class ItemRoadMap : MonoBehaviour
             PlayerPrefs.SetFloat("LastMapClick", float.Parse(txt_manchoi.text));
         }
     }
-    void OnStar(bool star1, bool star2, bool star3)
+    private void OnStar(bool star1, bool star2, bool star3)
     {
         if (star1)
         {

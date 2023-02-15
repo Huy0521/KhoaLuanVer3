@@ -112,6 +112,7 @@ MonoBehaviour:
   lavaEnvironment: {fileID: 21300000, guid: 2d3e83fc71deb7f4eac25d6b0e0dd3d5, type: 3}
   earthEnvironment: {fileID: 21300000, guid: e345a27f115ff0a45affba4483706fb4, type: 3}
   spaceEnvironment: {fileID: 21300000, guid: cd3bb1b12cd2dec4ea4ad534b7ca30da, type: 3}
+  iceEnviroment: {fileID: 21300000, guid: 64dd24bbb9791d7429585bfa06dab9ab, type: 3}
   listItem:
   - {fileID: 3695423391706572101}
   - {fileID: 2536336692072423252}

@@ -10,12 +10,12 @@ public class Notification : MonoBehaviour
     {
         Invoke("changeAnim", 2.0f);
     }
-    void changeAnim()
+    private void changeAnim()
     {
         animator.Play("EndNoftificationAnime");
-        Invoke("Kill",0.5f);
+        Invoke("Kill", 0.5f);
     }
-    void Kill()
+    private void Kill()
     {
         Destroy(gameObject);
         PopupManager.Instance.notificationIsOn = false;

@@ -1032,6 +1032,7 @@ MonoBehaviour:
   txt1: {fileID: 6242086253272496399}
   btnContinue: {fileID: 1098895973}
   btnBack: {fileID: 516920081}
+  panelHangmuc: {fileID: 2570803530740699525, guid: 31f3e6818db8bc743aa53ee1161d9955, type: 3}
 --- !u!114 &4745568239057945766
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,8 +14,13 @@ public class menu_Controller : MonoBehaviour
     [SerializeField] private Button btn_Exit;
     [SerializeField] private Button btn_Setting;
     [SerializeField] private GameObject Menu;
-    void Start()
+    [SerializeField] private GameObject firstLevel;
+    [SerializeField] private List<GameObject> listTuantu;
+    private void Start()
     {
+        Menu = gameObject.transform.GetChild(0).gameObject;
+        PopupManager.Instance.canvas = gameObject.transform.parent.gameObject;
+        PopupManager.Instance.menu = Menu;
         btn_Exit.onClick.AddListener(exit_Click);
         btn_NewGame.onClick.AddListener(newgame_Click); 
         btn_Medal.onClick.AddListener(medal_Click);
@@ -23,32 +28,38 @@ public class menu_Controller : MonoBehaviour
         AudioManager.Instance.PlaySound(Sound.Start);
         if (PopupManager.Instance.goFromCutScene)
         {
-          /*  PopupManager.Instance.currentLevel = PopupManager.Instance.listmap.tuantu[0];
-            PopupManager.Instance.currentMap = Instantiate(level);
-            Destroy(panelSelectlevel);
-            PopupManager.Instance.currentDashboard = Instantiate(PopupManager.Instance.userPlay, PopupManager.Instance.canvas.transform);*/
+            PopupManager.Instance.currentLevel = PopupManager.Instance.listmap.tuantu[0];
+            PopupManager.Instance.listCurrentTopic = listTuantu;
+            PopupManager.Instance.currentMap = Instantiate(firstLevel);
+            PopupManager.Instance.currentDashboard = Instantiate(PopupManager.Instance.userPlay, PopupManager.Instance.canvas.transform);
         }
         
     }
-    void newgame_Click()
+    private void newgame_Click()
     {
-        /*Instantiate(panelHangmuc.gameObject, PopupManager.Instance.canvas.transform);
-        Menu.SetActive(false);*/
-        AudioManager.Instance.PlaySound(Sound.Button); 
-        SceneManager.LoadScene("CutScene");
+        if (PopupManager.Instance.listmap.tuantu[0].star > 0)
+        {
+            Instantiate(panelHangmuc, PopupManager.Instance.canvas.transform);
+            Menu.SetActive(false);
+        }
+        else
+        {
+            AudioManager.Instance.PlaySound(Sound.Button);
+            SceneManager.LoadScene("CutScene");
+        }
     }
-    void medal_Click()
+    private void medal_Click()
     {
         AudioManager.Instance.PlaySound(Sound.Button);
         Instantiate(medalPanel, PopupManager.Instance.canvas.transform);
         Menu.SetActive(false);
     }    
-    void exit_Click()
+    private void exit_Click()
     {
         AudioManager.Instance.PlaySound(Sound.Button);
         Application.Quit();
     }
-    void setting_Click()
+   private void setting_Click()
     {
         panelSetting.gameObject.SetActive(true);
     }

@@ -38,7 +38,7 @@ public class Panel_DieuKhien : MonoBehaviour
     [SerializeField] private GameObject panelAllsetting;
     [SerializeField] private GameObject panelSelectlevel;
     [SerializeField] private CountdownTimer Time;
-    void Start()
+    private void Start()
     {
         GameController.Instance.listButton.Clear();
         GameController.Instance.chooseBtn = SpecialBtn.none;
@@ -89,7 +89,7 @@ public class Panel_DieuKhien : MonoBehaviour
         }
         Setup();
     }
-    void Setup()
+    private void Setup()
     {
         btn_Left.onClick.AddListener(left_Click);
         btn_Right.onClick.AddListener(right_Click);
@@ -119,7 +119,7 @@ public class Panel_DieuKhien : MonoBehaviour
         btn_Yes.gameObject.SetActive(false);
         btn_No.gameObject.SetActive(false);
     }
-    void move(Button btn)
+    private void move(Button btn)
     {
         if (vitri < Listposition.Count && GameController.Instance.chooseBtn == SpecialBtn.none)
         {
@@ -168,7 +168,7 @@ public class Panel_DieuKhien : MonoBehaviour
             vitridoIf++;
         }
     }
-    void delete_Click()
+    private void delete_Click()
     {
         AudioManager.Instance.PlaySound(Sound.Button);
         if (GameController.Instance.listButton.Count > 0)
@@ -212,14 +212,14 @@ public class Panel_DieuKhien : MonoBehaviour
             }
         }
     }
-    void loop_Click()
+    private void loop_Click()
     {
         GameObject gb = Instantiate(btn_Loop.gameObject, Listposition[vitri].transform);
         gb.transform.SetPositionAndRotation(Listposition[vitri].transform.position, Listposition[vitri].transform.rotation);
         GameController.Instance.listButton.Add(gb);
         vitri++;
         btn_Loop.gameObject.SetActive(false);
-        Button lp = Instantiate(BtnloopScreen,switchScreen.transform);// Add button tắt bật screen đó
+        Button lp = Instantiate(BtnloopScreen, switchScreen.transform);// Add button tắt bật screen đó
         lp.onClick.AddListener(switchScreen.ShowLoopScreen);
         gb = Instantiate(loopScreen, contentForScreen.transform);//add screen đó lên
         switchScreen.listScreen.Add(gb);
@@ -230,7 +230,7 @@ public class Panel_DieuKhien : MonoBehaviour
             ListpostionLoop.Add(gb);
         }
     }
-    void if_Click()
+    private void if_Click()
     {
         AudioManager.Instance.PlaySound(Sound.Button);
         GameObject gb = Instantiate(btn_If.gameObject, Listposition[vitri].transform);
@@ -247,40 +247,40 @@ public class Panel_DieuKhien : MonoBehaviour
     {
         move(btn_No);
     }
-    void left_Click()
+    private void left_Click()
     {
         AudioManager.Instance.PlaySound(Sound.Button);
         move(btn_Left);
     }
-    void right_Click()
+    private void right_Click()
     {
         AudioManager.Instance.PlaySound(Sound.Button);
         move(btn_Right);
     }
-    void up_Click()
+    private void up_Click()
     {
         AudioManager.Instance.PlaySound(Sound.Button);
         move(btn_Up);
     }
-    void down_Click()
+    private void down_Click()
     {
         AudioManager.Instance.PlaySound(Sound.Button);
         move(btn_Down);
     }
-    void play_Click()
+    private void play_Click()
     {
         AudioManager.Instance.PlaySound(Sound.Button);
         GameObject player = GameObject.Find("Player");
         player.GetComponent<PlayerController>().playCharacter();
         Time.stopTime();
     }
-    void close_Click()
+    private void close_Click()
     {
         AudioManager.Instance.PlaySound(Sound.Button);
         Destroy(gameObject);
         Destroy(PopupManager.Instance.currentMap);
         Instantiate(panelSelectlevel, PopupManager.Instance.canvas.transform);
-        
+
     }
     public void panelIf_click()
     {
@@ -297,7 +297,7 @@ public class Panel_DieuKhien : MonoBehaviour
     public void allSetting_Click()
     {
         AudioManager.Instance.PlaySound(Sound.Button);
-        if(panelAllsetting.activeSelf)
+        if (panelAllsetting.activeSelf)
         {
             panelAllsetting.SetActive(false);
         }
@@ -305,7 +305,7 @@ public class Panel_DieuKhien : MonoBehaviour
         {
             panelAllsetting.SetActive(true);
         }
-        
+
 
     }
 }

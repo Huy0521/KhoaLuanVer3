@@ -12,6 +12,7 @@ public class selectLevel_Controller : MonoBehaviour
     [SerializeField] private Sprite lavaEnvironment;
     [SerializeField] private Sprite earthEnvironment;
     [SerializeField] private Sprite spaceEnvironment;
+    [SerializeField] private Sprite iceEnviroment;
     [SerializeField] private List<ItemRoadMap> listItem;
     [SerializeField] private GameObject panelHangmuc;
 
@@ -23,9 +24,9 @@ public class selectLevel_Controller : MonoBehaviour
                 background.sprite = spaceEnvironment;
                 for (int i = 0; i < PopupManager.Instance.listmap.tuantu.Length; i++)
                 {
-                    if(i>0)
+                    if (i > 0)
                     {
-                        if(PopupManager.Instance.listmap.tuantu[i-1].star<1)
+                        if (PopupManager.Instance.listmap.tuantu[i - 1].star < 1)
                         {
                             listItem[i].configView2(PopupManager.Instance.listmap.tuantu[i], ListMap_Tuantu[i]);
                             listItem[i].panelSelectlevel = gameObject;
@@ -44,7 +45,7 @@ public class selectLevel_Controller : MonoBehaviour
                         listItem[i].panelSelectlevel = gameObject;
                         listItem[i].gameObject.SetActive(true);
                     }
-                    
+
                 }
                 PopupManager.Instance.listCurrentTopic = ListMap_Tuantu;
                 break;
@@ -52,9 +53,9 @@ public class selectLevel_Controller : MonoBehaviour
                 background.sprite = lavaEnvironment;
                 for (int i = 0; i < PopupManager.Instance.listmap.vonglap.Length; i++)
                 {
-                    if(i>0)
+                    if (i > 0)
                     {
-                        if(PopupManager.Instance.listmap.vonglap[i - 1].star < 1)
+                        if (PopupManager.Instance.listmap.vonglap[i - 1].star < 1)
                         {
                             listItem[i].configView2(PopupManager.Instance.listmap.vonglap[i], ListMap_Vonglap[i]);
                             listItem[i].panelSelectlevel = gameObject;
@@ -80,7 +81,7 @@ public class selectLevel_Controller : MonoBehaviour
                 background.sprite = earthEnvironment;
                 for (int i = 0; i < PopupManager.Instance.listmap.renhanh.Length; i++)
                 {
-                    if (i>0)
+                    if (i > 0)
                     {
                         if (PopupManager.Instance.listmap.renhanh[i - 1].star < 1)
                         {
@@ -100,17 +101,20 @@ public class selectLevel_Controller : MonoBehaviour
                         listItem[i].configView(PopupManager.Instance.listmap.renhanh[i], ListMap_Renhanh[i]);
                         listItem[i].panelSelectlevel = gameObject;
                         listItem[i].gameObject.SetActive(true);
-                    } 
+                    }
                 }
                 PopupManager.Instance.listCurrentTopic = ListMap_Renhanh;
                 break;
+            case Loaibai.phuongthuc:
+                background.sprite = iceEnviroment;
+                break;
         }
     }
-    void Start()
+    private void Start()
     {
         btn_Back.onClick.AddListener(Back_click);
     }
-     void Back_click()
+    private void Back_click()
     {
         AudioManager.Instance.PlaySound(Sound.Button);
         Instantiate(panelHangmuc, PopupManager.Instance.canvas.transform);
