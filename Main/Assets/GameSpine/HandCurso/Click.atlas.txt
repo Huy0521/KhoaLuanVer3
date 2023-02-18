@@ -1,0 +1,10 @@
+Click.png
+size:256,256
+filter:Linear,Linear
+pma:true
+Finger
+bounds:2,2,84,88
+rotate:90
+Hand BOT
+bounds:2,88,150,152
+offsets:1,1,152,154

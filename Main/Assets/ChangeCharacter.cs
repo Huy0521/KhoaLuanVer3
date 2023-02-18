@@ -10,6 +10,7 @@ public class ChangeCharacter : MonoBehaviour
 
    private void Start()
     {
+        PopupManager.Instance.character = Character.astronaut;
         btnRight.onClick.AddListener(Right_click);
         btnLeft.onClick.AddListener(Left_click);
     }
@@ -28,12 +29,17 @@ public class ChangeCharacter : MonoBehaviour
         {
             listCharacter[j].SetActive(false);
         }
-        if (onActiveCharacter< listCharacter.Count - 1)
+        if (onActiveCharacter < listCharacter.Count - 1)
         {
             listCharacter[onActiveCharacter + 1].SetActive(true);
+            if (onActiveCharacter + 1 == 1)
+            {
+                PopupManager.Instance.character = Character.cat;
+            }
         }
         else
         {
+            PopupManager.Instance.character = Character.astronaut;
             listCharacter[0].SetActive(true);
         }
     }
@@ -55,6 +61,14 @@ public class ChangeCharacter : MonoBehaviour
         if (onActiveCharacter > 0)
         {
             listCharacter[onActiveCharacter - 1].SetActive(true);
+            if(onActiveCharacter-1==0)
+            {
+                PopupManager.Instance.character = Character.astronaut;
+            }
+            else if (onActiveCharacter - 1 == 1)
+            {
+                PopupManager.Instance.character = Character.cat;
+            }
         }
         else
         {

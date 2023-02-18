@@ -42,7 +42,7 @@ public class Panel_DieuKhien : MonoBehaviour
     {
         GameController.Instance.listButton.Clear();
         GameController.Instance.chooseBtn = SpecialBtn.none;
-        PopupManager.Instance.playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+      
         for (int i = 0; i < PopupManager.Instance.currentLevel.sobuoc; i++)
         {
             GameObject gb = Instantiate(postisionForbtn.gameObject, Zone.transform);

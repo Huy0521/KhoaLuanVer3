@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     private int cursorInMainList = 0;
     private int check = 0;
     [SerializeField] private ParticleSystem hitPartical;
-    [SerializeField] private ParticleSystem finnishPartical;
     private bool checkFootStep = false;
     private int finishNumber;
     private void Awake()
@@ -168,7 +167,7 @@ public class PlayerController : MonoBehaviour
                 {
                     GetComponent<Animator>().Play("happy");
                     GameObject panelWin = Instantiate(PopupManager.Instance.panel_Finish.gameObject, PopupManager.Instance.canvas.transform);
-                    finnishPartical.gameObject.SetActive(true);
+                    collision.gameObject.transform.GetChild(1).gameObject.SetActive(true);
                     AudioManager.Instance.StopEffect();
                     AudioManager.Instance.PlaySound(Sound.Teleport);
                     panelWin.GetComponent<PanelFinish>().configView(true);
@@ -187,9 +186,5 @@ public class PlayerController : MonoBehaviour
                 hitPartical.gameObject.SetActive(true);
                 break;
         }
-    }
-    private void TurnOffgameObject(GameObject gb)
-    {
-        gb.SetActive(false);
     }
 }

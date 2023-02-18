@@ -17,6 +17,7 @@ public class PopupManager : MonoBehaviour
     public Loaibai loaibai;
     public Panel_DieuKhien userPlay;
     public Map currentLevel;
+    public Character character;
     public GameObject currentMap;
     public float timeRemaining;
     public List<GameObject> listCurrentTopic;

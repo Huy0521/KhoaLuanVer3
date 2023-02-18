@@ -1,0 +1,13 @@
+Effect.png
+size:1024,512
+filter:Linear,Linear
+pma:true
+Circle A
+bounds:796,250,157,157
+offsets:3,3,163,163
+Circle B
+bounds:409,22,385,385
+offsets:1,1,387,387
+Circle LIGHT
+bounds:2,2,405,405
+offsets:10,9,424,424
