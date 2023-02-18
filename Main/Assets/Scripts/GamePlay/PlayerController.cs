@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private ParticleSystem hitPartical;
     [SerializeField] private ParticleSystem finnishPartical;
     private bool checkFootStep = false;
+    private int finishNumber;
     private void Awake()
     {
         currentposition = transform.localPosition;
@@ -162,13 +163,23 @@ public class PlayerController : MonoBehaviour
                 GameController.Instance.run = false;
                 break;
             case "Finish":
-                GetComponent<Animator>().Play("happy");
-                GameObject panelWin = Instantiate(PopupManager.Instance.panel_Finish.gameObject, PopupManager.Instance.canvas.transform);
-                finnishPartical.gameObject.SetActive(true);
-                AudioManager.Instance.StopEffect();
-                AudioManager.Instance.PlaySound(Sound.Teleport);
-                panelWin.GetComponent<PanelFinish>().configView(true);
-                GameController.Instance.run = false;
+                finishNumber++;
+                if(finishNumber == PopupManager.Instance.currentLevel.finishZone)
+                {
+                    GetComponent<Animator>().Play("happy");
+                    GameObject panelWin = Instantiate(PopupManager.Instance.panel_Finish.gameObject, PopupManager.Instance.canvas.transform);
+                    finnishPartical.gameObject.SetActive(true);
+                    AudioManager.Instance.StopEffect();
+                    AudioManager.Instance.PlaySound(Sound.Teleport);
+                    panelWin.GetComponent<PanelFinish>().configView(true);
+                    GameController.Instance.run = false;
+                }
+                else
+                {
+                    collision.gameObject.transform.GetChild(1).gameObject.SetActive(true);
+                    AudioManager.Instance.PlaySound(Sound.Teleport);
+                    LeanTween.alpha(gameObject, 1, 1f).setOnComplete(() => { collision.gameObject.SetActive(false); });
+                }
                 break;
             case "Boundary":
                 GameController.Instance.run = false;
@@ -176,5 +187,9 @@ public class PlayerController : MonoBehaviour
                 hitPartical.gameObject.SetActive(true);
                 break;
         }
+    }
+    private void TurnOffgameObject(GameObject gb)
+    {
+        gb.SetActive(false);
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 public enum Loaibai { tuantu,vonglap,renhanh,phuongthuc };
+public enum Character { astronaut,cat};
 public class PopupManager : MonoBehaviour
 {
     public static PopupManager instance = null;

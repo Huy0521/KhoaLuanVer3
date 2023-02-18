@@ -16,6 +16,7 @@ namespace BaseClass
         public int star;
         public int time;
         public int playertime;
+        public int finishZone;
         public int sobuoc_an;
         public string[] buocAo;
     }
