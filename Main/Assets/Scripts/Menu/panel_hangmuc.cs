@@ -68,17 +68,7 @@ public class panel_hangmuc : MonoBehaviour
     }
     private void ham_click()
     {
-        /*if (vonglapStar < 12)
-        {
-            PopupManager.Instance.ShowNotification(gameObject, "Hãy hoàn thành thử thành ở hành tinh trước đó để mở khóa!");
-        }
-        else
-        {*/
-            AudioManager.Instance.PlaySound(Sound.Button);
-            PopupManager.Instance.loaibai = Loaibai.phuongthuc;
-            Instantiate(selectLevel, PopupManager.Instance.canvas.transform);
-            Destroy(gameObject);
-        //}
+        PopupManager.Instance.ShowNotification(gameObject, "Chủ đề đang được phát triển!");
     }
     private void tuantu_Click()
     {

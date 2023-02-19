@@ -270,8 +270,7 @@ public class Panel_DieuKhien : MonoBehaviour
     private void play_Click()
     {
         AudioManager.Instance.PlaySound(Sound.Button);
-        GameObject player = GameObject.Find("Player");
-        player.GetComponent<PlayerController>().playCharacter();
+        PopupManager.Instance.playerController.playCharacter();
         Time.stopTime();
     }
     private void close_Click()
