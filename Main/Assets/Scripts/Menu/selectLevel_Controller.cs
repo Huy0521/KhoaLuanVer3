@@ -15,7 +15,7 @@ public class selectLevel_Controller : MonoBehaviour
     [SerializeField] private Sprite iceEnviroment;
     [SerializeField] private List<ItemRoadMap> listItem;
     [SerializeField] private GameObject panelHangmuc;
-
+    [SerializeField] private GameObject tutorial;
     private void OnEnable()
     {
         switch (PopupManager.Instance.loaibai)
@@ -113,6 +113,14 @@ public class selectLevel_Controller : MonoBehaviour
     private void Start()
     {
         btn_Back.onClick.AddListener(Back_click);
+        if(PopupManager.Instance.listmap.tuantu[0].star<1)
+        {
+            tutorial.SetActive(true);
+        }
+        else
+        {
+            tutorial.SetActive(false);
+        }
     }
     private void Back_click()
     {

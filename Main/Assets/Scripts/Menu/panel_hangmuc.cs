@@ -13,12 +13,20 @@ public class panel_hangmuc : MonoBehaviour
     [SerializeField] private Image tuantuLock;
     [SerializeField] private Button btn_Back;
     [SerializeField] private selectLevel_Controller selectLevel;
+    [SerializeField] private GameObject tutorial;
     private int tuantuStar;
     private int renhanhStar;
     private int vonglapStar;
     private void Start()
     {
-
+        if(PopupManager.Instance.listmap.tuantu[0].star<1)
+        {
+            tutorial.SetActive(true);
+        }
+        else
+        {
+            tutorial.SetActive(false);
+        }
         for (int i = 0; i < PopupManager.Instance.listmap.tuantu.Length; i++)
         {
             tuantuStar = tuantuStar + PopupManager.Instance.listmap.tuantu[i].star;

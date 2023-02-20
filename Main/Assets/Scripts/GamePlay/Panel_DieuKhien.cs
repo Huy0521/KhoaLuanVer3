@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using BaseClass;
 public class Panel_DieuKhien : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class Panel_DieuKhien : MonoBehaviour
     [SerializeField] private GameObject ifZone;
     [SerializeField] private GameObject doZone;
     [SerializeField] private GameObject postisionForbtn;
+    [SerializeField] private RectTransform btnZone;
     [SerializeField] private SwitchScreen switchScreen;
     [SerializeField] private Button BtnloopScreen;
     [SerializeField] private Button BtnIfScreen;
@@ -37,9 +39,24 @@ public class Panel_DieuKhien : MonoBehaviour
     [SerializeField] private GameObject contentForScreen;
     [SerializeField] private GameObject panelAllsetting;
     [SerializeField] private GameObject panelSelectlevel;
+    [SerializeField] private TMP_Text description;
     [SerializeField] private CountdownTimer Time;
+    [SerializeField] private CustomMask customMask;
+    [SerializeField] private RectTransform mainScreen;
+    [SerializeField] private RectTransform leftGameSceen;
+    private int clickState = 0;
     private void Start()
     {
+        if(PopupManager.Instance.listmap.tuantu[0].star<1)
+        {
+            customMask.gameObject.SetActive(true);
+            customMask.GetComponent<Canvas>().sortingLayerName = "Ground";
+            description.text = "Sau khi bị hút vào hố đen phi hành gia đang lạc ở một hành tinh xa lạ. Hãy giúp anh ấy trở về nhà nhé!";
+        }
+        else
+        {
+            customMask.gameObject.SetActive(false);
+        }
         GameController.Instance.listButton.Clear();
         GameController.Instance.chooseBtn = SpecialBtn.none;
       
@@ -304,7 +321,38 @@ public class Panel_DieuKhien : MonoBehaviour
         {
             panelAllsetting.SetActive(true);
         }
-
-
+    }
+    public void Tutorial_click()
+    {
+        clickState++;
+        switch(clickState)
+        {
+            case 1:
+                customMask.target = btnZone;
+                description.text = "BẢNG ĐIỀU KHIỂN: Dùng để gửi tín hiệu di chuyển cho phi hành gia.";
+                break;
+            case 2:
+                customMask.target = mainScreen;
+                description.text = "MÀN THÔNG TIN: hiển thị các tín hiệu được gửi.";
+                break;
+            case 3:
+                customMask.target = btn_Play.GetComponent<RectTransform>();
+                description.text = "Gửi tín hiệu cho phi hành gia thực hiện các tín hiệu đã được gửi trong màn hình trên.";
+                break;
+            case 4:
+                customMask.target = btn_Delete.GetComponent<RectTransform>();
+                description.text = "Xóa các tín hiệu gửi sai. Lệnh sẽ thực hiện xóa từ tín hiệu gần nhất.";
+                break;
+            case 5:
+                customMask.target = leftGameSceen;
+                description.text = "Màn hình hiển thị vị trí của phi hành gia.";
+                break;
+            case 6:
+                description.text = "Xem chừng bạn đã sẵn sàng. Hãy bắt đầu thôi nào!";
+                break;
+            case 7:
+                customMask.gameObject.SetActive(false);
+                break;
+        }    
     }
 }
