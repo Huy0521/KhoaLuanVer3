@@ -19,6 +19,7 @@ public class PopupManager : MonoBehaviour
     public Map currentLevel;
     public Character character;
     public GameObject currentMap;
+    public GameObject mapToReload;
     public float timeRemaining;
     public List<GameObject> listCurrentTopic;
     public bool notificationIsOn;

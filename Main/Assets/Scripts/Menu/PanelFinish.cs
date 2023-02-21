@@ -19,12 +19,14 @@ public class PanelFinish : MonoBehaviour
     [SerializeField] private TMP_Text txt1;
     [SerializeField] private Button btnContinue;
     [SerializeField] private Button btnBack;
+    [SerializeField] private Button btnReplay;
     [SerializeField] private panel_hangmuc panelHangmuc;
     int numberStar = 3;
     private void Start()
     {
         btnContinue.onClick.AddListener(ContinuePlay_click);
         btnBack.onClick.AddListener(Back_click);
+        btnReplay.onClick.AddListener(Replay_click);
     }
     public void configView(bool result)
     {
@@ -74,8 +76,17 @@ public class PanelFinish : MonoBehaviour
         Resources.Load(destination);
 
     }
+    private void Replay_click()
+    {
+        AudioManager.Instance.PlaySound(Sound.Button);
+        Destroy(PopupManager.Instance.currentMap);
+        Destroy(PopupManager.Instance.currentDashboard);
+        PopupManager.Instance.currentMap = Instantiate(PopupManager.Instance.mapToReload);
+        PopupManager.Instance.currentDashboard = Instantiate(PopupManager.Instance.userPlay, PopupManager.Instance.canvas.transform);
+    }
     private void ContinuePlay_click()
     {
+        AudioManager.Instance.PlaySound(Sound.Button);
         int level = int.Parse(PopupManager.Instance.currentLevel.level);
         Destroy(PopupManager.Instance.currentMap);
         Destroy(PopupManager.Instance.currentDashboard.gameObject);

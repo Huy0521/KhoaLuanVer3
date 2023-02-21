@@ -87,13 +87,13 @@ public class panel_hangmuc : MonoBehaviour
     }
     private void vonglap_Click()
     {
+        AudioManager.Instance.PlaySound(Sound.Button);
         if (tuantuStar < 12)
         {
             PopupManager.Instance.ShowNotification(gameObject, "Hãy hoàn thành thử thành ở hành tinh trước đó để mở khóa!");
         }
         else
-        {
-            AudioManager.Instance.PlaySound(Sound.Button);
+        {          
             PopupManager.Instance.loaibai = Loaibai.vonglap;
             Instantiate(selectLevel, PopupManager.Instance.canvas.transform);
             Destroy(gameObject);
@@ -102,13 +102,13 @@ public class panel_hangmuc : MonoBehaviour
     }
     private void renhanh_Click()
     {
+        AudioManager.Instance.PlaySound(Sound.Button);
         if (vonglapStar < 12)
         {
             PopupManager.Instance.ShowNotification(gameObject, "Hãy hoàn thành thử thành ở hành tinh trước đó để mở khóa!");
         }
         else
         {
-            AudioManager.Instance.PlaySound(Sound.Button);
             PopupManager.Instance.loaibai = Loaibai.renhanh;
             Instantiate(selectLevel, PopupManager.Instance.canvas.transform);
             Destroy(gameObject);

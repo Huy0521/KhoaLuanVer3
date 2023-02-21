@@ -26,15 +26,16 @@ public class ItemRoadMap : MonoBehaviour
     public bool levelIslock;
     public void Item_Click()
     {
-        if(levelIslock==true)
+        AudioManager.Instance.PlaySound(Sound.Button);
+        if (levelIslock==true)
         {
             PopupManager.Instance.ShowNotification(PopupManager.Instance.canvas.gameObject, "Vượt qua màn chơi trước đó để mở khóa!");
         }
         else
         {
-            AudioManager.Instance.PlaySound(Sound.Button);
             PopupManager.Instance.currentLevel = thislevel;
             PopupManager.Instance.currentMap = Instantiate(level);
+            PopupManager.Instance.mapToReload = level;
             Destroy(panelSelectlevel);
             PopupManager.Instance.currentDashboard =  Instantiate(PopupManager.Instance.userPlay, PopupManager.Instance.canvas.transform);
             PlayerPrefs.SetFloat("LastMapClick", float.Parse(txt_manchoi.text));
