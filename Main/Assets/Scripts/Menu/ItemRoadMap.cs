@@ -27,7 +27,7 @@ public class ItemRoadMap : MonoBehaviour
     public void Item_Click()
     {
         AudioManager.Instance.PlaySound(Sound.Button);
-        if (levelIslock==true)
+        if (levelIslock == true)
         {
             PopupManager.Instance.ShowNotification(PopupManager.Instance.canvas.gameObject, "Vượt qua màn chơi trước đó để mở khóa!");
         }
@@ -37,7 +37,7 @@ public class ItemRoadMap : MonoBehaviour
             PopupManager.Instance.currentMap = Instantiate(level);
             PopupManager.Instance.mapToReload = level;
             Destroy(panelSelectlevel);
-            PopupManager.Instance.currentDashboard =  Instantiate(PopupManager.Instance.userPlay, PopupManager.Instance.canvas.transform);
+            PopupManager.Instance.currentDashboard = Instantiate(PopupManager.Instance.userPlay, PopupManager.Instance.canvas.transform);
             PlayerPrefs.SetFloat("LastMapClick", float.Parse(txt_manchoi.text));
         }
     }
@@ -56,7 +56,7 @@ public class ItemRoadMap : MonoBehaviour
             listStar[2].sprite = rightStar_Active;
         }
     }
-    
+
     public void configView(Map baichoi, GameObject map)
     {
         gameObject.LeanMoveLocal(new Vector2(gameObject.transform.localPosition.x, gameObject.transform.localPosition.y + 20), Random.Range(0.8f, 1.4f)).setLoopPingPong();
@@ -80,7 +80,7 @@ public class ItemRoadMap : MonoBehaviour
                 OnStar(true, true, true);
                 break;
         }
-        if(baichoi.star>0)
+        if (baichoi.star > 0)
         {
             middle.sprite = middleActive;
             bottom.sprite = bottomActive;

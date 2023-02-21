@@ -16,6 +16,8 @@ public class selectLevel_Controller : MonoBehaviour
     [SerializeField] private List<ItemRoadMap> listItem;
     [SerializeField] private GameObject panelHangmuc;
     [SerializeField] private GameObject tutorial;
+    [SerializeField] private GameObject astrounat;
+    [SerializeField] private GameObject tutorialTitle;
     private void OnEnable()
     {
         switch (PopupManager.Instance.loaibai)
@@ -113,9 +115,9 @@ public class selectLevel_Controller : MonoBehaviour
     private void Start()
     {
         btn_Back.onClick.AddListener(Back_click);
-        if(PopupManager.Instance.listmap.tuantu[0].star<1)
+        if (PopupManager.Instance.listmap.tuantu[0].star < 1)
         {
-            tutorial.SetActive(true);
+            Tutorial();
         }
         else
         {
@@ -127,5 +129,13 @@ public class selectLevel_Controller : MonoBehaviour
         AudioManager.Instance.PlaySound(Sound.Button);
         Instantiate(panelHangmuc, PopupManager.Instance.canvas.transform);
         Destroy(gameObject);
+    }
+    private void Tutorial()
+    {
+        tutorial.SetActive(true);
+        LeanTween.moveLocalX(astrounat, 1130, 0.6f).setOnComplete(() =>
+        {
+            LeanTween.scale(tutorialTitle, Vector3.one, 0.5f);
+        });
     }
 }

@@ -31,7 +31,7 @@ public class PanelFinish : MonoBehaviour
     public void configView(bool result)
     {
         txt1.text = "Hoàn thành màn chơi dưới " + PopupManager.Instance.currentLevel.time + " giây";
-        if (result==true)
+        if (result == true)
         {
             AudioManager.Instance.PlaySound(Sound.Win);
             titleSprite.sprite = win;
@@ -43,7 +43,7 @@ public class PanelFinish : MonoBehaviour
             star2.color = new Color(0.273f, 0.273f, 0.273f);
             numberStar = numberStar - 3;
         }
-        if(PopupManager.Instance.currentLevel.time<PopupManager.Instance.timeRemaining)
+        if (PopupManager.Instance.currentLevel.time < PopupManager.Instance.timeRemaining)
         {
             star1.color = new Color(0.273f, 0.273f, 0.273f);
             numberStar = numberStar - 1;
@@ -62,7 +62,7 @@ public class PanelFinish : MonoBehaviour
                     PopupManager.Instance.listmap.tuantu[i].star = numberStar;
                     PopupManager.Instance.listmap.tuantu[i].playertime = (int)PopupManager.Instance.timeRemaining;
                 }
-            } 
+            }
             string tojson = JsonUtility.ToJson(PopupManager.Instance.listmap);
             SaveFile(tojson);
         }
@@ -80,7 +80,7 @@ public class PanelFinish : MonoBehaviour
     {
         AudioManager.Instance.PlaySound(Sound.Button);
         Destroy(PopupManager.Instance.currentMap);
-        Destroy(PopupManager.Instance.currentDashboard);
+        Destroy(PopupManager.Instance.currentDashboard.gameObject);
         Destroy(gameObject);
         PopupManager.Instance.currentMap = Instantiate(PopupManager.Instance.mapToReload);
         PopupManager.Instance.currentDashboard = Instantiate(PopupManager.Instance.userPlay, PopupManager.Instance.canvas.transform);
@@ -93,7 +93,7 @@ public class PanelFinish : MonoBehaviour
         int level = int.Parse(PopupManager.Instance.currentLevel.level);
         Destroy(PopupManager.Instance.currentMap);
         Destroy(PopupManager.Instance.currentDashboard.gameObject);
-         if(level <5)
+        if (level < 5)
         {
             switch (PopupManager.Instance.loaibai)
             {
@@ -108,6 +108,7 @@ public class PanelFinish : MonoBehaviour
                     break;
             }
             PopupManager.Instance.currentMap = Instantiate(PopupManager.Instance.listCurrentTopic[level]);
+            PopupManager.Instance.mapToReload = PopupManager.Instance.listCurrentTopic[level];
             PopupManager.Instance.currentDashboard = Instantiate(PopupManager.Instance.userPlay, PopupManager.Instance.canvas.transform);
         }
         else
@@ -116,9 +117,9 @@ public class PanelFinish : MonoBehaviour
             Destroy(PopupManager.Instance.currentDashboard.gameObject);
             Instantiate(panelHangmuc, PopupManager.Instance.canvas.transform);
         }
-    
+
         Destroy(gameObject);
-       
+
     }
     private void Back_click()
     {

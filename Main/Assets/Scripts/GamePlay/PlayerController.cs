@@ -170,11 +170,11 @@ public class PlayerController : MonoBehaviour
                 GameObject panelLose = Instantiate(PopupManager.Instance.panel_Finish.gameObject, PopupManager.Instance.canvas.transform);
                 panelLose.GetComponent<PanelFinish>().configView(false);
                 GameController.Instance.run = false;
-                Invoke("Replay",0.8f);
+                Invoke("Replay", 0.8f);
                 break;
             case "Finish":
                 finishNumber++;
-                if(finishNumber == PopupManager.Instance.currentLevel.finishZone)
+                if (finishNumber == PopupManager.Instance.currentLevel.finishZone)
                 {
                     GetComponent<Animator>().Play("happy");
                     GameObject panelWin = Instantiate(PopupManager.Instance.panel_Finish.gameObject, PopupManager.Instance.canvas.transform);

@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public enum Loaibai { tuantu,vonglap,renhanh,phuongthuc };
-public enum Character { astronaut,cat};
+public enum Loaibai { tuantu, vonglap, renhanh, phuongthuc };
+public enum Character { astronaut, cat };
 public class PopupManager : MonoBehaviour
 {
     public static PopupManager instance = null;
@@ -39,7 +39,7 @@ public class PopupManager : MonoBehaviour
     }
     private void Awake()
     {
-       
+
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
@@ -56,14 +56,14 @@ public class PopupManager : MonoBehaviour
         listmap = JsonUtility.FromJson<ListMap>(manchoi.text);
         Application.targetFrameRate = 300;
     }
-    public void ShowNotification(GameObject canvas,string message)
+    public void ShowNotification(GameObject canvas, string message)
     {
-        if(!notificationIsOn)
+        if (!notificationIsOn)
         {
             Notification gb = Instantiate(notification, canvas.transform);
             gb.titel.text = message;
             notificationIsOn = true;
         }
     }
-    
+
 }

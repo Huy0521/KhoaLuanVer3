@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using UnityEngine;
-public enum Sound { Start,Button,Win,Lose,Teleport,FootStep }
+public enum Sound { Start, Button, Win, Lose, Teleport, FootStep }
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
@@ -61,6 +61,6 @@ public class AudioManager : MonoBehaviour
     }
     public void ChangeEffectVolume(float value)
     {
-       effectsSource.volume = value;
+        effectsSource.volume = value;
     }
 }

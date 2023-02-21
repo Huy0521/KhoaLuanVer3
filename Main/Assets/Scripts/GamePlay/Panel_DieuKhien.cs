@@ -44,10 +44,26 @@ public class Panel_DieuKhien : MonoBehaviour
     [SerializeField] private CustomMask customMask;
     [SerializeField] private RectTransform mainScreen;
     [SerializeField] private RectTransform leftGameSceen;
+    [SerializeField] private Image background;
+    [SerializeField] private Sprite lavaEnvironment;
+    [SerializeField] private Sprite earthEnvironment;
+    [SerializeField] private Sprite spaceEnvironment;
     private int clickState = 0;
     private void Start()
     {
-        if(PopupManager.Instance.listmap.tuantu[0].star<1)
+        switch (PopupManager.Instance.loaibai)
+        {
+            case Loaibai.tuantu:
+                background.sprite = spaceEnvironment;
+                break;
+            case Loaibai.vonglap:
+                background.sprite = lavaEnvironment;
+                break;
+            case Loaibai.renhanh:
+                background.sprite = earthEnvironment;
+                break;
+        }
+        if (PopupManager.Instance.listmap.tuantu[0].star < 1)
         {
             customMask.gameObject.SetActive(true);
             customMask.GetComponent<Canvas>().sortingLayerName = "Ground";
@@ -59,7 +75,7 @@ public class Panel_DieuKhien : MonoBehaviour
         }
         GameController.Instance.listButton.Clear();
         GameController.Instance.chooseBtn = SpecialBtn.none;
-      
+
         for (int i = 0; i < PopupManager.Instance.currentLevel.sobuoc; i++)
         {
             GameObject gb = Instantiate(postisionForbtn.gameObject, Zone.transform);
@@ -325,7 +341,7 @@ public class Panel_DieuKhien : MonoBehaviour
     public void Tutorial_click()
     {
         clickState++;
-        switch(clickState)
+        switch (clickState)
         {
             case 1:
                 customMask.target = btnZone;
@@ -353,6 +369,6 @@ public class Panel_DieuKhien : MonoBehaviour
             case 7:
                 customMask.gameObject.SetActive(false);
                 break;
-        }    
+        }
     }
 }

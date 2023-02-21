@@ -14,14 +14,16 @@ public class panel_hangmuc : MonoBehaviour
     [SerializeField] private Button btn_Back;
     [SerializeField] private selectLevel_Controller selectLevel;
     [SerializeField] private GameObject tutorial;
+    [SerializeField] private GameObject astrounat;
+    [SerializeField] private GameObject tutorialTitle;
     private int tuantuStar;
     private int renhanhStar;
     private int vonglapStar;
     private void Start()
     {
-        if(PopupManager.Instance.listmap.tuantu[0].star<1)
+        if (PopupManager.Instance.listmap.tuantu[0].star < 1)
         {
-            tutorial.SetActive(true);
+            Tutorial();
         }
         else
         {
@@ -57,7 +59,7 @@ public class panel_hangmuc : MonoBehaviour
         else
         {
             btn_Vonglap.image.color = new Color(1, 1, 1);
-            renhanhLock.gameObject.SetActive(false);
+            vonglapLock.gameObject.SetActive(false);
         }
         btn_Vonglap.gameObject.LeanMoveLocal(new Vector2(btn_Vonglap.transform.localPosition.x + Random.Range(-10, 10), btn_Vonglap.transform.localPosition.y + 30), Random.Range(1f, 1.6f)).setLoopPingPong();
         btn_Renhanh.gameObject.LeanMoveLocal(new Vector2(btn_Renhanh.transform.localPosition.x + Random.Range(-10, 10), btn_Renhanh.transform.localPosition.y + 30), Random.Range(1f, 1.6f)).setLoopPingPong();
@@ -93,7 +95,7 @@ public class panel_hangmuc : MonoBehaviour
             PopupManager.Instance.ShowNotification(gameObject, "Hãy hoàn thành thử thành ở hành tinh trước đó để mở khóa!");
         }
         else
-        {          
+        {
             PopupManager.Instance.loaibai = Loaibai.vonglap;
             Instantiate(selectLevel, PopupManager.Instance.canvas.transform);
             Destroy(gameObject);
@@ -113,5 +115,13 @@ public class panel_hangmuc : MonoBehaviour
             Instantiate(selectLevel, PopupManager.Instance.canvas.transform);
             Destroy(gameObject);
         }
+    }
+    private void Tutorial()
+    {
+        tutorial.SetActive(true);
+        LeanTween.moveLocalX(astrounat, 50, 0.6f).setOnComplete(() =>
+        {
+            LeanTween.scale(tutorialTitle, new Vector3(-1, 1, 1), 0.5f);
+        });
     }
 }
