@@ -25,7 +25,7 @@ public class PanelFinish : MonoBehaviour
     private void Start()
     {
         btnContinue.onClick.AddListener(ContinuePlay_click);
-        btnBack.onClick.AddListener(Back_click);
+        //btnBack.onClick.AddListener(Back_click);
         btnReplay.onClick.AddListener(Replay_click);
     }
     public void configView(bool result)
@@ -81,8 +81,11 @@ public class PanelFinish : MonoBehaviour
         AudioManager.Instance.PlaySound(Sound.Button);
         Destroy(PopupManager.Instance.currentMap);
         Destroy(PopupManager.Instance.currentDashboard);
+        Destroy(gameObject);
         PopupManager.Instance.currentMap = Instantiate(PopupManager.Instance.mapToReload);
         PopupManager.Instance.currentDashboard = Instantiate(PopupManager.Instance.userPlay, PopupManager.Instance.canvas.transform);
+        GameController.Instance.ResetGameController();
+
     }
     private void ContinuePlay_click()
     {

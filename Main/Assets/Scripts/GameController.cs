@@ -19,7 +19,7 @@ public class GameController : MonoBehaviour
     {
         get
         {
-            if(instance==null)
+            if (instance == null)
             {
                 instance = new GameController();
             }
@@ -28,7 +28,7 @@ public class GameController : MonoBehaviour
     }
     private void Awake()
     {
-        if(instance!=null&&instance!=this)
+        if (instance != null && instance != this)
         {
             Destroy(gameObject);
             return;
@@ -39,5 +39,17 @@ public class GameController : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
     }
-
+    public void ResetGameController()
+    {
+        listButton.Clear();
+        listBtnMain.Clear();
+        listBtnFor.Clear();
+        listBtnIf.Clear();
+        listShadedIf.Clear();
+        listBtndoIf.Clear();
+        run = false;
+        shadedRun = false;
+        chooseBtn = SpecialBtn.none;
+        loopNumber = 0;
+    }
 }

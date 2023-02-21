@@ -150,7 +150,17 @@ public class PlayerController : MonoBehaviour
         GetComponent<Animator>().Play(newAnimation);
         currentAnimaton = newAnimation;
     }
+    private void Replay()
+    {
+        AudioManager.Instance.PlaySound(Sound.Button);
+        Destroy(PopupManager.Instance.currentMap);
+        Destroy(PopupManager.Instance.currentDashboard);
+        Destroy(gameObject);
+        PopupManager.Instance.currentMap = Instantiate(PopupManager.Instance.mapToReload);
+        PopupManager.Instance.currentDashboard = Instantiate(PopupManager.Instance.userPlay, PopupManager.Instance.canvas.transform);
+        GameController.Instance.ResetGameController();
 
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         switch (collision.gameObject.tag)
@@ -160,6 +170,7 @@ public class PlayerController : MonoBehaviour
                 GameObject panelLose = Instantiate(PopupManager.Instance.panel_Finish.gameObject, PopupManager.Instance.canvas.transform);
                 panelLose.GetComponent<PanelFinish>().configView(false);
                 GameController.Instance.run = false;
+                Invoke("Replay",0.8f);
                 break;
             case "Finish":
                 finishNumber++;
@@ -172,6 +183,7 @@ public class PlayerController : MonoBehaviour
                     AudioManager.Instance.PlaySound(Sound.Teleport);
                     panelWin.GetComponent<PanelFinish>().configView(true);
                     GameController.Instance.run = false;
+                    collision.gameObject.SetActive(false);
                 }
                 else
                 {
@@ -184,6 +196,7 @@ public class PlayerController : MonoBehaviour
                 GameController.Instance.run = false;
                 ChangeAnimationState("idle_Up");
                 hitPartical.gameObject.SetActive(true);
+                Invoke("Replay", 0.8f);
                 break;
         }
     }
