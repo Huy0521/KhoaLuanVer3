@@ -30,15 +30,4 @@ public class SwitchScreen : MonoBehaviour
         }
         btnX.SetActive(true);
     }
-    public void ShowLoopScreen()
-    {
-        for (int i = 0; i < listScreen.Count; i++)
-        {
-            listScreen[i].SetActive(false);
-            if (listScreen[i].name.Equals("LoopScreen(Clone)"))
-            {
-                listScreen[i].SetActive(true);
-            }
-        }
-    }
 }

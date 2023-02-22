@@ -3,17 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using BaseClass;
 public class Panel_DieuKhien : MonoBehaviour
 {
     public List<GameObject> Listposition;
-    public List<GameObject> ListpostionLoop;
     public List<GameObject> ListpostionIf;
     public List<GameObject> ListpostiondoIf;
     private int vitri;
-    private int vitriLoop;
     private int vitriIf;
     private int vitridoIf;
+    public int posOfList;
     [SerializeField] private Button btn_Left;
     [SerializeField] private Button btn_Right;
     [SerializeField] private Button btn_Up;
@@ -26,7 +24,6 @@ public class Panel_DieuKhien : MonoBehaviour
     [SerializeField] private Button btn_Delete;
     [SerializeField] private Button btn_Close;
     [SerializeField] private GameObject Zone;
-    [SerializeField] private GameObject Zone2;
     [SerializeField] private GameObject ifZone;
     [SerializeField] private GameObject doZone;
     [SerializeField] private GameObject postisionForbtn;
@@ -92,7 +89,6 @@ public class Panel_DieuKhien : MonoBehaviour
             ListpostiondoIf.Add(gb);
         }
         vitri = 0;
-        vitriLoop = 0;
         if (PopupManager.Instance.loaibai == Loaibai.renhanh)
         {
             for (int i = 0; i < PopupManager.Instance.currentLevel.buocAo.Length; i++)
@@ -143,6 +139,7 @@ public class Panel_DieuKhien : MonoBehaviour
                 break;
             case Loaibai.vonglap:
                 btn_Loop.gameObject.SetActive(true);
+                btn_If.gameObject.SetActive(false);
                 break;
             case Loaibai.renhanh:
                 btn_If.gameObject.SetActive(false);
@@ -152,51 +149,46 @@ public class Panel_DieuKhien : MonoBehaviour
         btn_Yes.gameObject.SetActive(false);
         btn_No.gameObject.SetActive(false);
     }
+    void SetRectransfrom(GameObject gb)
+    {
+        RectTransform rectTtransform = gb.transform.GetComponent<RectTransform>();
+        rectTtransform.anchorMin = Vector2.zero;
+        rectTtransform.anchorMax = Vector2.one;
+        rectTtransform.offsetMax = Vector2.zero;
+        rectTtransform.offsetMin = Vector2.zero;
+    }
     private void move(Button btn)
     {
         if (vitri < Listposition.Count && GameController.Instance.chooseBtn == SpecialBtn.none)
         {
 
             GameObject gb = Instantiate(btn.gameObject, Listposition[vitri].transform);
-            //gb.transform.SetPositionAndRotation(Listposition[vitri].transform.position, Listposition[vitri].transform.rotation);
-            RectTransform rectTtransform = gb.transform.GetComponent<RectTransform>();
-            rectTtransform.anchorMin = Vector2.zero;
-            rectTtransform.anchorMax = Vector2.one;
-            rectTtransform.offsetMax = Vector2.zero;
-            rectTtransform.offsetMin = Vector2.zero;
+            SetRectransfrom(gb);
             GameController.Instance.listButton.Add(gb);
             vitri++;
         }
-        if (vitriLoop < ListpostionLoop.Count && GameController.Instance.chooseBtn == SpecialBtn.loop)
+        if (GameController.Instance.chooseBtn == SpecialBtn.loop)
         {
-            GameObject gb = Instantiate(btn.gameObject, ListpostionLoop[vitriLoop].transform);
-            RectTransform rectTtransform = gb.transform.GetComponent<RectTransform>();
-            rectTtransform.anchorMin = Vector2.zero;
-            rectTtransform.anchorMax = Vector2.one;
-            rectTtransform.offsetMax = Vector2.zero;
-            rectTtransform.offsetMin = Vector2.zero;
-            GameController.Instance.listBtnFor.Add(gb);
-            vitriLoop++;
+            LoopScreen loopScreen = GameController.Instance.listScreenAdd[posOfList].GetComponent<LoopScreen>();
+            if (loopScreen.vitriloop < loopScreen.listPosLoop.Count)
+            {
+                GameObject gb = Instantiate(btn.gameObject, loopScreen.listPosLoop[loopScreen.vitriloop].transform);
+                SetRectransfrom(gb);
+                loopScreen.listBtnFor.Add(gb);
+                loopScreen.vitriloop++;
+            }
         }
         if (vitriIf < ListpostionIf.Count && GameController.Instance.chooseBtn == SpecialBtn.ifElse)
         {
             GameObject gb = Instantiate(btn.gameObject, ListpostionIf[vitriIf].transform);
-            RectTransform rectTtransform = gb.transform.GetComponent<RectTransform>();
-            rectTtransform.anchorMin = Vector2.zero;
-            rectTtransform.anchorMax = Vector2.one;
-            rectTtransform.offsetMax = Vector2.zero;
-            rectTtransform.offsetMin = Vector2.zero;
+            SetRectransfrom(gb);
             GameController.Instance.listBtnIf.Add(gb);
             vitriIf++;
         }
         if (vitridoIf < ListpostiondoIf.Count && GameController.Instance.chooseBtn == SpecialBtn.doIf)
         {
             GameObject gb = Instantiate(btn.gameObject, ListpostiondoIf[vitridoIf].transform);
-            RectTransform rectTtransform = gb.transform.GetComponent<RectTransform>();
-            rectTtransform.anchorMin = Vector2.zero;
-            rectTtransform.anchorMax = Vector2.one;
-            rectTtransform.offsetMax = Vector2.zero;
-            rectTtransform.offsetMin = Vector2.zero;
+            SetRectransfrom(gb);
             GameController.Instance.listBtndoIf.Add(gb);
             vitridoIf++;
         }
@@ -204,45 +196,57 @@ public class Panel_DieuKhien : MonoBehaviour
     private void delete_Click()
     {
         AudioManager.Instance.PlaySound(Sound.Button);
-        if (GameController.Instance.listButton.Count > 0)
+        switch (GameController.Instance.chooseBtn)
         {
-            if (GameController.Instance.chooseBtn == SpecialBtn.none)
-            {
-                if (GameController.Instance.listButton[GameController.Instance.listButton.Count - 1].name.Equals("btn_Loop(Clone)"))
+            case SpecialBtn.none:
+                if (GameController.Instance.listButton.Count > 0)
                 {
-                    btn_Loop.gameObject.SetActive(true);
+                    Destroy(GameController.Instance.listButton[GameController.Instance.listButton.Count - 1]);
+                    GameController.Instance.listButton.RemoveAt(GameController.Instance.listButton.Count - 1);
+                    vitri--;
                 }
-                Destroy(GameController.Instance.listButton[GameController.Instance.listButton.Count - 1]);
-                GameController.Instance.listButton.RemoveAt(GameController.Instance.listButton.Count - 1);
-                vitri--;
-            }
-        }
-        if (GameController.Instance.listBtnFor.Count > 0)
-        {
-            if (GameController.Instance.chooseBtn == SpecialBtn.loop)
-            {
-                Destroy(GameController.Instance.listBtnFor[GameController.Instance.listBtnFor.Count - 1]);
-                GameController.Instance.listBtnFor.RemoveAt(GameController.Instance.listBtnFor.Count - 1);
-                vitriLoop--;
-            }
-        }
-        if (GameController.Instance.listBtnIf.Count > 0)
-        {
-            if (GameController.Instance.chooseBtn == SpecialBtn.ifElse)
-            {
-                Destroy(GameController.Instance.listBtnIf[GameController.Instance.listBtnIf.Count - 1]);
-                GameController.Instance.listBtnIf.RemoveAt(GameController.Instance.listBtnIf.Count - 1);
-                vitriIf--;
-            }
-        }
-        if (GameController.Instance.listBtndoIf.Count > 0)
-        {
-            if (GameController.Instance.chooseBtn == SpecialBtn.doIf)
-            {
-                Destroy(GameController.Instance.listBtndoIf[GameController.Instance.listBtndoIf.Count - 1]);
-                GameController.Instance.listBtndoIf.RemoveAt(GameController.Instance.listBtndoIf.Count - 1);
-                vitridoIf--;
-            }
+                else
+                {
+                    PopupManager.Instance.ShowNotification(gameObject,"Hiện không còn lệnh nào để xóa!");
+                }
+                break;
+            case SpecialBtn.loop:
+                LoopScreen loopScreen = GameController.Instance.listScreenAdd[posOfList].GetComponent<LoopScreen>();
+                if (loopScreen.listBtnFor.Count > 0)
+                {
+                    Destroy(loopScreen.listBtnFor[loopScreen.listBtnFor.Count - 1]);
+                    loopScreen.listBtnFor.RemoveAt(loopScreen.listBtnFor.Count - 1);
+                    loopScreen.vitriloop--;
+                }
+                else
+                {
+                    PopupManager.Instance.ShowNotification(gameObject, "Hiện không còn lệnh nào để xóa!");
+                }
+                break;
+            case SpecialBtn.ifElse:
+                if (GameController.Instance.listBtnIf.Count > 0)
+                {
+                    Destroy(GameController.Instance.listBtnIf[GameController.Instance.listBtnIf.Count - 1]);
+                    GameController.Instance.listBtnIf.RemoveAt(GameController.Instance.listBtnIf.Count - 1);
+                    vitriIf--;
+                }
+                else
+                {
+                    PopupManager.Instance.ShowNotification(gameObject, "Hiện không còn lệnh nào để xóa!");
+                }
+                break;
+            case SpecialBtn.doIf:
+                if (GameController.Instance.listBtndoIf.Count > 0)
+                {
+                    Destroy(GameController.Instance.listBtndoIf[GameController.Instance.listBtndoIf.Count - 1]);
+                    GameController.Instance.listBtndoIf.RemoveAt(GameController.Instance.listBtndoIf.Count - 1);
+                    vitridoIf--;
+                }
+                else
+                {
+                    PopupManager.Instance.ShowNotification(gameObject, "Hiện không còn lệnh nào để xóa!");
+                }
+                break;
         }
     }
     private void loop_Click()
@@ -251,18 +255,13 @@ public class Panel_DieuKhien : MonoBehaviour
         gb.transform.SetPositionAndRotation(Listposition[vitri].transform.position, Listposition[vitri].transform.rotation);
         GameController.Instance.listButton.Add(gb);
         vitri++;
-        //btn_Loop.gameObject.SetActive(false);
         Button lp = Instantiate(BtnloopScreen, switchScreen.transform);// Add button tắt bật screen đó
         gb = Instantiate(loopScreen, contentForScreen.transform);//add screen đó lên
         lp.onClick.AddListener(gb.GetComponent<LoopScreen>().ShowLoopScreen);
         GameController.Instance.listScreenAdd.Add(gb);
+        gb.GetComponent<LoopScreen>().posInLooplist = GameController.Instance.listScreenAdd.Count - 1;
         switchScreen.listScreen.Add(gb);//
-        Zone2 = gb.transform.GetChild(1).gameObject;
-        for (int i = 0; i < 9; i++)
-        {
-            gb = Instantiate(postisionForbtn.gameObject, Zone2.transform);
-            ListpostionLoop.Add(gb);
-        }
+
     }
     private void if_Click()
     {
@@ -371,5 +370,9 @@ public class Panel_DieuKhien : MonoBehaviour
                 customMask.gameObject.SetActive(false);
                 break;
         }
+    }
+    private void OnDestroy()
+    {
+        GameController.Instance.listScreenAdd.Clear();
     }
 }

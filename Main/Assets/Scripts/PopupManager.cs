@@ -7,24 +7,24 @@ public enum Loaibai { tuantu, vonglap, renhanh, phuongthuc };
 public enum Character { astronaut, cat };
 public class PopupManager : MonoBehaviour
 {
-    public static PopupManager instance = null;
+    [HideInInspector] public static PopupManager instance = null;
     public GameObject canvas;
     public PanelFinish panel_Finish;
     public TextAsset manchoi;
     [HideInInspector] public PlayerController playerController;
-    public GameObject menu;
-    public ListMap listmap;
+    [HideInInspector] public GameObject menu;
+    [HideInInspector] public ListMap listmap;
     public Loaibai loaibai;
     public Panel_DieuKhien userPlay;
-    public Map currentLevel;
-    public Character character;
+    [HideInInspector] public Map currentLevel;
+    [HideInInspector] public Character character;
     public GameObject currentMap;
-    public GameObject mapToReload;
+    [HideInInspector] public GameObject mapToReload;
     public float timeRemaining;
     public List<GameObject> listCurrentTopic;
-    public bool notificationIsOn;
-    public Panel_DieuKhien currentDashboard;
-    public bool goFromCutScene;
+    [HideInInspector] public bool notificationIsOn;
+    [HideInInspector] public Panel_DieuKhien currentDashboard;
+    [HideInInspector] public bool goFromCutScene;
     [SerializeField] private Notification notification;
     public static PopupManager Instance
     {

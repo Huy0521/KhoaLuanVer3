@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private ParticleSystem hitPartical;
     private bool checkFootStep = false;
     private int finishNumber;
+    private int numberLoopScreen = 0;
     private void Awake()
     {
         currentposition = transform.localPosition;
@@ -43,13 +44,15 @@ public class PlayerController : MonoBehaviour
                 futurePosition.Add(currentposition);
                 break;
             case "btn_Loop(Clone)":
-                for (int i = 0; i < GameController.Instance.loopNumber; i++)
+                LoopScreen loopScreen = GameController.Instance.listScreenAdd[numberLoopScreen].GetComponent<LoopScreen>();
+                for (int i = 0; i < loopScreen.loopNumber; i++)
                 {
-                    for (int j = 0; j < GameController.Instance.listBtnFor.Count; j++)
+                    for (int j = 0; j < loopScreen.listBtnFor.Count; j++)
                     {
-                        CalculateMove(GameController.Instance.listBtnFor[j].name);
+                        CalculateMove(loopScreen.listBtnFor[j].name);
                     }
                 }
+                numberLoopScreen++;
                 break;
             case "btn_If(Clone)":
 
@@ -73,6 +76,7 @@ public class PlayerController : MonoBehaviour
     public void playCharacter()
     {
         futurePosition.Clear();
+
         GameController.Instance.listBtnMain.Clear();
         if (GameController.Instance.listButton.Count > 0)
         {
@@ -154,7 +158,7 @@ public class PlayerController : MonoBehaviour
     {
         AudioManager.Instance.PlaySound(Sound.Button);
         Destroy(PopupManager.Instance.currentMap);
-        Destroy(PopupManager.Instance.currentDashboard);
+        Destroy(PopupManager.Instance.currentDashboard.gameObject);
         Destroy(gameObject);
         PopupManager.Instance.currentMap = Instantiate(PopupManager.Instance.mapToReload);
         PopupManager.Instance.currentDashboard = Instantiate(PopupManager.Instance.userPlay, PopupManager.Instance.canvas.transform);
@@ -167,10 +171,10 @@ public class PlayerController : MonoBehaviour
         {
             case "Enemy":
                 GetComponent<Animator>().Play("die");
-                GameObject panelLose = Instantiate(PopupManager.Instance.panel_Finish.gameObject, PopupManager.Instance.canvas.transform);
-                panelLose.GetComponent<PanelFinish>().configView(false);
+             /*   GameObject panelLose = Instantiate(PopupManager.Instance.panel_Finish.gameObject, PopupManager.Instance.canvas.transform);
+                panelLose.GetComponent<PanelFinish>().configView(false);*/
                 GameController.Instance.run = false;
-                Invoke("Replay", 0.8f);
+                Invoke("Replay",1f);
                 break;
             case "Finish":
                 finishNumber++;

@@ -5,18 +5,21 @@ using UnityEngine.UI;
 public class LoopScreen : MonoBehaviour
 {
     public int loopNumber = 0;
+    public int posInLooplist;
+    public int vitriloop;
     [SerializeField] private Text txt_Loop;
+    public List<GameObject> listPosLoop;
+    [SerializeField] private Panel_DieuKhien panelDieukhien;
+    public List<GameObject> listBtnFor;
     private void OnEnable()
     {
-        GameController.Instance.chooseBtn = SpecialBtn.loop;
+        GameController.Instance.chooseBtn = SpecialBtn.loop; 
+        SwipeManager.OnSwipeDetected += OnSwipeDetected;
     }
     private void OnDisable()
     {
         GameController.Instance.chooseBtn = SpecialBtn.none;
-    }
-    void Start()
-    {
-        SwipeManager.OnSwipeDetected += OnSwipeDetected;
+        SwipeManager.OnSwipeDetected -= OnSwipeDetected;
     }
     void OnSwipeDetected(Swipe direction, Vector2 swipeVelocity)
     {
@@ -46,5 +49,6 @@ public class LoopScreen : MonoBehaviour
             GameController.Instance.listScreenAdd[i].SetActive(false);
         }    
         gameObject.SetActive(true);
+        panelDieukhien.posOfList = posInLooplist;
     }
 }
