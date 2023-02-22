@@ -2184,6 +2184,7 @@ MonoBehaviour:
   listBtnIf: []
   listShadedIf: []
   listBtndoIf: []
+  listScreenAdd: []
   run: 0
   shadedRun: 0
   chooseBtn: 2
@@ -3244,7 +3245,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -461.99994, y: 137.23999}
+  m_AnchoredPosition: {x: -462, y: 137.23999}
   m_SizeDelta: {x: 167.25, y: 114.81}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1163589359
@@ -4014,7 +4015,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: dd1a4aac0601a544e97cf9358eee8106, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 17f81225c9573014a8bc763421119dfb, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

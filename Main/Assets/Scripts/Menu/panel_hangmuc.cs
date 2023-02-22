@@ -121,7 +121,7 @@ public class panel_hangmuc : MonoBehaviour
         tutorial.SetActive(true);
         LeanTween.moveLocalX(astrounat, 50, 0.6f).setOnComplete(() =>
         {
-            LeanTween.scale(tutorialTitle, new Vector3(-1, 1, 1), 0.5f);
+            LeanTween.scale(tutorialTitle, Vector3.one, 0.5f);
         });
     }
 }

@@ -251,11 +251,12 @@ public class Panel_DieuKhien : MonoBehaviour
         gb.transform.SetPositionAndRotation(Listposition[vitri].transform.position, Listposition[vitri].transform.rotation);
         GameController.Instance.listButton.Add(gb);
         vitri++;
-        btn_Loop.gameObject.SetActive(false);
+        //btn_Loop.gameObject.SetActive(false);
         Button lp = Instantiate(BtnloopScreen, switchScreen.transform);// Add button tắt bật screen đó
-        lp.onClick.AddListener(switchScreen.ShowLoopScreen);
         gb = Instantiate(loopScreen, contentForScreen.transform);//add screen đó lên
-        switchScreen.listScreen.Add(gb);
+        lp.onClick.AddListener(gb.GetComponent<LoopScreen>().ShowLoopScreen);
+        GameController.Instance.listScreenAdd.Add(gb);
+        switchScreen.listScreen.Add(gb);//
         Zone2 = gb.transform.GetChild(1).gameObject;
         for (int i = 0; i < 9; i++)
         {

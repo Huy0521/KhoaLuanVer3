@@ -3091,6 +3091,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b42f2413963b2644a03f2ee8f2e1ba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loopNumber: 0
+  txt_Loop: {fileID: 3219377093874453968}
 --- !u!1 &6675460156964596325
 GameObject:
   m_ObjectHideFlags: 0
@@ -3649,6 +3651,7 @@ GameObject:
   - component: {fileID: 8223505127080580153}
   - component: {fileID: 8223505127080580151}
   - component: {fileID: 3555005754327426440}
+  - component: {fileID: 7634425091195981267}
   m_Layer: 5
   m_Name: panel_dieukhien
   m_TagString: Untagged
@@ -3736,6 +3739,21 @@ MonoBehaviour:
   lavaEnvironment: {fileID: 21300000, guid: 2d3e83fc71deb7f4eac25d6b0e0dd3d5, type: 3}
   earthEnvironment: {fileID: 21300000, guid: e345a27f115ff0a45affba4483706fb4, type: 3}
   spaceEnvironment: {fileID: 21300000, guid: cd3bb1b12cd2dec4ea4ad534b7ca30da, type: 3}
+--- !u!114 &7634425091195981267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8223505127080580152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 476a4262bf922c24ca57b6e4d7cd4f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minSwipeLength: 1
+  triggerSwipeAtMinLength: 0
+  useEightDirections: 0
 --- !u!1 &8263950693483687308
 GameObject:
   m_ObjectHideFlags: 0
@@ -3906,8 +3924,6 @@ GameObject:
   - component: {fileID: 3096508993944435494}
   - component: {fileID: 4930777043737657352}
   - component: {fileID: 3219377093874453968}
-  - component: {fileID: 2617595477343694524}
-  - component: {fileID: 1975570342094882781}
   m_Layer: 5
   m_Name: txt_Loop
   m_TagString: Untagged
@@ -3977,34 +3993,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 0
---- !u!114 &2617595477343694524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8521429034900403891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 476a4262bf922c24ca57b6e4d7cd4f0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minSwipeLength: 1
-  triggerSwipeAtMinLength: 0
-  useEightDirections: 0
---- !u!114 &1975570342094882781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8521429034900403891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3688f5c41075de4b8435462ea8bfcff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  txt_Loop: {fileID: 3219377093874453968}
 --- !u!1 &8619800909251285737
 GameObject:
   m_ObjectHideFlags: 0
