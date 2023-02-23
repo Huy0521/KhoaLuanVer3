@@ -5,49 +5,59 @@ using UnityEngine.UI;
 using TMPro;
 public class Panel_DieuKhien : MonoBehaviour
 {
-    public List<GameObject> Listposition;
-    public List<GameObject> ListpostionIf;
-    public List<GameObject> ListpostiondoIf;
-    private int vitri;
-    private int vitriIf;
-    private int vitridoIf;
-    public int posOfList;
-    [SerializeField] private Button btn_Left;
-    [SerializeField] private Button btn_Right;
-    [SerializeField] private Button btn_Up;
-    [SerializeField] private Button btn_Down;
-    [SerializeField] private Button btn_Loop;
+    [Header("List")]
+    public List<GameObject> listBtnPos;//List GameObject để Instantiate button
+    public List<GameObject> ListpostionIf;//List GameObject để Instantiate button cho chủ đề If
+    public List<GameObject> ListpostiondoIf;//List GameObject để Instantiate button cho chủ đề doIf
+    [Header("Int")]
+    private int vitri;//Con trỏ xác định index trong listBtnPos
+    private int vitriIf;//Con trỏ xác định index trong listpostionIf
+    private int vitridoIf;//Con trỏ xác định index trong listpostiondoIf
+    public int posOfList; //Con trỏ xác định index trong GameController.Instance.listScreenAdd
+    private int clickState = 0;//Biến điếm dùng để check các bước trong game tutorial
+    [Header("GameObject")]
+    [SerializeField] private GameObject Zone;//Lấy vị trí GameObject để Instantiate số bước được đi từ json
+    [SerializeField] private GameObject ifZone;
+    [SerializeField] private GameObject doZone;
+    [SerializeField] private GameObject postisionForbtn;//Instantiate ô trống vào để điền nút
+    [SerializeField] private GameObject IfScreen;
+    [SerializeField] private GameObject loopScreen;//Instantiate màn hình cho chủ đề vòng lặp
+    [SerializeField] private GameObject contentForScreen;//Vị trí để Instantiate GameObject vào
+    [SerializeField] private GameObject panelAllsetting;//Chứa Panel cài đặt
+    [SerializeField] private GameObject panelSelectlevel;
+    [Header("Button")]
+    [SerializeField] private Button btn_Left;//Nút rẽ trái
+    [SerializeField] private Button btn_Right;//Nút rẽ phải
+    [SerializeField] private Button btn_Up;//Nút đi lên
+    [SerializeField] private Button btn_Down;//Nút đi xuống
+    [SerializeField] private Button btn_Loop;//Nút vòng lặp
     [SerializeField] private Button btn_If;
     [SerializeField] private Button btn_Yes;
     [SerializeField] private Button btn_No;
-    [SerializeField] private Button btn_Play;
-    [SerializeField] private Button btn_Delete;
-    [SerializeField] private Button btn_Close;
-    [SerializeField] private GameObject Zone;
-    [SerializeField] private GameObject ifZone;
-    [SerializeField] private GameObject doZone;
-    [SerializeField] private GameObject postisionForbtn;
-    [SerializeField] private RectTransform btnZone;
-    [SerializeField] private SwitchScreen switchScreen;
-    [SerializeField] private Button BtnloopScreen;
-    [SerializeField] private Button BtnIfScreen;
-    [SerializeField] private GameObject IfScreen;
-    [SerializeField] private GameObject loopScreen;
-    [SerializeField] private GameObject contentForScreen;
-    [SerializeField] private GameObject panelAllsetting;
-    [SerializeField] private GameObject panelSelectlevel;
-    [SerializeField] private TMP_Text description;
-    [SerializeField] private CountdownTimer Time;
-    [SerializeField] private CustomMask customMask;
-    [SerializeField] private RectTransform mainScreen;
-    [SerializeField] private RectTransform leftGameSceen;
-    [SerializeField] private Image background;
-    [SerializeField] private Sprite lavaEnvironment;
-    [SerializeField] private Sprite earthEnvironment;
-    [SerializeField] private Sprite spaceEnvironment;
-    private int clickState = 0;
+    [SerializeField] private Button btn_Play;//Nút chơi
+    [SerializeField] private Button btn_Delete;//Nút xóa
+    [SerializeField] private Button btn_Close;//Nút thoát game
+    [SerializeField] private Button BtnloopScreen;//Nút bật màn vòng lặp
+    [SerializeField] private Button BtnIfScreen;//Nút bật màn rẽ nhánh
+    [Header("Scripts")]
+    [SerializeField] private SwitchScreen switchScreen;//Hỗ trợ việc tắt bật các màn(Thừa)
+    [SerializeField] private CountdownTimer Time;//Script đếm thời gian
+    [SerializeField] private CustomMask customMask;//Script panel phủ để làm game tutorial
+    [Header("UI")]
+    [SerializeField] private RectTransform btnZone;//Khu vực các nút điều khiểu cho GamePlay dùng làm game tutorial
+    [SerializeField] private RectTransform mainScreen;//Màn hình chứa các điều khiểu dc chọn cho GamePlay dùng làm gametutorial
+    [SerializeField] private RectTransform leftGameSceen;//mà hình bên trái khu hiển thị màn chơi dùng làm gametutorial
+    [SerializeField] private Image background;//Nền phía sau
+    [SerializeField] private TMP_Text description;//Text hướng dẫn chơi
+    [SerializeField] private Sprite lavaEnvironment;//Ảnh nền
+    [SerializeField] private Sprite earthEnvironment;//Ảnh nền
+    [SerializeField] private Sprite spaceEnvironment;//Ảnh nền
     private void Start()
     {
+        //Reset giá trị khi mới bắt đầu game
+        GameController.Instance.listButton.Clear();
+        GameController.Instance.chooseBtn = SpecialBtn.none;
+        //Đổi ảnh nền theo hành tinh được chọn
         switch (PopupManager.Instance.loaibai)
         {
             case Loaibai.tuantu:
@@ -60,6 +70,7 @@ public class Panel_DieuKhien : MonoBehaviour
                 background.sprite = earthEnvironment;
                 break;
         }
+        //Bật hướng dẫn chơi
         if (PopupManager.Instance.listmap.tuantu[0].star < 1)
         {
             customMask.gameObject.SetActive(true);
@@ -70,19 +81,19 @@ public class Panel_DieuKhien : MonoBehaviour
         {
             customMask.gameObject.SetActive(false);
         }
-        GameController.Instance.listButton.Clear();
-        GameController.Instance.chooseBtn = SpecialBtn.none;
-
+        //Instantiate các ô trống để chứa nút
         for (int i = 0; i < PopupManager.Instance.currentLevel.sobuoc; i++)
         {
             GameObject gb = Instantiate(postisionForbtn.gameObject, Zone.transform);
-            Listposition.Add(gb);
+            listBtnPos.Add(gb);
         }
+        //Instantiate các ô trống để chứa nút
         for (int i = 0; i < 8; i++)
         {
             GameObject gb = Instantiate(postisionForbtn.gameObject, ifZone.transform);
             ListpostionIf.Add(gb);
         }
+        //Instantiate các ô trống để chứa nút
         for (int i = 0; i < 8; i++)
         {
             GameObject gb = Instantiate(postisionForbtn.gameObject, doZone.transform);
@@ -118,6 +129,7 @@ public class Panel_DieuKhien : MonoBehaviour
         }
         Setup();
     }
+    //Set các giá trị cơ bản
     private void Setup()
     {
         btn_Left.onClick.AddListener(left_Click);
@@ -131,6 +143,7 @@ public class Panel_DieuKhien : MonoBehaviour
         btn_No.onClick.AddListener(no_Click);
         btn_Yes.onClick.AddListener(yes_Click);
         btn_Close.onClick.AddListener(close_Click);
+        //Tắt bật các nút hỗ trợ cho từng chức năng
         switch (PopupManager.Instance.loaibai)
         {
             case Loaibai.tuantu:
@@ -149,6 +162,7 @@ public class Panel_DieuKhien : MonoBehaviour
         btn_Yes.gameObject.SetActive(false);
         btn_No.gameObject.SetActive(false);
     }
+    //Set kích cỡ cho các nút 
     void SetRectransfrom(GameObject gb)
     {
         RectTransform rectTtransform = gb.transform.GetComponent<RectTransform>();
@@ -157,42 +171,51 @@ public class Panel_DieuKhien : MonoBehaviour
         rectTtransform.offsetMax = Vector2.zero;
         rectTtransform.offsetMin = Vector2.zero;
     }
+    //Instantiate button bước đi
     private void move(Button btn)
     {
-        if (vitri < Listposition.Count && GameController.Instance.chooseBtn == SpecialBtn.none)
+        switch (GameController.Instance.chooseBtn)
         {
-
-            GameObject gb = Instantiate(btn.gameObject, Listposition[vitri].transform);
-            SetRectransfrom(gb);
-            GameController.Instance.listButton.Add(gb);
-            vitri++;
-        }
-        if (GameController.Instance.chooseBtn == SpecialBtn.loop)
-        {
-            LoopScreen loopScreen = GameController.Instance.listScreenAdd[posOfList].GetComponent<LoopScreen>();
-            if (loopScreen.vitriloop < loopScreen.listPosLoop.Count)
-            {
-                GameObject gb = Instantiate(btn.gameObject, loopScreen.listPosLoop[loopScreen.vitriloop].transform);
-                SetRectransfrom(gb);
-                loopScreen.listBtnFor.Add(gb);
-                loopScreen.vitriloop++;
-            }
-        }
-        if (vitriIf < ListpostionIf.Count && GameController.Instance.chooseBtn == SpecialBtn.ifElse)
-        {
-            GameObject gb = Instantiate(btn.gameObject, ListpostionIf[vitriIf].transform);
-            SetRectransfrom(gb);
-            GameController.Instance.listBtnIf.Add(gb);
-            vitriIf++;
-        }
-        if (vitridoIf < ListpostiondoIf.Count && GameController.Instance.chooseBtn == SpecialBtn.doIf)
-        {
-            GameObject gb = Instantiate(btn.gameObject, ListpostiondoIf[vitridoIf].transform);
-            SetRectransfrom(gb);
-            GameController.Instance.listBtndoIf.Add(gb);
-            vitridoIf++;
+            case SpecialBtn.none:
+                if (vitri < listBtnPos.Count)
+                {
+                    GameObject gb = Instantiate(btn.gameObject, listBtnPos[vitri].transform);
+                    SetRectransfrom(gb);
+                    GameController.Instance.listButton.Add(gb);
+                    vitri++;
+                }
+                break;
+            case SpecialBtn.loop:
+                LoopScreen loopScreen = GameController.Instance.listScreenAdd[posOfList].GetComponent<LoopScreen>();
+                if (loopScreen.vitriloop < loopScreen.listPosLoop.Count)
+                {
+                    GameObject gb = Instantiate(btn.gameObject, loopScreen.listPosLoop[loopScreen.vitriloop].transform);
+                    SetRectransfrom(gb);
+                    loopScreen.listBtnFor.Add(gb);
+                    loopScreen.vitriloop++;
+                }
+                break;
+            case SpecialBtn.ifElse:
+                if (vitriIf < ListpostionIf.Count)
+                {
+                    GameObject gb = Instantiate(btn.gameObject, ListpostionIf[vitriIf].transform);
+                    SetRectransfrom(gb);
+                    GameController.Instance.listBtnIf.Add(gb);
+                    vitriIf++;
+                }
+                break;
+            case SpecialBtn.doIf:
+                if(vitridoIf < ListpostiondoIf.Count)
+                {
+                    GameObject gb = Instantiate(btn.gameObject, ListpostiondoIf[vitridoIf].transform);
+                    SetRectransfrom(gb);
+                    GameController.Instance.listBtndoIf.Add(gb);
+                    vitridoIf++;
+                }
+                break;
         }
     }
+    //Xóa nút
     private void delete_Click()
     {
         AudioManager.Instance.PlaySound(Sound.Button);
@@ -249,25 +272,27 @@ public class Panel_DieuKhien : MonoBehaviour
                 break;
         }
     }
+    //Add vào danh sách nút vòng lặp
     private void loop_Click()
     {
-        GameObject gb = Instantiate(btn_Loop.gameObject, Listposition[vitri].transform);
-        gb.transform.SetPositionAndRotation(Listposition[vitri].transform.position, Listposition[vitri].transform.rotation);
-        GameController.Instance.listButton.Add(gb);
-        vitri++;
-        Button lp = Instantiate(BtnloopScreen, switchScreen.transform);// Add button tắt bật screen đó
-        gb = Instantiate(loopScreen, contentForScreen.transform);//add screen đó lên
-        lp.onClick.AddListener(gb.GetComponent<LoopScreen>().ShowLoopScreen);
-        GameController.Instance.listScreenAdd.Add(gb);
+        GameObject gb = Instantiate(btn_Loop.gameObject, listBtnPos[vitri].transform);//Instantiate vào vị trí trên màn hình
+        gb.transform.SetPositionAndRotation(listBtnPos[vitri].transform.position, listBtnPos[vitri].transform.rotation);
+        GameController.Instance.listButton.Add(gb);//Add vào danh sách các nút chạy kịch bản
+        vitri++;//Tăng index trong list
+        Button lp = Instantiate(BtnloopScreen, switchScreen.transform);//Add button tắt bật screen đó
+        gb = Instantiate(loopScreen, contentForScreen.transform);//Add screen đó lên
+        lp.onClick.AddListener(gb.GetComponent<LoopScreen>().ShowLoopScreen);//Add sự kiện click
+        GameController.Instance.listScreenAdd.Add(gb);//Add screen mới vào trong list để kiểm soát
         gb.GetComponent<LoopScreen>().posInLooplist = GameController.Instance.listScreenAdd.Count - 1;
         switchScreen.listScreen.Add(gb);//
 
     }
+    //Add vào danh sách nút rẽ nhánh
     private void if_Click()
     {
         AudioManager.Instance.PlaySound(Sound.Button);
-        GameObject gb = Instantiate(btn_If.gameObject, Listposition[vitri].transform);
-        gb.transform.SetPositionAndRotation(Listposition[vitri].transform.position, Listposition[vitri].transform.rotation);
+        GameObject gb = Instantiate(btn_If.gameObject, listBtnPos[vitri].transform);
+        gb.transform.SetPositionAndRotation(listBtnPos[vitri].transform.position, listBtnPos[vitri].transform.rotation);
         GameController.Instance.listButton.Add(gb);
         vitri++;
         btn_If.gameObject.SetActive(false);
@@ -338,6 +363,7 @@ public class Panel_DieuKhien : MonoBehaviour
             panelAllsetting.SetActive(true);
         }
     }
+    //Hướng dẫn chơi
     public void Tutorial_click()
     {
         clickState++;

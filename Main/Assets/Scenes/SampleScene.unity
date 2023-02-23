@@ -2180,7 +2180,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listButton: []
   listBtnMain: []
-  listBtnFor: []
   listBtnIf: []
   listShadedIf: []
   listBtndoIf: []
@@ -2188,7 +2187,6 @@ MonoBehaviour:
   run: 0
   shadedRun: 0
   chooseBtn: 2
-  loopNumber: 0
 --- !u!4 &781540740
 Transform:
   m_ObjectHideFlags: 0
@@ -2218,16 +2216,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 2054545574}
-  panel_Finish: {fileID: 6242086254286070359, guid: 9866757c4ac3ab34e90a67987c3f5f3b, type: 3}
-  manchoi: {fileID: 4900000, guid: a229eb4d0cf876c40b1acf3b355899a5, type: 3}
-  playerController: {fileID: 0}
+  currentMap: {fileID: 0}
+  listCurrentTopic: []
   menu: {fileID: 0}
+  mapToReload: {fileID: 0}
+  panel_Finish: {fileID: 6242086254286070359, guid: 9866757c4ac3ab34e90a67987c3f5f3b, type: 3}
+  userPlay: {fileID: 3555005754327426440, guid: 662c912f9c78ac3488b569942d94f72b, type: 3}
+  currentDashboard: {fileID: 0}
+  playerController: {fileID: 0}
+  notification: {fileID: 1595768861641450270, guid: 22c5a3a54a69dee4ca65a8c9fd738112, type: 3}
+  notificationIsOn: 0
+  goFromCutScene: 0
+  manchoi: {fileID: 4900000, guid: a229eb4d0cf876c40b1acf3b355899a5, type: 3}
   listmap:
     tuantu: []
     vonglap: []
     renhanh: []
   loaibai: 0
-  userPlay: {fileID: 3555005754327426440, guid: 662c912f9c78ac3488b569942d94f72b, type: 3}
   currentLevel:
     level: 
     sobuoc: 0
@@ -2238,14 +2243,7 @@ MonoBehaviour:
     sobuoc_an: 0
     buocAo: []
   character: 0
-  currentMap: {fileID: 0}
-  mapToReload: {fileID: 0}
   timeRemaining: 0
-  listCurrentTopic: []
-  notificationIsOn: 0
-  currentDashboard: {fileID: 0}
-  goFromCutScene: 0
-  notification: {fileID: 1595768861641450270, guid: 22c5a3a54a69dee4ca65a8c9fd738112, type: 3}
 --- !u!114 &781540742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3496,11 +3494,11 @@ MonoBehaviour:
   popup_SelectLV: {fileID: 8078982668971793315, guid: 818892af89117d242a9d3027714f9c6b, type: 3}
   panelHangmuc: {fileID: 2570803530740699525, guid: 31f3e6818db8bc743aa53ee1161d9955, type: 3}
   panelSetting: {fileID: 340469504}
-  medalPanel: {fileID: 2160416452235847711, guid: b3a2c7f3353394f489f592a9ea9cf40f, type: 3}
   btn_NewGame: {fileID: 2022272871}
   btn_Medal: {fileID: 184562162}
   btn_Exit: {fileID: 284578408}
   btn_Setting: {fileID: 1245295952}
+  medalPanel: {fileID: 2160416452235847711, guid: b3a2c7f3353394f489f592a9ea9cf40f, type: 3}
   Menu: {fileID: 1538866179}
   firstLevel: {fileID: 7651777925957082279, guid: 20781b6eb76d0c5408dd7702dbbb7a39, type: 3}
   listTuantu:
@@ -3509,6 +3507,7 @@ MonoBehaviour:
   - {fileID: 4722761929235790149, guid: b9cbe0a49c18f944cb9839d36e584560, type: 3}
   - {fileID: 6785000009112304821, guid: d43db63c92d870a45be5c1a8569a5c29, type: 3}
   - {fileID: 6928116575430411516, guid: 085797026607b084ab9871e908cc63d4, type: 3}
+  panelLoading: {fileID: 374718950}
 --- !u!1 &1193917830
 GameObject:
   m_ObjectHideFlags: 0

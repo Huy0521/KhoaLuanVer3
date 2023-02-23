@@ -168,6 +168,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b7a337383b04f84ab2dc6174a68c942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panelHangmuc: {fileID: 8554082471669163113, guid: 31f3e6818db8bc743aa53ee1161d9955, type: 3}
+  handTutorial: {fileID: 6383800331671538506}
+  astrounat: {fileID: 4833933338370253140}
+  tutorialTitle: {fileID: 1454224367060398155}
   ListMap_Tuantu:
   - {fileID: 7651777925957082279, guid: 20781b6eb76d0c5408dd7702dbbb7a39, type: 3}
   - {fileID: 2087120986914919959, guid: edc9a2b9edc4cc548b482811a4fdfbaf, type: 3}
@@ -175,31 +179,27 @@ MonoBehaviour:
   - {fileID: 6785000009112304821, guid: d43db63c92d870a45be5c1a8569a5c29, type: 3}
   - {fileID: 6928116575430411516, guid: 085797026607b084ab9871e908cc63d4, type: 3}
   ListMap_Vonglap:
-  - {fileID: 681381140598618529, guid: 00bf0a2306916b84a93709a688d55c70, type: 3}
+  - {fileID: 681381140598618529, guid: 5ee466ea9f3eee248b4a624fe5189dd0, type: 3}
   - {fileID: 4273385863894822089, guid: 55bdcd0e211aa6d4b9dd2d9107a20a18, type: 3}
   - {fileID: 677282940384865108, guid: e54a81d9a86735b468a37c02814df953, type: 3}
-  - {fileID: 8338768422023317128, guid: 5ee466ea9f3eee248b4a624fe5189dd0, type: 3}
+  - {fileID: 8338768422023317128, guid: 00bf0a2306916b84a93709a688d55c70, type: 3}
   - {fileID: 8759792756856811924, guid: 4be2f54cd618071438c004c3de365033, type: 3}
   ListMap_Renhanh:
   - {fileID: 8178726270233684043, guid: 6bc224ce40171b448ac679fd2ec11bd5, type: 3}
   - {fileID: 6313704746557071017, guid: d85fc1f77fe828946a1dbdf6c9b468c5, type: 3}
   - {fileID: 6361207778162641041, guid: 7487934573f5755468e3aab4556b1a93, type: 3}
-  btn_Back: {fileID: 2662452532738340461}
-  background: {fileID: 1885724615937197054}
-  lavaEnvironment: {fileID: 21300000, guid: 2d3e83fc71deb7f4eac25d6b0e0dd3d5, type: 3}
-  earthEnvironment: {fileID: 21300000, guid: e345a27f115ff0a45affba4483706fb4, type: 3}
-  spaceEnvironment: {fileID: 21300000, guid: cd3bb1b12cd2dec4ea4ad534b7ca30da, type: 3}
-  iceEnviroment: {fileID: 21300000, guid: 64dd24bbb9791d7429585bfa06dab9ab, type: 3}
   listItem:
   - {fileID: 3695423391706572101}
   - {fileID: 2536336692072423252}
   - {fileID: 8368858813888664101}
   - {fileID: 4782884436216345424}
   - {fileID: 2596209814046560631}
-  panelHangmuc: {fileID: 8554082471669163113, guid: 31f3e6818db8bc743aa53ee1161d9955, type: 3}
-  tutorial: {fileID: 6000416997572423082}
-  astrounat: {fileID: 4833933338370253140}
-  tutorialTitle: {fileID: 1454224367060398155}
+  btn_Back: {fileID: 2662452532738340461}
+  background: {fileID: 1885724615937197054}
+  lavaEnvironment: {fileID: 21300000, guid: 2d3e83fc71deb7f4eac25d6b0e0dd3d5, type: 3}
+  earthEnvironment: {fileID: 21300000, guid: e345a27f115ff0a45affba4483706fb4, type: 3}
+  spaceEnvironment: {fileID: 21300000, guid: cd3bb1b12cd2dec4ea4ad534b7ca30da, type: 3}
+  iceEnviroment: {fileID: 21300000, guid: 64dd24bbb9791d7429585bfa06dab9ab, type: 3}
 --- !u!1 &3366523830998974356
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +310,7 @@ RectTransform:
   - {fileID: 8368858813888664106}
   - {fileID: 4782884436216345439}
   - {fileID: 2596209814046560632}
-  - {fileID: 8547236533547386804}
+  - {fileID: 8523023851643499772}
   m_Father: {fileID: 1705985579974649767}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -425,51 +425,13 @@ RectTransform:
   m_Children:
   - {fileID: 6193799324156556559}
   - {fileID: 4247892095833131884}
-  m_Father: {fileID: 8547236533547386804}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1400, y: -61}
-  m_SizeDelta: {x: 409.7413, y: 417.26}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &6000416997572423082
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8547236533547386804}
-  m_Layer: 5
-  m_Name: Tutorial
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &8547236533547386804
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6000416997572423082}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4574681216119340259}
-  - {fileID: 8523023851643499772}
   m_Father: {fileID: 6691185065954947177}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -1218, y: 252.79999}
-  m_SizeDelta: {x: 2436, y: 504.59}
+  m_AnchoredPosition: {x: 182, y: 132.99042}
+  m_SizeDelta: {x: 409.74133, y: 417.26}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6383800331671538506
 GameObject:
@@ -501,12 +463,12 @@ RectTransform:
   m_Children:
   - {fileID: 8085171132956815439}
   - {fileID: 574049139794616421}
-  m_Father: {fileID: 8547236533547386804}
-  m_RootOrder: 0
+  m_Father: {fileID: 3695423391706572106}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -823, y: -169.76}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -55, y: 46}
   m_SizeDelta: {x: 191.5122, y: 165.0753}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6614461855100936932

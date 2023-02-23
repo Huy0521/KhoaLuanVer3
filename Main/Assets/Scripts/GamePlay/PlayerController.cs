@@ -3,22 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
-{
-    public static int move;
-    private string currentAnimaton;
+{ 
+    private int finishNumber;
+    private int numberLoopScreen = 0; 
+    private int cursorInMainList = 0;
+    private int check = 0; 
     public float speed = 6;
+    private string currentAnimaton;
     public List<Vector3> futurePosition;
     private Vector3 currentposition;
-    private int cursorInMainList = 0;
-    private int check = 0;
     [SerializeField] private ParticleSystem hitPartical;
     private bool checkFootStep = false;
-    private int finishNumber;
-    private int numberLoopScreen = 0;
+
     private void Awake()
     {
         currentposition = transform.localPosition;
     }
+    //tính toán tọa độ bước đi
     private void CalculateMove(string move)
     {
         switch (move)
@@ -109,12 +110,13 @@ public class PlayerController : MonoBehaviour
                     ChangeAnimationState("walk_Down");
                     break;
             }
-
+            //di chuyển nhân vật
             transform.localPosition = Vector3.MoveTowards(transform.localPosition, futurePosition[cursorInMainList], speed * Time.deltaTime);
             if (transform.localPosition == futurePosition[cursorInMainList])
             {
                 cursorInMainList++;
             }
+            //Check xem đã hết list bước phải đi chưa sau đó chạy anim idle
             if (cursorInMainList == futurePosition.Count)
             {
                 GameController.Instance.run = false;
@@ -147,6 +149,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+    //đổi Anim
     private void ChangeAnimationState(string newAnimation)
     {
         if (currentAnimaton == newAnimation) return;
@@ -154,6 +157,7 @@ public class PlayerController : MonoBehaviour
         GetComponent<Animator>().Play(newAnimation);
         currentAnimaton = newAnimation;
     }
+    //Chơi lại
     private void Replay()
     {
         AudioManager.Instance.PlaySound(Sound.Button);

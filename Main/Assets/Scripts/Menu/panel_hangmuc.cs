@@ -21,6 +21,7 @@ public class panel_hangmuc : MonoBehaviour
     private int vonglapStar;
     private void Start()
     {
+        //Chạy tutorial
         if (PopupManager.Instance.listmap.tuantu[0].star < 1)
         {
             Tutorial();
@@ -29,6 +30,7 @@ public class panel_hangmuc : MonoBehaviour
         {
             tutorial.SetActive(false);
         }
+        //Tính số sao để lock,unlock các chủ đề
         for (int i = 0; i < PopupManager.Instance.listmap.tuantu.Length; i++)
         {
             tuantuStar = tuantuStar + PopupManager.Instance.listmap.tuantu[i].star;
@@ -61,10 +63,15 @@ public class panel_hangmuc : MonoBehaviour
             btn_Vonglap.image.color = new Color(1, 1, 1);
             vonglapLock.gameObject.SetActive(false);
         }
+        //Code hiệu ứng trôi nổi cho các chủ đề
         btn_Vonglap.gameObject.LeanMoveLocal(new Vector2(btn_Vonglap.transform.localPosition.x + Random.Range(-10, 10), btn_Vonglap.transform.localPosition.y + 30), Random.Range(1f, 1.6f)).setLoopPingPong();
         btn_Renhanh.gameObject.LeanMoveLocal(new Vector2(btn_Renhanh.transform.localPosition.x + Random.Range(-10, 10), btn_Renhanh.transform.localPosition.y + 30), Random.Range(1f, 1.6f)).setLoopPingPong();
         btn_Tuantu.gameObject.LeanMoveLocal(new Vector2(btn_Tuantu.transform.localPosition.x + Random.Range(-10, 10), btn_Tuantu.transform.localPosition.y + 30), Random.Range(1f, 1.6f)).setLoopPingPong();
         btn_Ham.gameObject.LeanMoveLocal(new Vector2(btn_Ham.transform.localPosition.x + Random.Range(-10, 10), btn_Ham.transform.localPosition.y + 30), Random.Range(1f, 1.6f)).setLoopPingPong();
+        SetUp();
+    }
+    private void SetUp()
+    {
         btn_Tuantu.onClick.AddListener(tuantu_Click);
         btn_Vonglap.onClick.AddListener(vonglap_Click);
         btn_Renhanh.onClick.AddListener(renhanh_Click);
@@ -75,7 +82,7 @@ public class panel_hangmuc : MonoBehaviour
             PopupManager.Instance.menu.SetActive(true);
             Destroy(gameObject);
         });
-    }
+    }    
     private void ham_click()
     {
         PopupManager.Instance.ShowNotification(gameObject, "Chủ đề đang được phát triển!");
@@ -116,6 +123,7 @@ public class panel_hangmuc : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    //Hướng dẫn chơi
     private void Tutorial()
     {
         tutorial.SetActive(true);

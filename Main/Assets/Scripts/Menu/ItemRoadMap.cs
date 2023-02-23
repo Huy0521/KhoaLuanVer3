@@ -6,7 +6,9 @@ using TMPro;
 using BaseClass;
 
 public class ItemRoadMap : MonoBehaviour
-{
+{   [SerializeField] private GameObject imgLock;
+    [SerializeField] private GameObject level;
+    [HideInInspector] public GameObject panelSelectlevel;
     [SerializeField] private Image middle;
     [SerializeField] private Image bottom;
     [SerializeField] private List<Image> listStar;
@@ -19,9 +21,7 @@ public class ItemRoadMap : MonoBehaviour
     [SerializeField] private Sprite middleStar_Active;
     [SerializeField] private Sprite rightStar_Active;
     [SerializeField] private Map thislevel;
-    [SerializeField] private GameObject imgLock;
-    [SerializeField] private GameObject level;
-    [HideInInspector] public GameObject panelSelectlevel;
+
 
     public bool levelIslock;
     public void Item_Click()
@@ -41,6 +41,7 @@ public class ItemRoadMap : MonoBehaviour
             PlayerPrefs.SetFloat("LastMapClick", float.Parse(txt_manchoi.text));
         }
     }
+    //Tắt bật sao tương ứng
     private void OnStar(bool star1, bool star2, bool star3)
     {
         if (star1)
@@ -56,7 +57,7 @@ public class ItemRoadMap : MonoBehaviour
             listStar[2].sprite = rightStar_Active;
         }
     }
-
+    //Truyền dữ liệu màn chơi, hiển thị
     public void configView(Map baichoi, GameObject map)
     {
         gameObject.LeanMoveLocal(new Vector2(gameObject.transform.localPosition.x, gameObject.transform.localPosition.y + 20), Random.Range(0.8f, 1.4f)).setLoopPingPong();
@@ -86,6 +87,7 @@ public class ItemRoadMap : MonoBehaviour
             bottom.sprite = bottomActive;
         }
     }
+    //Truyền dữ liệu màn chơi, hiển thị
     public void configView2(Map baichoi, GameObject map)
     {
         gameObject.LeanMoveLocal(new Vector2(gameObject.transform.localPosition.x, gameObject.transform.localPosition.y + 20), Random.Range(0.8f, 1.4f)).setLoopPingPong();

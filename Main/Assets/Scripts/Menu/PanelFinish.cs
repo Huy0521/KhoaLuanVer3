@@ -28,6 +28,7 @@ public class PanelFinish : MonoBehaviour
         //btnBack.onClick.AddListener(Back_click);
         btnReplay.onClick.AddListener(Replay_click);
     }
+    //Truyền dữ liệu vào PopUp kết thúc game
     public void configView(bool result)
     {
         txt1.text = "Hoàn thành màn chơi dưới " + PopupManager.Instance.currentLevel.time + " giây";
@@ -67,15 +68,17 @@ public class PanelFinish : MonoBehaviour
             SaveFile(tojson);
         }
     }
+    //Lưu file 
     public void SaveFile(string data)
     {
         string destination = "Assets/Resources/Json/Manchoi.json";
         StreamWriter write = new StreamWriter(destination);
         write.Write(data);
         write.Close();
-        Resources.Load(destination);
+        Resources.Load(destination);//tải lại file trong resource để cập nhật giá trị mới
 
     }
+    //Chơi lại bàn chơi
     private void Replay_click()
     {
         AudioManager.Instance.PlaySound(Sound.Button);
@@ -87,6 +90,7 @@ public class PanelFinish : MonoBehaviour
         GameController.Instance.ResetGameController();
 
     }
+    //Chơi bàn chơi tiếp theo
     private void ContinuePlay_click()
     {
         AudioManager.Instance.PlaySound(Sound.Button);
@@ -95,6 +99,7 @@ public class PanelFinish : MonoBehaviour
         Destroy(PopupManager.Instance.currentDashboard.gameObject);
         if (level < 5)
         {
+            //Truyền dữ liệu thông tin màn chơi
             switch (PopupManager.Instance.loaibai)
             {
                 case Loaibai.tuantu:
@@ -107,6 +112,7 @@ public class PanelFinish : MonoBehaviour
                     PopupManager.Instance.currentLevel = PopupManager.Instance.listmap.renhanh[level];
                     break;
             }
+            //Gán các giá trị của màn chơi tiếp theo
             PopupManager.Instance.currentMap = Instantiate(PopupManager.Instance.listCurrentTopic[level]);
             PopupManager.Instance.mapToReload = PopupManager.Instance.listCurrentTopic[level];
             PopupManager.Instance.currentDashboard = Instantiate(PopupManager.Instance.userPlay, PopupManager.Instance.canvas.transform);

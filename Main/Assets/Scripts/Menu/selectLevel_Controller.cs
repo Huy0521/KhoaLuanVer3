@@ -1,25 +1,31 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 public class selectLevel_Controller : MonoBehaviour
 {
+    [Header("GameObject")]    
+    [SerializeField] private GameObject panelHangmuc;
+    [SerializeField] private GameObject handTutorial;
+    [SerializeField] private GameObject astrounat;
+    [SerializeField] private GameObject tutorialTitle;
+    [Header("List")]
     [SerializeField] private List<GameObject> ListMap_Tuantu;
     [SerializeField] private List<GameObject> ListMap_Vonglap;
-    [SerializeField] private List<GameObject> ListMap_Renhanh;
+    [SerializeField] private List<GameObject> ListMap_Renhanh;    
+    [SerializeField] private List<ItemRoadMap> listItem;
+    [Header("UI")]
     [SerializeField] private Button btn_Back;
     [SerializeField] private Image background;
     [SerializeField] private Sprite lavaEnvironment;
     [SerializeField] private Sprite earthEnvironment;
     [SerializeField] private Sprite spaceEnvironment;
     [SerializeField] private Sprite iceEnviroment;
-    [SerializeField] private List<ItemRoadMap> listItem;
-    [SerializeField] private GameObject panelHangmuc;
-    [SerializeField] private GameObject tutorial;
-    [SerializeField] private GameObject astrounat;
-    [SerializeField] private GameObject tutorialTitle;
+
+
     private void OnEnable()
     {
+        //Lấy dữ liệu từ file Json
         switch (PopupManager.Instance.loaibai)
         {
             case Loaibai.tuantu:
@@ -115,13 +121,15 @@ public class selectLevel_Controller : MonoBehaviour
     private void Start()
     {
         btn_Back.onClick.AddListener(Back_click);
+        //Bật hướng dẫn chơi
         if (PopupManager.Instance.listmap.tuantu[0].star < 1)
         {
             Tutorial();
         }
         else
         {
-            tutorial.SetActive(false);
+            handTutorial.SetActive(false);
+            astrounat.SetActive(false);
         }
     }
     private void Back_click()
@@ -130,9 +138,11 @@ public class selectLevel_Controller : MonoBehaviour
         Instantiate(panelHangmuc, PopupManager.Instance.canvas.transform);
         Destroy(gameObject);
     }
+    //Hướng dẫn chơi
     private void Tutorial()
     {
-        tutorial.SetActive(true);
+        handTutorial.SetActive(true);
+        astrounat.SetActive(true);
         LeanTween.moveLocalX(astrounat, 1130, 0.6f).setOnComplete(() =>
         {
             LeanTween.scale(tutorialTitle, Vector3.one, 0.5f);
