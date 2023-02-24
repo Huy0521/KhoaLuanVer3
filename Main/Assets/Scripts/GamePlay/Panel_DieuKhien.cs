@@ -7,12 +7,8 @@ public class Panel_DieuKhien : MonoBehaviour
 {
     [Header("List")]
     public List<GameObject> listBtnPos;//List GameObject để Instantiate button
-    public List<GameObject> ListpostionIf;//List GameObject để Instantiate button cho chủ đề If
-    public List<GameObject> ListpostiondoIf;//List GameObject để Instantiate button cho chủ đề doIf
     [Header("Int")]
     private int vitri;//Con trỏ xác định index trong listBtnPos
-    private int vitriIf;//Con trỏ xác định index trong listpostionIf
-    private int vitridoIf;//Con trỏ xác định index trong listpostiondoIf
     public int posOfList; //Con trỏ xác định index trong GameController.Instance.listScreenAdd
     private int clickState = 0;//Biến điếm dùng để check các bước trong game tutorial
     [Header("GameObject")]
@@ -87,18 +83,7 @@ public class Panel_DieuKhien : MonoBehaviour
             GameObject gb = Instantiate(postisionForbtn.gameObject, Zone.transform);
             listBtnPos.Add(gb);
         }
-        //Instantiate các ô trống để chứa nút
-        for (int i = 0; i < 8; i++)
-        {
-            GameObject gb = Instantiate(postisionForbtn.gameObject, ifZone.transform);
-            ListpostionIf.Add(gb);
-        }
-        //Instantiate các ô trống để chứa nút
-        for (int i = 0; i < 8; i++)
-        {
-            GameObject gb = Instantiate(postisionForbtn.gameObject, doZone.transform);
-            ListpostiondoIf.Add(gb);
-        }
+
         vitri = 0;
         if (PopupManager.Instance.loaibai == Loaibai.renhanh)
         {
@@ -120,9 +105,11 @@ public class Panel_DieuKhien : MonoBehaviour
                         break;
                     case "if":
                         Button btn = Instantiate(BtnIfScreen, switchScreen.transform);
+                        GameObject gb = Instantiate(IfScreen, contentForScreen.transform);
                         move(btn_If);
-                        switchScreen.listScreen.Add(IfScreen);
-                        btn.onClick.AddListener(switchScreen.ShowIfScreen);
+                        GameController.Instance.listScreenAdd.Add(gb);
+                        gb.GetComponent<IfScreen>().posInLooplist = GameController.Instance.listScreenAdd.Count - 1;
+                        btn.onClick.AddListener(gb.GetComponent<IfScreen>().ShowIfScreen);
                         break;
                 }
             }
@@ -196,21 +183,23 @@ public class Panel_DieuKhien : MonoBehaviour
                 }
                 break;
             case SpecialBtn.ifElse:
-                if (vitriIf < ListpostionIf.Count)
+                IfScreen ifScreen = GameController.Instance.listScreenAdd[posOfList].GetComponent<IfScreen>();
+                if (ifScreen.vitriIf < ifScreen.listpostionIf.Count)
                 {
-                    GameObject gb = Instantiate(btn.gameObject, ListpostionIf[vitriIf].transform);
+                    GameObject gb = Instantiate(btn.gameObject, ifScreen.listpostionIf[ifScreen.vitriIf].transform);
                     SetRectransfrom(gb);
-                    GameController.Instance.listBtnIf.Add(gb);
-                    vitriIf++;
+                    ifScreen.listBtnIf.Add(gb);
+                    ifScreen.vitriIf++;
                 }
                 break;
             case SpecialBtn.doIf:
-                if(vitridoIf < ListpostiondoIf.Count)
+                IfScreen doIfScreen = GameController.Instance.listScreenAdd[posOfList].GetComponent<IfScreen>();
+                if (doIfScreen.vitridoIf < doIfScreen.listpostiondoIf.Count)
                 {
-                    GameObject gb = Instantiate(btn.gameObject, ListpostiondoIf[vitridoIf].transform);
+                    GameObject gb = Instantiate(btn.gameObject, doIfScreen.listpostiondoIf[doIfScreen.vitridoIf].transform);
                     SetRectransfrom(gb);
-                    GameController.Instance.listBtndoIf.Add(gb);
-                    vitridoIf++;
+                    doIfScreen.listBtndoIf.Add(gb);
+                    doIfScreen.vitridoIf++;
                 }
                 break;
         }
@@ -247,11 +236,12 @@ public class Panel_DieuKhien : MonoBehaviour
                 }
                 break;
             case SpecialBtn.ifElse:
-                if (GameController.Instance.listBtnIf.Count > 0)
+                IfScreen ifScreen = GameController.Instance.listScreenAdd[posOfList].GetComponent<IfScreen>();
+                if (ifScreen.listBtnIf.Count > 0)
                 {
-                    Destroy(GameController.Instance.listBtnIf[GameController.Instance.listBtnIf.Count - 1]);
-                    GameController.Instance.listBtnIf.RemoveAt(GameController.Instance.listBtnIf.Count - 1);
-                    vitriIf--;
+                    Destroy(ifScreen.listBtnIf[ifScreen.listBtnIf.Count - 1]);
+                    ifScreen.listBtnIf.RemoveAt(ifScreen.listBtnIf.Count - 1);            
+                    ifScreen.vitriIf--;
                 }
                 else
                 {
@@ -259,11 +249,12 @@ public class Panel_DieuKhien : MonoBehaviour
                 }
                 break;
             case SpecialBtn.doIf:
-                if (GameController.Instance.listBtndoIf.Count > 0)
+                IfScreen doIfScreen = GameController.Instance.listScreenAdd[posOfList].GetComponent<IfScreen>();
+                if (doIfScreen.listBtndoIf.Count > 0)
                 {
-                    Destroy(GameController.Instance.listBtndoIf[GameController.Instance.listBtndoIf.Count - 1]);
-                    GameController.Instance.listBtndoIf.RemoveAt(GameController.Instance.listBtndoIf.Count - 1);
-                    vitridoIf--;
+                    Destroy(doIfScreen.listBtndoIf[doIfScreen.listBtndoIf.Count - 1]);
+                    doIfScreen.listBtndoIf.RemoveAt(doIfScreen.listBtndoIf.Count - 1);
+                    doIfScreen.vitridoIf--;
                 }
                 else
                 {

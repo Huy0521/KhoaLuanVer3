@@ -54,19 +54,41 @@ public class PanelFinish : MonoBehaviour
             star2.color = new Color(0.273f, 0.273f, 0.273f);
             numberStar = numberStar - 1;
         }
-        if (PopupManager.Instance.loaibai == Loaibai.tuantu)
+        switch (PopupManager.Instance.loaibai)
         {
-            for (int i = 0; i < PopupManager.Instance.listmap.tuantu.Length; i++)
-            {
-                if (PopupManager.Instance.currentLevel.level == PopupManager.Instance.listmap.tuantu[i].level)
+            case Loaibai.tuantu:
+                for (int i = 0; i < PopupManager.Instance.listmap.tuantu.Length; i++)
                 {
-                    PopupManager.Instance.listmap.tuantu[i].star = numberStar;
-                    PopupManager.Instance.listmap.tuantu[i].playertime = (int)PopupManager.Instance.timeRemaining;
+                    if (PopupManager.Instance.currentLevel.level == PopupManager.Instance.listmap.tuantu[i].level)
+                    {
+                        PopupManager.Instance.listmap.tuantu[i].star = numberStar;
+                        PopupManager.Instance.listmap.tuantu[i].playertime = (int)PopupManager.Instance.timeRemaining;
+                    }
                 }
-            }
-            string tojson = JsonUtility.ToJson(PopupManager.Instance.listmap);
-            SaveFile(tojson);
+                break;
+            case Loaibai.vonglap:
+                for (int i = 0; i < PopupManager.Instance.listmap.vonglap.Length; i++)
+                {
+                    if (PopupManager.Instance.currentLevel.level == PopupManager.Instance.listmap.vonglap[i].level)
+                    {
+                        PopupManager.Instance.listmap.vonglap[i].star = numberStar;
+                        PopupManager.Instance.listmap.vonglap[i].playertime = (int)PopupManager.Instance.timeRemaining;
+                    }
+                }
+                break;
+            case Loaibai.renhanh:
+                for (int i = 0; i < PopupManager.Instance.listmap.renhanh.Length; i++)
+                {
+                    if (PopupManager.Instance.currentLevel.level == PopupManager.Instance.listmap.renhanh[i].level)
+                    {
+                        PopupManager.Instance.listmap.renhanh[i].star = numberStar;
+                        PopupManager.Instance.listmap.renhanh[i].playertime = (int)PopupManager.Instance.timeRemaining;
+                    }
+                }
+                break;
         }
+        string tojson = JsonUtility.ToJson(PopupManager.Instance.listmap);
+        SaveFile(tojson);
     }
     //Lưu file 
     public void SaveFile(string data)
