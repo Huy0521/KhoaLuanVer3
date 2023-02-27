@@ -15,6 +15,7 @@ public class PanelSetting : MonoBehaviour
     }
     public void Close_click()
     {
+        AudioManager.Instance.PlaySound(Sound.Button);
         gameObject.SetActive(false);
     }
 }

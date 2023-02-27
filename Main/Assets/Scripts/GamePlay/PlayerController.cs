@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
-{ 
+{
     private int finishNumber;
-    private int numberLoopScreen = 0; 
+    private int numberLoopScreen = 0;
     private int cursorInMainList = 0;
-    private int check = 0; 
+    private int check = 0;
     public float speed = 6;
     private string currentAnimaton;
     public List<Vector3> futurePosition;
     private Vector3 currentposition;
     [SerializeField] private ParticleSystem hitPartical;
     private bool checkFootStep = false;
-
+    private bool checkReplay = false;
     private void Awake()
     {
         currentposition = transform.localPosition;
@@ -56,19 +56,24 @@ public class PlayerController : MonoBehaviour
                 numberLoopScreen++;
                 break;
             case "btn_If(Clone)":
-
-                for (int i = 0; i < GameController.Instance.listBtnIf.Count; i++)
+                for (int i = 0; i < GameController.Instance.listScreenAdd.Count; i++)
                 {
-                    if (string.Equals(GameController.Instance.listShadedIf[i], GameController.Instance.listBtnIf[i].name))
+                    check = 0;
+                    IfScreen ifScreen = GameController.Instance.listScreenAdd[i].GetComponent<IfScreen>();
+                    for (int j = 0; j < ifScreen.listBtnIf.Count; j++)
                     {
-                        check++;
+                        if (string.Equals(GameController.Instance.listShadedIf[j], ifScreen.listBtnIf[j].name))
+                        {
+                            check++;
+                        }
                     }
-                }
-                if (check == GameController.Instance.listShadedIf.Count)
-                {
-                    for (int i = 0; i < GameController.Instance.listBtndoIf.Count; i++)
+                    Debug.Log("check: " + check);
+                    if (check == GameController.Instance.listShadedIf.Count)
                     {
-                        CalculateMove(GameController.Instance.listBtndoIf[i].name);
+                        for (int k = 0; k < ifScreen.listBtndoIf.Count; k++)
+                        {
+                            CalculateMove(ifScreen.listBtndoIf[k].name);
+                        }
                     }
                 }
                 break;
@@ -79,15 +84,12 @@ public class PlayerController : MonoBehaviour
         futurePosition.Clear();
 
         GameController.Instance.listBtnMain.Clear();
-        if (GameController.Instance.listButton.Count > 0)
+        for (int i = 0; i < GameController.Instance.listButton.Count; i++)
         {
-            for (int i = 0; i < GameController.Instance.listButton.Count; i++)
-            {
-                CalculateMove(GameController.Instance.listButton[i].name);
-            }
-            GameController.Instance.run = true;
-            AudioManager.Instance.PlaySound(Sound.FootStep);
+            CalculateMove(GameController.Instance.listButton[i].name);
         }
+        GameController.Instance.run = true;
+        AudioManager.Instance.PlaySound(Sound.FootStep);
     }
     private void Update()
     {
@@ -141,10 +143,11 @@ public class PlayerController : MonoBehaviour
                         ChangeAnimationState("idle_Side");
                     }
                 }
-                if (!checkFootStep)
+                if (!checkFootStep && !checkReplay)
                 {
                     AudioManager.Instance.StopEffect();
                     checkFootStep = true;
+                    Invoke("Replay", 0.6f);
                 }
             }
         }
@@ -158,7 +161,7 @@ public class PlayerController : MonoBehaviour
         currentAnimaton = newAnimation;
     }
     //Chơi lại
-    private void Replay()
+    private void Replay()// Hàm được gọi bằng Ivoke nên khi findAll refence sẽ ko tìm thấy nơi sử dụng(Lưu ý ko xóa nhầm)
     {
         AudioManager.Instance.PlaySound(Sound.Button);
         Destroy(PopupManager.Instance.currentMap);
@@ -175,10 +178,10 @@ public class PlayerController : MonoBehaviour
         {
             case "Enemy":
                 GetComponent<Animator>().Play("die");
-             /*   GameObject panelLose = Instantiate(PopupManager.Instance.panel_Finish.gameObject, PopupManager.Instance.canvas.transform);
-                panelLose.GetComponent<PanelFinish>().configView(false);*/
+                /*   GameObject panelLose = Instantiate(PopupManager.Instance.panel_Finish.gameObject, PopupManager.Instance.canvas.transform);
+                   panelLose.GetComponent<PanelFinish>().configView(false);*/
                 GameController.Instance.run = false;
-                Invoke("Replay",1f);
+                Invoke("Replay", 0.8f);
                 break;
             case "Finish":
                 finishNumber++;
@@ -192,6 +195,7 @@ public class PlayerController : MonoBehaviour
                     panelWin.GetComponent<PanelFinish>().configView(true);
                     GameController.Instance.run = false;
                     collision.gameObject.SetActive(false);
+                    checkReplay = true;
                 }
                 else
                 {

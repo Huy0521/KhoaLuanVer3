@@ -16,6 +16,7 @@ public class ChangeCharacter : MonoBehaviour
     }
     private void Right_click()
     {
+        AudioManager.Instance.PlaySound(Sound.Button);
         int onActiveCharacter = 0;
         for(int i=0;i<listCharacter.Count;i++)
         {
@@ -45,6 +46,7 @@ public class ChangeCharacter : MonoBehaviour
     }
     private void Left_click()
     {
+        AudioManager.Instance.PlaySound(Sound.Button);
         int onActiveCharacter = 0;
         for (int i = 0; i < listCharacter.Count; i++)
         {

@@ -26,11 +26,11 @@ public class PopupManager : MonoBehaviour
     public TextAsset manchoi;//File Json chứa dữ liệu của các màn chơi
     [HideInInspector] public ListMap listmap;//Chứa dữ liệu lấy ra từ file Json
     public Loaibai loaibai;//Lưu chủ đề được chọn
-    [HideInInspector] public Map currentLevel;//Thông tin của màn chơi hiện tại
+    public Map currentLevel;//Thông tin của màn chơi hiện tại
     [HideInInspector] public Character character;//Check nhân vật được người chơi chọn
     public float timeRemaining;
-    
-    
+
+
     public static PopupManager Instance
     {
         get

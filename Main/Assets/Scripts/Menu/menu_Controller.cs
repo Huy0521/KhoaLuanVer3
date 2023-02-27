@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class menu_Controller : MonoBehaviour
-{  
+{
     [SerializeField] private selectLevel_Controller popup_SelectLV;
     [SerializeField] private panel_hangmuc panelHangmuc;
     [SerializeField] private PanelSetting panelSetting;
@@ -33,7 +33,7 @@ public class menu_Controller : MonoBehaviour
             PopupManager.Instance.currentDashboard = Instantiate(PopupManager.Instance.userPlay, PopupManager.Instance.canvas.transform);
             panelLoading.SetActive(false);
         }
-        
+
     }
     private void SetUp()
     {
@@ -41,10 +41,11 @@ public class menu_Controller : MonoBehaviour
         btn_NewGame.onClick.AddListener(newgame_Click);
         btn_Medal.onClick.AddListener(medal_Click);
         btn_Setting.onClick.AddListener(setting_Click);
-    }    
+    }
     //Vào chọn chủ đề
     private void newgame_Click()
     {
+        AudioManager.Instance.PlaySound(Sound.Button);
         if (PopupManager.Instance.listmap.tuantu[0].star > 0)
         {
             Instantiate(panelHangmuc, PopupManager.Instance.canvas.transform);
@@ -52,7 +53,6 @@ public class menu_Controller : MonoBehaviour
         }
         else
         {
-            AudioManager.Instance.PlaySound(Sound.Button);
             SceneManager.LoadScene("CutScene");
         }
     }
@@ -70,8 +70,9 @@ public class menu_Controller : MonoBehaviour
         Application.Quit();
     }
     //Mở panel cài đặt
-   private void setting_Click()
+    private void setting_Click()
     {
+        AudioManager.Instance.PlaySound(Sound.Button);
         panelSetting.gameObject.SetActive(true);
     }
 

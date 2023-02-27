@@ -9,6 +9,7 @@ public class PlayerShaded : MonoBehaviour
     private string currentAnimaton;
     int cursorInMainList = 0;
     public float speed = 6;
+    private List<string> listShadeRun = new List<string>();
     void Awake()
     {
         currentposition = transform.localPosition;
@@ -123,7 +124,14 @@ public class PlayerShaded : MonoBehaviour
         {
             case "Enemy":
                 Debug.Log("in");
-                GameController.Instance.listShadedIf.Add(GameController.Instance.listButton[cursorInMainList+1].name);
+                for(int i=0;i<GameController.Instance.listButton.Count;i++)
+                {
+                    if(GameController.Instance.listButton[i].name != "btn_If(Clone)")
+                    {
+                        listShadeRun.Add(GameController.Instance.listButton[i].name);
+                    }
+                }
+                GameController.Instance.listShadedIf.Add(listShadeRun[cursorInMainList + 1]);
                 GameController.Instance.listShadedIf.Add("btn_X(Clone)");
                 break;
             case "Finish":
@@ -131,13 +139,19 @@ public class PlayerShaded : MonoBehaviour
                 break;
             case "Boundary":
                 GameController.Instance.shadedRun = false;
-                GameController.Instance.listShadedIf.Add(GameController.Instance.listButton[cursorInMainList+1].name);
-                Debug.Log("cout"+GameController.Instance.listButton.Count); 
-                Debug.Log("coutList " + cursorInMainList);
-                Debug.Log(futurePosition[cursorInMainList]);
-                Debug.Log("name:"+ GameController.Instance.listButton[cursorInMainList].name);
+                /* GameController.Instance.listShadedIf.Add(GameController.Instance.listButton[cursorInMainList+1].name);
+                 GameController.Instance.listShadedIf.Add("btn_X(Clone)");*/
+                for (int i = 0; i < GameController.Instance.listButton.Count; i++)
+                {
+                    if (GameController.Instance.listButton[i].name != "btn_If(Clone)")
+                    {
+                        Debug.Log("In: "+ i);
+                        Debug.Log(GameController.Instance.listButton[i].name);
+                        listShadeRun.Add(GameController.Instance.listButton[i].name);
+                    }
+                }
+                GameController.Instance.listShadedIf.Add(listShadeRun[cursorInMainList]);
                 GameController.Instance.listShadedIf.Add("btn_X(Clone)");
-                Debug.Log("Boud");
                 break;
         }
     }

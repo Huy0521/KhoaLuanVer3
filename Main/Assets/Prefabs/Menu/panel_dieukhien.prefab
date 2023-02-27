@@ -530,7 +530,6 @@ GameObject:
   - component: {fileID: 5922631017473076237}
   - component: {fileID: 7667049368834659583}
   - component: {fileID: 2441504264025515524}
-  - component: {fileID: 5186946648961110358}
   - component: {fileID: 2560698412872132557}
   m_Layer: 5
   m_Name: SwtichScreen
@@ -557,8 +556,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -479.70996, y: 236.49194}
-  m_SizeDelta: {x: -911.1797, y: 258.2771}
+  m_AnchoredPosition: {x: -458.53, y: 216.5278}
+  m_SizeDelta: {x: -868.83, y: 298.2053}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7667049368834659583
 CanvasRenderer:
@@ -598,21 +597,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5186946648961110358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 247896135024770248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5470ec1025f03284e979bc0989f8658e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  listScreen:
-  - {fileID: 3538570419025869617}
-  btnX: {fileID: 8263950693483687308}
 --- !u!114 &2560698412872132557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -767,7 +751,7 @@ GameObject:
   - component: {fileID: 3662008845056213152}
   - component: {fileID: 7478047063429051005}
   m_Layer: 5
-  m_Name: Image
+  m_Name: BtnMainScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -791,7 +775,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 74.98, y: 59.2674}
+  m_SizeDelta: {x: 115, y: 65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7812691383802807760
 CanvasRenderer:
@@ -823,7 +807,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 6341dee5da209f042bf14cf8f980952a, type: 3}
   m_Type: 0
-  m_PreserveAspect: 1
+  m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -875,7 +859,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5186946648961110358}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SwitchScreen, Assembly-CSharp
         m_MethodName: ShowMainScreen
         m_Mode: 1
@@ -2968,6 +2952,7 @@ MonoBehaviour:
   - {fileID: 8020631359073774407}
   panelDieukhien: {fileID: 3555005754327426440}
   listBtnFor: []
+  currentBtn: {fileID: 0}
 --- !u!114 &4518669504203795940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3477,6 +3462,7 @@ MonoBehaviour:
   vitriIf: 0
   vitridoIf: 0
   posInLooplist: 0
+  currentBtn: {fileID: 0}
 --- !u!1 &8223505126943133842
 GameObject:
   m_ObjectHideFlags: 0
@@ -3615,8 +3601,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listBtnPos: []
-  ListpostionIf: []
-  ListpostiondoIf: []
   posOfList: 0
   Zone: {fileID: 5176638664848100138}
   ifZone: {fileID: 1842727710}
@@ -3627,6 +3611,7 @@ MonoBehaviour:
   contentForScreen: {fileID: 5176638665385273146}
   panelAllsetting: {fileID: 8619800909251285737}
   panelSelectlevel: {fileID: 1705985579974649760, guid: 818892af89117d242a9d3027714f9c6b, type: 3}
+  switchScreen: {fileID: 247896135024770248}
   btn_Left: {fileID: 5176638665499334351}
   btn_Right: {fileID: 5176638664777113786}
   btn_Up: {fileID: 5176638664422949519}
@@ -3640,7 +3625,7 @@ MonoBehaviour:
   btn_Close: {fileID: 1486370020}
   BtnloopScreen: {fileID: 4610551118678794793, guid: 483c0cd707f03a448ab9a8c7bc051263, type: 3}
   BtnIfScreen: {fileID: 4610551118678794793, guid: f5a15cafa53e4ec43b9105aaf8dc7b96, type: 3}
-  switchScreen: {fileID: 5186946648961110358}
+  BtnMainScreen: {fileID: 7478047063429051005}
   Time: {fileID: 893444565960581984}
   customMask: {fileID: 1149514903538818704}
   btnZone: {fileID: 5176638664796609165}

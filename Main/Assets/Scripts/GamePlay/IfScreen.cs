@@ -12,6 +12,7 @@ public class IfScreen : MonoBehaviour
     public int vitriIf = 0;
     public int vitridoIf = 0;
     public int posInLooplist;
+    public GameObject currentBtn;
     private void OnEnable()
     {
         GameController.Instance.chooseBtn = SpecialBtn.ifElse;

@@ -21,6 +21,7 @@ public class Panel_DieuKhien : MonoBehaviour
     [SerializeField] private GameObject contentForScreen;//Vị trí để Instantiate GameObject vào
     [SerializeField] private GameObject panelAllsetting;//Chứa Panel cài đặt
     [SerializeField] private GameObject panelSelectlevel;
+    [SerializeField] private GameObject switchScreen;//Hỗ trợ việc tắt bật các màn
     [Header("Button")]
     [SerializeField] private Button btn_Left;//Nút rẽ trái
     [SerializeField] private Button btn_Right;//Nút rẽ phải
@@ -35,8 +36,8 @@ public class Panel_DieuKhien : MonoBehaviour
     [SerializeField] private Button btn_Close;//Nút thoát game
     [SerializeField] private Button BtnloopScreen;//Nút bật màn vòng lặp
     [SerializeField] private Button BtnIfScreen;//Nút bật màn rẽ nhánh
+    [SerializeField] private Button BtnMainScreen;
     [Header("Scripts")]
-    [SerializeField] private SwitchScreen switchScreen;//Hỗ trợ việc tắt bật các màn(Thừa)
     [SerializeField] private CountdownTimer Time;//Script đếm thời gian
     [SerializeField] private CustomMask customMask;//Script panel phủ để làm game tutorial
     [Header("UI")]
@@ -110,6 +111,7 @@ public class Panel_DieuKhien : MonoBehaviour
                         GameController.Instance.listScreenAdd.Add(gb);
                         gb.GetComponent<IfScreen>().posInLooplist = GameController.Instance.listScreenAdd.Count - 1;
                         btn.onClick.AddListener(gb.GetComponent<IfScreen>().ShowIfScreen);
+                        gb.GetComponent<IfScreen>().currentBtn = gb;
                         break;
                 }
             }
@@ -119,6 +121,7 @@ public class Panel_DieuKhien : MonoBehaviour
     //Set các giá trị cơ bản
     private void Setup()
     {
+        BtnMainScreen.onClick.AddListener(OpenMainScreen_click);
         btn_Left.onClick.AddListener(left_Click);
         btn_Right.onClick.AddListener(right_Click);
         btn_Up.onClick.AddListener(up_Click);
@@ -150,7 +153,7 @@ public class Panel_DieuKhien : MonoBehaviour
         btn_No.gameObject.SetActive(false);
     }
     //Set kích cỡ cho các nút 
-    void SetRectransfrom(GameObject gb)
+    private void SetRectransfrom(GameObject gb)
     {
         RectTransform rectTtransform = gb.transform.GetComponent<RectTransform>();
         rectTtransform.anchorMin = Vector2.zero;
@@ -183,6 +186,7 @@ public class Panel_DieuKhien : MonoBehaviour
                 }
                 break;
             case SpecialBtn.ifElse:
+                Debug.Log(posOfList);
                 IfScreen ifScreen = GameController.Instance.listScreenAdd[posOfList].GetComponent<IfScreen>();
                 if (ifScreen.vitriIf < ifScreen.listpostionIf.Count)
                 {
@@ -213,13 +217,35 @@ public class Panel_DieuKhien : MonoBehaviour
             case SpecialBtn.none:
                 if (GameController.Instance.listButton.Count > 0)
                 {
-                    Destroy(GameController.Instance.listButton[GameController.Instance.listButton.Count - 1]);
-                    GameController.Instance.listButton.RemoveAt(GameController.Instance.listButton.Count - 1);
-                    vitri--;
+                    //Chặn việc xóa các lệnh cố định của chủ đề rẽ nhánh
+                    if (PopupManager.Instance.currentLevel.buocAo.Length < GameController.Instance.listButton.Count)
+                    {
+                        if (GameController.Instance.listButton[GameController.Instance.listButton.Count - 1].name.Equals("btn_Loop(Clone)"))
+                        {
+                            Destroy(GameController.Instance.listScreenAdd[GameController.Instance.listScreenAdd.Count - 1].GetComponent<LoopScreen>().currentBtn);
+                            Destroy(GameController.Instance.listScreenAdd[GameController.Instance.listScreenAdd.Count - 1]);
+                            GameController.Instance.listScreenAdd.RemoveAt(GameController.Instance.listScreenAdd.Count - 1);
+
+                        }
+                        if (GameController.Instance.listButton[GameController.Instance.listButton.Count - 1].name.Equals("btn_If(Clone)"))
+                        {
+                            Destroy(GameController.Instance.listScreenAdd[GameController.Instance.listScreenAdd.Count - 1].GetComponent<IfScreen>().currentBtn);
+                            Destroy(GameController.Instance.listScreenAdd[GameController.Instance.listScreenAdd.Count - 1]);
+                            GameController.Instance.listScreenAdd.RemoveAt(GameController.Instance.listScreenAdd.Count - 1);
+                        }
+                        vitri--;
+                        Destroy(GameController.Instance.listButton[GameController.Instance.listButton.Count - 1]);
+                        GameController.Instance.listButton.RemoveAt(GameController.Instance.listButton.Count - 1);
+                    }
+                    else
+                    {
+                        PopupManager.Instance.ShowNotification(gameObject, "Không thể xóa các bước đi cố định!");
+                    }
+
                 }
                 else
                 {
-                    PopupManager.Instance.ShowNotification(gameObject,"Hiện không còn lệnh nào để xóa!");
+                    PopupManager.Instance.ShowNotification(gameObject, "Hiện không còn lệnh nào để xóa!");
                 }
                 break;
             case SpecialBtn.loop:
@@ -240,8 +266,9 @@ public class Panel_DieuKhien : MonoBehaviour
                 if (ifScreen.listBtnIf.Count > 0)
                 {
                     Destroy(ifScreen.listBtnIf[ifScreen.listBtnIf.Count - 1]);
-                    ifScreen.listBtnIf.RemoveAt(ifScreen.listBtnIf.Count - 1);            
+                    ifScreen.listBtnIf.RemoveAt(ifScreen.listBtnIf.Count - 1);
                     ifScreen.vitriIf--;
+
                 }
                 else
                 {
@@ -275,7 +302,7 @@ public class Panel_DieuKhien : MonoBehaviour
         lp.onClick.AddListener(gb.GetComponent<LoopScreen>().ShowLoopScreen);//Add sự kiện click
         GameController.Instance.listScreenAdd.Add(gb);//Add screen mới vào trong list để kiểm soát
         gb.GetComponent<LoopScreen>().posInLooplist = GameController.Instance.listScreenAdd.Count - 1;
-        switchScreen.listScreen.Add(gb);//
+        gb.GetComponent<LoopScreen>().currentBtn = lp.gameObject;
 
     }
     //Add vào danh sách nút rẽ nhánh
@@ -319,8 +346,18 @@ public class Panel_DieuKhien : MonoBehaviour
     private void play_Click()
     {
         AudioManager.Instance.PlaySound(Sound.Button);
-        PopupManager.Instance.playerController.playCharacter();
-        Time.stopTime();
+        if (GameController.Instance.listButton.Count > 0)
+        {
+            btn_Play.enabled = false;
+            btn_Delete.enabled = false;
+            PopupManager.Instance.playerController.playCharacter();
+            Time.stopTime();
+        }
+        else
+        {
+            PopupManager.Instance.ShowNotification(gameObject, "Hiện không có câu lệnh để thực hiện!");
+        }
+
     }
     private void close_Click()
     {
@@ -329,6 +366,13 @@ public class Panel_DieuKhien : MonoBehaviour
         Destroy(PopupManager.Instance.currentMap);
         Instantiate(panelSelectlevel, PopupManager.Instance.canvas.transform);
 
+    }
+    private void OpenMainScreen_click()
+    {
+        for (int i = 0; i < GameController.Instance.listScreenAdd.Count; i++)
+        {
+            GameController.Instance.listScreenAdd[i].SetActive(false);
+        }
     }
     public void panelIf_click()
     {
@@ -390,6 +434,6 @@ public class Panel_DieuKhien : MonoBehaviour
     }
     private void OnDestroy()
     {
-        GameController.Instance.listScreenAdd.Clear();
+        GameController.Instance.ResetGameController();
     }
 }

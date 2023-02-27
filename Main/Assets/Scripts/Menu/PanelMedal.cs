@@ -25,6 +25,7 @@ public class PanelMedal : MonoBehaviour
         CheckMedal();
         btn_Back.onClick.AddListener(() =>
         {
+            AudioManager.Instance.PlaySound(Sound.Button);
             PopupManager.Instance.menu.SetActive(true);
             Destroy(gameObject);
         });

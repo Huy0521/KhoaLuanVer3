@@ -5,12 +5,10 @@ public enum SpecialBtn { loop, ifElse, none, doIf }
 public class GameController : MonoBehaviour
 {
     public static GameController instance = null;
-    public List<GameObject> listButton;
-    public List<string> listBtnMain;        
-    public List<GameObject> listBtnIf;
-    public List<string> listShadedIf;
-    public List<GameObject> listBtndoIf;
-    public List<GameObject> listScreenAdd;
+    public List<GameObject> listButton = new List<GameObject>();
+    public List<string> listBtnMain = new List<string>();
+    public List<string> listShadedIf = new List<string>();
+    public List<GameObject> listScreenAdd = new List<GameObject>();
     public bool run = false;
     public bool shadedRun = false;
     public SpecialBtn chooseBtn = SpecialBtn.none;
@@ -42,9 +40,8 @@ public class GameController : MonoBehaviour
     {
         listButton.Clear();
         listBtnMain.Clear();
-        listBtnIf.Clear();
         listShadedIf.Clear();
-        listBtndoIf.Clear();
+        listScreenAdd.Clear();
         run = false;
         shadedRun = false;
         chooseBtn = SpecialBtn.none;

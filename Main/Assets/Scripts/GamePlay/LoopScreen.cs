@@ -11,6 +11,7 @@ public class LoopScreen : MonoBehaviour
     public List<GameObject> listPosLoop;//Lưu vị trí để Instantiate nút vào
     [SerializeField] private Panel_DieuKhien panelDieukhien;//truy cập tới panelDieukhien trên scene
     public List<GameObject> listBtnFor;//Lưu nút được dùng trong vòng lặp
+    public GameObject currentBtn;
     //Chuyển trạng thái sang đang chọn vòng lặp, bật swipe
     private void OnEnable()
     {
