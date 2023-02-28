@@ -53,8 +53,7 @@ public class Panel_DieuKhien : MonoBehaviour
     private void Start()
     {
         //Reset giá trị khi mới bắt đầu game
-        GameController.Instance.listButton.Clear();
-        GameController.Instance.chooseBtn = SpecialBtn.none;
+        GameController.Instance.ResetGameController();
         //Bật hướng dẫn chơi
         if (PopupManager.Instance.listmap.tuantu[0].star < 1)
         {
@@ -129,6 +128,8 @@ public class Panel_DieuKhien : MonoBehaviour
                         break;
                 }
             }
+            Debug.Log(GameController.Instance.listButton.Count+"sss");
+            Debug.Log("int");
         }
         Setup();
     }
@@ -392,13 +393,13 @@ public class Panel_DieuKhien : MonoBehaviour
     public void panelIf_click()
     {
         GameController.Instance.chooseBtn = SpecialBtn.ifElse;
-        btn_Yes.gameObject.SetActive(true);
+        //btn_Yes.gameObject.SetActive(true);
         btn_No.gameObject.SetActive(true);
     }
     public void paneldoIfclick()
     {
         GameController.Instance.chooseBtn = SpecialBtn.doIf;
-        btn_Yes.gameObject.SetActive(false);
+        //btn_Yes.gameObject.SetActive(false);
         btn_No.gameObject.SetActive(false);
     }
     public void allSetting_Click()
@@ -486,6 +487,7 @@ public class Panel_DieuKhien : MonoBehaviour
         }
         else if(PopupManager.Instance.loaibai==Loaibai.renhanh)
         {
+            IfScreen ifScreen = GameController.Instance.listScreenAdd[0].GetComponent<IfScreen>();
             switch (clickState)
             {
                 case 1:
@@ -500,23 +502,23 @@ public class Panel_DieuKhien : MonoBehaviour
                     description.text = "May thay bạn vẫn có thể xen vào đó các tín hiệu quan trọng giúp anh ấy tránh khỏi nguy hiểm!";
                     break;
                 case 4:
-                    customMask.target = GameController.Instance.listScreenAdd[0].GetComponent<IfScreen>().currentBtn.GetComponent<RectTransform>();
+                    customMask.target = ifScreen.currentBtn.GetComponent<RectTransform>();
                     description.text = "Nhấn vào để mở màn hình tín hiệu dành cho rẽ nhánh";
                     break;
                 case 5:
                     GameController.Instance.listScreenAdd[0].SetActive(true);
-                    customMask.target = GameController.Instance.listScreenAdd[0].GetComponent<IfScreen>().GetComponent<RectTransform>();
+                    customMask.target = ifScreen.GetComponent<RectTransform>();
                     description.text = "Nơi hiển thị các câu lệnh dùng cho cấu trúc rẽ nhánh.";
                     break;
                 case 6:
                     description.text = "Cấu trúc rẽ nhánh được chia làm 2 phần gồm: Câu điều kiện và hành động thực hiện.";
                     break;
                 case 7:
-                    customMask.target = GameController.Instance.listScreenAdd[0].GetComponent<IfScreen>().ifZone.GetComponent<RectTransform>();
+                    customMask.target = ifScreen.ifZone.GetComponent<RectTransform>();
                     description.text = "Nơi chứa câu lệnh điều kiện. Nếu điều kiện được thoải mãn hành động bên dưới sẽ được thực hiện.";
                     break;
                 case 8:
-                    customMask.target = GameController.Instance.listScreenAdd[0].GetComponent<IfScreen>().doZone.GetComponent<RectTransform>();
+                    customMask.target = ifScreen.doZone.GetComponent<RectTransform>();
                     description.text = "Nơi chứa câu lệnh hành động. Câu lệnh hành động chỉ được thực hiện khi thoải mãn câu lệnh điều kiện.";
                     break;
                 case 9:
@@ -526,9 +528,5 @@ public class Panel_DieuKhien : MonoBehaviour
             }
         }    
 
-    }
-    private void OnDestroy()
-    {
-        GameController.Instance.ResetGameController();
     }
 }
