@@ -36,7 +36,7 @@ public class Panel_DieuKhien : MonoBehaviour
     [SerializeField] private Button btn_Close;//Nút thoát game
     [SerializeField] private Button BtnloopScreen;//Nút bật màn vòng lặp
     [SerializeField] private Button BtnIfScreen;//Nút bật màn rẽ nhánh
-    [SerializeField] private Button BtnMainScreen;
+    [SerializeField] private Button BtnMainScreen;//Nút bật màn hình chính
     [Header("Scripts")]
     [SerializeField] private CountdownTimer Time;//Script đếm thời gian
     [SerializeField] private CustomMask customMask;//Script panel phủ để làm game tutorial
@@ -49,24 +49,12 @@ public class Panel_DieuKhien : MonoBehaviour
     [SerializeField] private Sprite lavaEnvironment;//Ảnh nền
     [SerializeField] private Sprite earthEnvironment;//Ảnh nền
     [SerializeField] private Sprite spaceEnvironment;//Ảnh nền
+    [SerializeField] private Sprite btnPlayOff;
     private void Start()
     {
         //Reset giá trị khi mới bắt đầu game
         GameController.Instance.listButton.Clear();
         GameController.Instance.chooseBtn = SpecialBtn.none;
-        //Đổi ảnh nền theo hành tinh được chọn
-        switch (PopupManager.Instance.loaibai)
-        {
-            case Loaibai.tuantu:
-                background.sprite = spaceEnvironment;
-                break;
-            case Loaibai.vonglap:
-                background.sprite = lavaEnvironment;
-                break;
-            case Loaibai.renhanh:
-                background.sprite = earthEnvironment;
-                break;
-        }
         //Bật hướng dẫn chơi
         if (PopupManager.Instance.listmap.tuantu[0].star < 1)
         {
@@ -78,6 +66,32 @@ public class Panel_DieuKhien : MonoBehaviour
         {
             customMask.gameObject.SetActive(false);
         }
+        //Đổi ảnh nền theo hành tinh được chọn
+        switch (PopupManager.Instance.loaibai)
+        {
+            case Loaibai.tuantu:
+                background.sprite = spaceEnvironment;
+                break;
+            case Loaibai.vonglap:
+                background.sprite = lavaEnvironment;
+                if(PopupManager.Instance.listmap.vonglap[0].star < 1)
+                {
+                    customMask.gameObject.SetActive(true);
+                    customMask.GetComponent<Canvas>().sortingLayerName = "Ground";
+                    description.text = "Mỗi hành tinh đều có cách vận hành riêng, tận dụng được cách vận hành đó sẽ đem lại nhiều lợi ích trên hành trình!";
+                }
+                break;
+            case Loaibai.renhanh:
+                background.sprite = earthEnvironment;
+                if (PopupManager.Instance.listmap.renhanh[0].star < 1)
+                {
+                    customMask.gameObject.SetActive(true);
+                    customMask.GetComponent<Canvas>().sortingLayerName = "Ground";
+                    description.text = "Thời tiết thật tồi tệ! Xem ra chúng ta đang ở hành tinh Rẽ Nhánh.";
+                }
+                break;
+        }
+   
         //Instantiate các ô trống để chứa nút
         for (int i = 0; i < PopupManager.Instance.currentLevel.sobuoc; i++)
         {
@@ -111,7 +125,7 @@ public class Panel_DieuKhien : MonoBehaviour
                         GameController.Instance.listScreenAdd.Add(gb);
                         gb.GetComponent<IfScreen>().posInLooplist = GameController.Instance.listScreenAdd.Count - 1;
                         btn.onClick.AddListener(gb.GetComponent<IfScreen>().ShowIfScreen);
-                        gb.GetComponent<IfScreen>().currentBtn = gb;
+                        gb.GetComponent<IfScreen>().currentBtn = btn.gameObject;
                         break;
                 }
             }
@@ -350,6 +364,7 @@ public class Panel_DieuKhien : MonoBehaviour
         {
             btn_Play.enabled = false;
             btn_Delete.enabled = false;
+            btn_Play.image.sprite = btnPlayOff;
             PopupManager.Instance.playerController.playCharacter();
             Time.stopTime();
         }
@@ -402,35 +417,115 @@ public class Panel_DieuKhien : MonoBehaviour
     public void Tutorial_click()
     {
         clickState++;
-        switch (clickState)
+        if(PopupManager.Instance.loaibai==Loaibai.tuantu)
         {
-            case 1:
-                customMask.target = btnZone;
-                description.text = "BẢNG ĐIỀU KHIỂN: Dùng để gửi tín hiệu di chuyển cho phi hành gia.";
-                break;
-            case 2:
-                customMask.target = mainScreen;
-                description.text = "MÀN THÔNG TIN: hiển thị các tín hiệu được gửi.";
-                break;
-            case 3:
-                customMask.target = btn_Play.GetComponent<RectTransform>();
-                description.text = "Gửi tín hiệu cho phi hành gia thực hiện các tín hiệu đã được gửi trong màn hình trên.";
-                break;
-            case 4:
-                customMask.target = btn_Delete.GetComponent<RectTransform>();
-                description.text = "Xóa các tín hiệu gửi sai. Lệnh sẽ thực hiện xóa từ tín hiệu gần nhất.";
-                break;
-            case 5:
-                customMask.target = leftGameSceen;
-                description.text = "Màn hình hiển thị vị trí của phi hành gia.";
-                break;
-            case 6:
-                description.text = "Xem chừng bạn đã sẵn sàng. Hãy bắt đầu thôi nào!";
-                break;
-            case 7:
-                customMask.gameObject.SetActive(false);
-                break;
+            switch (clickState)
+            {
+                case 1:
+                    customMask.target = btnZone;
+                    description.text = "BẢNG ĐIỀU KHIỂN: Dùng để gửi tín hiệu di chuyển cho phi hành gia.";
+                    break;
+                case 2:
+                    customMask.target = mainScreen;
+                    description.text = "MÀN THÔNG TIN: hiển thị các tín hiệu được gửi.";
+                    break;
+                case 3:
+                    customMask.target = btn_Play.GetComponent<RectTransform>();
+                    description.text = "Gửi lệnh cho phi hành gia thực hiện các tín hiệu đã được gửi trong màn hình trên.";
+                    break;
+                case 4:
+                    customMask.target = btn_Delete.GetComponent<RectTransform>();
+                    description.text = "Xóa: Lệnh sẽ thực hiện xóa từ tín hiệu gần nhất.";
+                    break;
+                case 5:
+                    customMask.target = leftGameSceen;
+                    description.text = "Màn hình hiển thị vị trí của phi hành gia.";
+                    break;
+                case 6:
+                    description.text = "Xem chừng bạn đã sẵn sàng. Hãy bắt đầu thôi nào!";
+                    break;
+                case 7:
+                    customMask.gameObject.SetActive(false);
+                    break;
+            }
         }
+        else if(PopupManager.Instance.loaibai==Loaibai.vonglap)
+        {
+            switch (clickState)
+            {
+                case 1:
+                    description.text = "Chúng ta đang ở hành tinh Vòng Lặp.";
+                    break;
+                case 2:
+                    customMask.target = btn_Loop.GetComponent<RectTransform>();
+                    description.text = "Sử dụng câu lệnh vòng lặp, để hạn chế số lượng tín hiệu cần truyền.";
+                    break;
+                case 3:
+                    loop_Click();
+                    customMask.target = GameController.Instance.listScreenAdd[0].GetComponent<LoopScreen>().currentBtn.GetComponent<RectTransform>();
+                    description.text = "Nhấn vào để mở màn hình tín hiệu dành cho vòng lặp";
+                    break;
+                case 4:
+                    GameController.Instance.listScreenAdd[0].SetActive(true);
+                    customMask.target = GameController.Instance.listScreenAdd[0].GetComponent<LoopScreen>().GetComponent<RectTransform>();
+                    description.text = "Nơi hiển thị các câu lệnh dùng cho vòng lặp.";
+                    break;
+                case 5:
+                    customMask.target = GameController.Instance.listScreenAdd[0].GetComponent<LoopScreen>().txt_Loop.GetComponent<RectTransform>();
+                    description.text = "Hiển thị số lần lặp lại của vòng lặp này.";
+                    break;
+                case 6:
+                    customMask.target = BtnMainScreen.GetComponent<RectTransform>();
+                    description.text = "Nhấn vào đây để trở về màn hình câu lệnh chính.";
+                    break;
+                case 7:
+                    GameController.Instance.listScreenAdd[0].SetActive(false);
+                    customMask.gameObject.SetActive(false);
+                    break;
+            }
+        }
+        else if(PopupManager.Instance.loaibai==Loaibai.renhanh)
+        {
+            switch (clickState)
+            {
+                case 1:
+                    description.text = "Lớp sương mù kì lạ làm cho tín hiệu truyền tới phi hành gia trở nên trập trờn.";
+                    break;
+                case 2:
+                    customMask.target = mainScreen;
+                    description.text = "Do đó phi hành gia phải tự di chuyển trong sương mà ko có tầm nhìn phía trước.";
+                    break;
+                case 3:
+                    customMask.target = GameController.Instance.listButton[1].GetComponent<RectTransform>();
+                    description.text = "May thay bạn vẫn có thể xen vào đó các tín hiệu quan trọng giúp anh ấy tránh khỏi nguy hiểm!";
+                    break;
+                case 4:
+                    customMask.target = GameController.Instance.listScreenAdd[0].GetComponent<IfScreen>().currentBtn.GetComponent<RectTransform>();
+                    description.text = "Nhấn vào để mở màn hình tín hiệu dành cho rẽ nhánh";
+                    break;
+                case 5:
+                    GameController.Instance.listScreenAdd[0].SetActive(true);
+                    customMask.target = GameController.Instance.listScreenAdd[0].GetComponent<IfScreen>().GetComponent<RectTransform>();
+                    description.text = "Nơi hiển thị các câu lệnh dùng cho cấu trúc rẽ nhánh.";
+                    break;
+                case 6:
+                    description.text = "Cấu trúc rẽ nhánh được chia làm 2 phần gồm: Câu điều kiện và hành động thực hiện.";
+                    break;
+                case 7:
+                    customMask.target = GameController.Instance.listScreenAdd[0].GetComponent<IfScreen>().ifZone.GetComponent<RectTransform>();
+                    description.text = "Nơi chứa câu lệnh điều kiện. Nếu điều kiện được thoải mãn hành động bên dưới sẽ được thực hiện.";
+                    break;
+                case 8:
+                    customMask.target = GameController.Instance.listScreenAdd[0].GetComponent<IfScreen>().doZone.GetComponent<RectTransform>();
+                    description.text = "Nơi chứa câu lệnh hành động. Câu lệnh hành động chỉ được thực hiện khi thoải mãn câu lệnh điều kiện.";
+                    break;
+                case 9:
+                    GameController.Instance.listScreenAdd[0].SetActive(true);
+                    customMask.gameObject.SetActive(false);
+                    break;
+            }
+        }    
+
     }
     private void OnDestroy()
     {

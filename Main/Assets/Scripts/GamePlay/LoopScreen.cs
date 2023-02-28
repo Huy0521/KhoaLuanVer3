@@ -7,7 +7,7 @@ public class LoopScreen : MonoBehaviour
     public int loopNumber = 0;//Số lần lặp của vòng Loop đó
     public int posInLooplist;//Vị trí index trong listScreenAdđ
     public int vitriloop;//Vị trí index hiện tại trong listPosLoop
-    [SerializeField] private Text txt_Loop;//Hiển thị số lần lặp
+    public Text txt_Loop;//Hiển thị số lần lặp
     public List<GameObject> listPosLoop;//Lưu vị trí để Instantiate nút vào
     [SerializeField] private Panel_DieuKhien panelDieukhien;//truy cập tới panelDieukhien trên scene
     public List<GameObject> listBtnFor;//Lưu nút được dùng trong vòng lặp

@@ -9,6 +9,8 @@ public class IfScreen : MonoBehaviour
     public List<GameObject> listpostiondoIf;
     public List<GameObject> listBtnIf;
     public List<GameObject> listBtndoIf;
+    public GameObject doZone;
+    public GameObject ifZone;
     public int vitriIf = 0;
     public int vitridoIf = 0;
     public int posInLooplist;
@@ -20,10 +22,6 @@ public class IfScreen : MonoBehaviour
     private void OnDisable()
     {
         GameController.Instance.chooseBtn = SpecialBtn.none;
-    }
-    private void Start()
-    {
-        
     }
     public void ShowIfScreen()
     {
