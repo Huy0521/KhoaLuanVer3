@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 public class Notification : MonoBehaviour
 {
-    public Text titel;
+    public TMP_Text titel;
     [SerializeField] private Animator animator;
     private void Start()
     {
-        Invoke("changeAnim", 2.0f);
+        Invoke("changeAnim", 1.8f);
     }
     private void changeAnim()
     {

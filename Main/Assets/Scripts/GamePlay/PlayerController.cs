@@ -145,7 +145,7 @@ public class PlayerController : MonoBehaviour
                             ChangeAnimationState("idle_Side");
                         }
                     }
-                    if (!checkFootStep && !checkReplay)
+                    if (checkFootStep == false && checkReplay == false)
                     {
                         AudioManager.Instance.StopEffect();
                         checkFootStep = true;

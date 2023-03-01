@@ -1,10 +1,10 @@
 
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class CountdownTimer : MonoBehaviour
 {
-    [SerializeField] private Text txtTimer;
+    [SerializeField] private TMP_Text txtTimer;
     public float timeRemaining = 0;
     public bool timerIsRunning = false;
     public float timeToPlay;

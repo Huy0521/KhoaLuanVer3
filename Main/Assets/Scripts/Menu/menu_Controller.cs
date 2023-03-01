@@ -31,6 +31,7 @@ public class menu_Controller : MonoBehaviour
             PopupManager.Instance.listCurrentTopic = listTuantu;
             PopupManager.Instance.currentMap = Instantiate(firstLevel);
             PopupManager.Instance.currentDashboard = Instantiate(PopupManager.Instance.userPlay, PopupManager.Instance.canvas.transform);
+            PopupManager.Instance.mapToReload = firstLevel;
             panelLoading.SetActive(false);
         }
 

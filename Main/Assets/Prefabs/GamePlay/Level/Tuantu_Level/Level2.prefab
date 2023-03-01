@@ -145,12 +145,12 @@ Transform:
   - {fileID: 8558635898447017403}
   - {fileID: 8558635899809338160}
   - {fileID: 8558635899458669357}
-  - {fileID: 8558635898820459226}
   - {fileID: 8558635899339344112}
-  - {fileID: 5604475552865988889}
-  - {fileID: 8558635899430166050}
-  - {fileID: 8672071026068561655}
+  - {fileID: 8558635898820459226}
   - {fileID: 6833699004220743296}
+  - {fileID: 8558635899430166050}
+  - {fileID: 5604475552865988889}
+  - {fileID: 8672071026068561655}
   - {fileID: 7029803405381634530}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -311,7 +311,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2087120986914919956}
-  m_RootOrder: 10
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1072199028604940325
 SpriteRenderer:
@@ -353,7 +353,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300030, guid: 7d2ccf964d1f33a43a7d35fd3d4126cf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -653,7 +653,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2087120986914919956}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8558635898820459225
 SpriteRenderer:
@@ -848,7 +848,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2087120986914919956}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8558635899339344119
 SpriteRenderer:
@@ -890,7 +890,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300026, guid: 7d2ccf964d1f33a43a7d35fd3d4126cf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -1001,7 +1001,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300024, guid: 7d2ccf964d1f33a43a7d35fd3d4126cf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -1649,7 +1649,7 @@ PrefabInstance:
       objectReference: {fileID: 1885396439944973944}
     - target: {fileID: 2314842425626791455, guid: cf62ac755bc6a514ca3723178995ac8b, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3185014559105523002, guid: cf62ac755bc6a514ca3723178995ac8b, type: 3}
       propertyPath: m_SortingOrder
@@ -1682,7 +1682,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 913661884541090834, guid: b28f3ffcc3f876340b421235cf8aaa95, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 913661884541090834, guid: b28f3ffcc3f876340b421235cf8aaa95, type: 3}
       propertyPath: m_LocalPosition.x
