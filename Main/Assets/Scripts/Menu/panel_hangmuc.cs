@@ -85,7 +85,7 @@ public class panel_hangmuc : MonoBehaviour
     }    
     private void ham_click()
     {
-        PopupManager.Instance.ShowNotification(gameObject, "Chủ đề đang được phát triển!");
+        PopupManager.Instance.ShowNotification(gameObject, "Chủ đề đang được phát triển!", 1.8f);
     }
     private void tuantu_Click()
     {
@@ -99,7 +99,7 @@ public class panel_hangmuc : MonoBehaviour
         AudioManager.Instance.PlaySound(Sound.Button);
         if (tuantuStar < 12)
         {
-            PopupManager.Instance.ShowNotification(gameObject, "Hãy hoàn thành thử thành ở hành tinh trước đó để mở khóa!");
+            PopupManager.Instance.ShowNotification(gameObject, "Hãy hoàn thành thử thành ở hành tinh trước đó để mở khóa!", 1.8f);
         }
         else
         {
@@ -114,7 +114,7 @@ public class panel_hangmuc : MonoBehaviour
         AudioManager.Instance.PlaySound(Sound.Button);
         if (vonglapStar < 12)
         {
-            PopupManager.Instance.ShowNotification(gameObject, "Hãy hoàn thành thử thành ở hành tinh trước đó để mở khóa!");
+            PopupManager.Instance.ShowNotification(gameObject, "Hãy hoàn thành thử thành ở hành tinh trước đó để mở khóa!", 1.8f);
         }
         else
         {

@@ -6,14 +6,14 @@ public class Notification : MonoBehaviour
 {
     public TMP_Text titel;
     [SerializeField] private Animator animator;
-    private void Start()
-    {
-        Invoke("changeAnim", 1.8f);
-    }
     private void changeAnim()
     {
         animator.Play("EndNoftificationAnime");
         Invoke("Kill", 0.5f);
+    }
+    public void SetNotiTime(float time)
+    {
+        Invoke("changeAnim", time);
     }
     private void Kill()
     {

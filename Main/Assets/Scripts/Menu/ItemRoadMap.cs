@@ -29,7 +29,8 @@ public class ItemRoadMap : MonoBehaviour
         AudioManager.Instance.PlaySound(Sound.Button);
         if (levelIslock == true)
         {
-            PopupManager.Instance.ShowNotification(PopupManager.Instance.canvas.gameObject, "Vượt qua màn chơi trước đó để mở khóa!");
+            PopupManager.Instance.ShowNotification(PopupManager.Instance.canvas.gameObject, "Vượt qua màn chơi trước đó để mở khóa!",1.8f);
+            Debug.Log("aaa");
         }
         else
         {
