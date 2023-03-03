@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private ParticleSystem hitPartical;
     private bool checkFootStep = false;
     private bool checkReplay = false;
+    int ifNumber = 0;
     private void Awake()
     {
         currentposition = transform.localPosition;
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
     //tính toán tọa độ bước đi
     private void CalculateMove(string move)
     {
+       
         switch (move)
         {
             case "btn_Left(Clone)":
@@ -56,26 +58,58 @@ public class PlayerController : MonoBehaviour
                 numberLoopScreen++;
                 break;
             case "btn_If(Clone)":
-                for (int i = 0; i < GameController.Instance.listScreenAdd.Count; i++)
-                {
+                /*   for (int i = 0; i < GameController.Instance.listScreenAdd.Count; i++)
+                   {
+                       check = 0;
+                       IfScreen ifScreen = GameController.Instance.listScreenAdd[i].GetComponent<IfScreen>();
+                       for (int j = 0; j < ifScreen.listBtnIf.Count; j++)
+                       {
+                           if (string.Equals(GameController.Instance.listShadedIf[j], ifScreen.listBtnIf[j].name))
+                           {
+                               check++;
+                           }
+                       }
+                       Debug.Log("check: " + check);
+                       if (check == GameController.Instance.listShadedIf.Count)
+                       {
+                           for (int k = 0; k < ifScreen.listBtndoIf.Count; k++)
+                           {
+                               CalculateMove(ifScreen.listBtndoIf[k].name);
+                           }
+                       }
+                   }*/         
                     check = 0;
-                    IfScreen ifScreen = GameController.Instance.listScreenAdd[i].GetComponent<IfScreen>();
+                    string a = "";
+                    IfScreen ifScreen = GameController.Instance.listScreenAdd[ifNumber].GetComponent<IfScreen>();
                     for (int j = 0; j < ifScreen.listBtnIf.Count; j++)
                     {
-                        if (string.Equals(GameController.Instance.listShadedIf[j], ifScreen.listBtnIf[j].name))
+                        switch (ifScreen.listBtnIf[j].name)
                         {
-                            check++;
+                            case "btn_Left(Clone)":
+                                a = a + "Left";
+                                break;
+                            case "btn_Right(Clone)":
+                                a = a + "Right";
+                                break;
+                            case "btn_Down(Clone)":
+                                a = a + "Down";
+                                break;
+                            case "btn_Up(Clone)":
+                                a = a + "Up";
+                                break;
+                            case "btn_X(Clone)":
+                                a = a + "X";
+                                break;
                         }
                     }
-                    Debug.Log("check: " + check);
-                    if (check == GameController.Instance.listShadedIf.Count)
+                    if(string.Equals(a,PopupManager.Instance.currentLevel.ifMove[ifNumber]))
                     {
                         for (int k = 0; k < ifScreen.listBtndoIf.Count; k++)
                         {
                             CalculateMove(ifScreen.listBtndoIf[k].name);
                         }
                     }
-                }
+                ifNumber++;
                 break;
         }
     }

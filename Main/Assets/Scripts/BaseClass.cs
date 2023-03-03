@@ -19,6 +19,7 @@ namespace BaseClass
         public int finishZone;
         public int sobuoc_an;
         public string[] buocAo;
+        public string [] ifMove;
     }
 }
 

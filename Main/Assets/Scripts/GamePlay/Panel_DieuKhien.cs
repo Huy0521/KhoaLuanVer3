@@ -133,8 +133,6 @@ public class Panel_DieuKhien : MonoBehaviour
                         break;
                 }
             }
-            Debug.Log(GameController.Instance.listButton.Count+"sss");
-            Debug.Log("int");
         }
         Setup();
     }
@@ -206,7 +204,6 @@ public class Panel_DieuKhien : MonoBehaviour
                 }
                 break;
             case SpecialBtn.ifElse:
-                Debug.Log(posOfList);
                 IfScreen ifScreen = GameController.Instance.listScreenAdd[posOfList].GetComponent<IfScreen>();
                 if (ifScreen.vitriIf < ifScreen.listpostionIf.Count)
                 {

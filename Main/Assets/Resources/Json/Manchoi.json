@@ -1,1 +1,171 @@
-{"tuantu":[{"level":"1","sobuoc":4,"star":3,"time":15,"playertime":12,"finishZone":1,"sobuoc_an":4,"buocAo":[]},{"level":"2","sobuoc":7,"star":3,"time":30,"playertime":3,"finishZone":1,"sobuoc_an":5,"buocAo":[]},{"level":"3","sobuoc":11,"star":0,"time":45,"playertime":9,"finishZone":2,"sobuoc_an":12,"buocAo":[]},{"level":"4","sobuoc":16,"star":0,"time":45,"playertime":22,"finishZone":4,"sobuoc_an":13,"buocAo":[]},{"level":"5","sobuoc":10,"star":0,"time":50,"playertime":2,"finishZone":1,"sobuoc_an":2,"buocAo":[]}],"vonglap":[{"level":"1","sobuoc":0,"star":3,"time":10,"playertime":7,"finishZone":1,"sobuoc_an":4,"buocAo":[]},{"level":"2","sobuoc":5,"star":0,"time":20,"playertime":11,"finishZone":1,"sobuoc_an":8,"buocAo":[]},{"level":"3","sobuoc":4,"star":0,"time":10,"playertime":13,"finishZone":1,"sobuoc_an":5,"buocAo":[]},{"level":"4","sobuoc":10,"star":0,"time":10,"playertime":32,"finishZone":1,"sobuoc_an":16,"buocAo":[]},{"level":"5","sobuoc":16,"star":0,"time":10,"playertime":0,"finishZone":5,"sobuoc_an":14,"buocAo":[]}],"renhanh":[{"level":"1","sobuoc":5,"star":0,"time":10,"playertime":12,"finishZone":1,"sobuoc_an":2,"buocAo":["up","if","up"]},{"level":"2","sobuoc":8,"star":0,"time":10,"playertime":8,"finishZone":1,"sobuoc_an":10,"buocAo":["right","up","up","right","if","right","right","up"]},{"level":"3","sobuoc":5,"star":0,"time":10,"playertime":4,"finishZone":1,"sobuoc_an":10,"buocAo":["up","if","up","up","up"]}]}
+{
+  "tuantu": [
+    {
+      "level": "1",
+      "sobuoc": 4,
+      "star": 3,
+      "time": 15,
+      "playertime": 12,
+      "finishZone": 1,
+      "sobuoc_an": 4,
+      "buocAo": [],
+      "ifMove": []
+    },
+    {
+      "level": "2",
+      "sobuoc": 7,
+      "star": 3,
+      "time": 30,
+      "playertime": 3,
+      "finishZone": 1,
+      "sobuoc_an": 5,
+      "buocAo": [],
+      "ifMove": []
+    },
+    {
+      "level": "3",
+      "sobuoc": 11,
+      "star": 3,
+      "time": 45,
+      "playertime": 9,
+      "finishZone": 2,
+      "sobuoc_an": 12,
+      "buocAo": [],
+      "ifMove": []
+    },
+    {
+      "level": "4",
+      "sobuoc": 16,
+      "star": 3,
+      "time": 45,
+      "playertime": 22,
+      "finishZone": 4,
+      "sobuoc_an": 13,
+      "buocAo": [],
+      "ifMove": []
+    },
+    {
+      "level": "5",
+      "sobuoc": 10,
+      "star": 3,
+      "time": 50,
+      "playertime": 2,
+      "finishZone": 1,
+      "sobuoc_an": 2,
+      "buocAo": [],
+      "ifMove": []
+    }
+  ],
+  "vonglap": [
+    {
+      "level": "1",
+      "sobuoc": 0,
+      "star": 3,
+      "time": 10,
+      "playertime": 7,
+      "finishZone": 1,
+      "sobuoc_an": 4,
+      "buocAo": [],
+      "ifMove": []
+    },
+    {
+      "level": "2",
+      "sobuoc": 5,
+      "star": 3,
+      "time": 20,
+      "playertime": 11,
+      "finishZone": 1,
+      "sobuoc_an": 8,
+      "buocAo": [],
+      "ifMove": []
+    },
+    {
+      "level": "3",
+      "sobuoc": 4,
+      "star": 3,
+      "time": 10,
+      "playertime": 13,
+      "finishZone": 1,
+      "sobuoc_an": 5,
+      "buocAo": [],
+      "ifMove": []
+    },
+    {
+      "level": "4",
+      "sobuoc": 10,
+      "star": 3,
+      "time": 10,
+      "playertime": 32,
+      "finishZone": 1,
+      "sobuoc_an": 16,
+      "buocAo": [],
+      "ifMove": []
+    },
+    {
+      "level": "5",
+      "sobuoc": 16,
+      "star": 3,
+      "time": 10,
+      "playertime": 0,
+      "finishZone": 5,
+      "sobuoc_an": 14,
+      "buocAo": [],
+      "ifMove": []
+    }
+  ],
+  "renhanh": [
+    {
+      "level": "1",
+      "sobuoc": 5,
+      "star": 1,
+      "time": 10,
+      "playertime": 27,
+      "finishZone": 1,
+      "sobuoc_an": 2,
+      "buocAo": [
+        "if",
+        "up",
+        "up",
+        "up",
+        "up"
+      ],
+      "ifMove": [
+        "UpX"
+      ]
+    },
+    {
+      "level": "2",
+      "sobuoc": 8,
+      "star": 2,
+      "time": 10,
+      "playertime": 14,
+      "finishZone": 1,
+      "sobuoc_an": 10,
+      "buocAo": [
+        "right",
+        "if",
+        "right"
+      ],
+      "ifMove": [
+        "RightX"
+      ]
+    },
+    {
+      "level": "3",
+      "sobuoc": 5,
+      "star": 3,
+      "time": 10,
+      "playertime": 4,
+      "finishZone": 1,
+      "sobuoc_an": 10,
+      "buocAo": [
+        "up",
+        "if",
+        "up",
+        "up",
+        "up"
+      ],
+      "ifMove": []
+    }
+  ]
+}

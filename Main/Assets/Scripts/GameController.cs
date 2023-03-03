@@ -7,7 +7,6 @@ public class GameController : MonoBehaviour
     public static GameController instance = null;
     public List<GameObject> listButton = new List<GameObject>();
     public List<string> listBtnMain = new List<string>();
-    public List<string> listShadedIf = new List<string>();
     public List<GameObject> listScreenAdd = new List<GameObject>();
     public bool run = false;
     public bool shadedRun = false;
@@ -40,7 +39,6 @@ public class GameController : MonoBehaviour
     {
         listButton.Clear();
         listBtnMain.Clear();
-        listShadedIf.Clear();
         listScreenAdd.Clear();
         run = false;
         shadedRun = false;
