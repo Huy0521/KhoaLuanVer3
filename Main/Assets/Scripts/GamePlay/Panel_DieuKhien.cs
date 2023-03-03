@@ -72,7 +72,7 @@ public class Panel_DieuKhien : MonoBehaviour
                 background.sprite = spaceEnvironment;
                if(PopupManager.instance.currentLevel.level == 3.ToString())
                 {
-                    PopupManager.Instance.ShowNotification(gameObject, "Hố đen đang biến động! Nhưng nhiệm vụ của chúng ta không thay đổi. Hãy đi qua tất cả hố đen", 2f);
+                    PopupManager.Instance.ShowNotification(gameObject, "Hố đen đang biến động! Nhưng nhiệm vụ của chúng ta không thay đổi. Hãy đi qua tất cả hố đen", 2f,null);
                     
                 }
                 break;
@@ -256,13 +256,13 @@ public class Panel_DieuKhien : MonoBehaviour
                     }
                     else
                     {
-                        PopupManager.Instance.ShowNotification(gameObject, "Không thể xóa các bước đi cố định!",1.8f);
+                        PopupManager.Instance.ShowNotification(PopupManager.Instance.canvas, "Không thể xóa các bước đi cố định!",1.8f,null);
                     }
 
                 }
                 else
                 {
-                    PopupManager.Instance.ShowNotification(gameObject, "Hiện không còn lệnh nào để xóa!", 1.8f);
+                    PopupManager.Instance.ShowNotification(PopupManager.Instance.canvas, "Hiện không còn lệnh nào để xóa!", 1.8f,null);
                 }
                 break;
             case SpecialBtn.loop:
@@ -275,7 +275,7 @@ public class Panel_DieuKhien : MonoBehaviour
                 }
                 else
                 {
-                    PopupManager.Instance.ShowNotification(gameObject, "Hiện không còn lệnh nào để xóa!", 1.8f);
+                    PopupManager.Instance.ShowNotification(gameObject, "Hiện không còn lệnh nào để xóa!", 1.8f,null);
                 }
                 break;
             case SpecialBtn.ifElse:
@@ -289,7 +289,7 @@ public class Panel_DieuKhien : MonoBehaviour
                 }
                 else
                 {
-                    PopupManager.Instance.ShowNotification(gameObject, "Hiện không còn lệnh nào để xóa!", 1.8f);
+                    PopupManager.Instance.ShowNotification(gameObject, "Hiện không còn lệnh nào để xóa!", 1.8f,null);
                 }
                 break;
             case SpecialBtn.doIf:
@@ -302,7 +302,7 @@ public class Panel_DieuKhien : MonoBehaviour
                 }
                 else
                 {
-                    PopupManager.Instance.ShowNotification(gameObject, "Hiện không còn lệnh nào để xóa!", 1.8f);
+                    PopupManager.Instance.ShowNotification(gameObject, "Hiện không còn lệnh nào để xóa!", 1.8f,null);
                 }
                 break;
         }
@@ -373,7 +373,7 @@ public class Panel_DieuKhien : MonoBehaviour
         }
         else
         {
-            PopupManager.Instance.ShowNotification(gameObject, "Hiện không có câu lệnh để thực hiện!", 1.8f);
+            PopupManager.Instance.ShowNotification(PopupManager.Instance.canvas, "Hiện không có câu lệnh để thực hiện!", 1.8f,null);
         }
 
     }

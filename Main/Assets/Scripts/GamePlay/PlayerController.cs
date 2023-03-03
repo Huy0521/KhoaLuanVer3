@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
     private int finishNumber;
     private int numberLoopScreen = 0;
     private int cursorInMainList = 0;
-    private int check = 0;
     public float speed = 6;
     private string currentAnimaton;
     public List<Vector3> futurePosition;
@@ -57,28 +56,7 @@ public class PlayerController : MonoBehaviour
                 }
                 numberLoopScreen++;
                 break;
-            case "btn_If(Clone)":
-                /*   for (int i = 0; i < GameController.Instance.listScreenAdd.Count; i++)
-                   {
-                       check = 0;
-                       IfScreen ifScreen = GameController.Instance.listScreenAdd[i].GetComponent<IfScreen>();
-                       for (int j = 0; j < ifScreen.listBtnIf.Count; j++)
-                       {
-                           if (string.Equals(GameController.Instance.listShadedIf[j], ifScreen.listBtnIf[j].name))
-                           {
-                               check++;
-                           }
-                       }
-                       Debug.Log("check: " + check);
-                       if (check == GameController.Instance.listShadedIf.Count)
-                       {
-                           for (int k = 0; k < ifScreen.listBtndoIf.Count; k++)
-                           {
-                               CalculateMove(ifScreen.listBtndoIf[k].name);
-                           }
-                       }
-                   }*/         
-                    check = 0;
+            case "btn_If(Clone)":        
                     string a = "";
                     IfScreen ifScreen = GameController.Instance.listScreenAdd[ifNumber].GetComponent<IfScreen>();
                     for (int j = 0; j < ifScreen.listBtnIf.Count; j++)

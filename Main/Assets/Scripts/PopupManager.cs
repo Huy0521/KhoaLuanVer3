@@ -65,23 +65,14 @@ public class PopupManager : MonoBehaviour
         Application.targetFrameRate = 300;
     }
     //Hàm hiển thị thông báo
-    public void ShowNotification(GameObject canvas, string message,float time)
+    public void ShowNotification(GameObject canvas, string message,float time, Sprite sprite)
     {
         if (!notificationIsOn)
         {
             Notification gb = Instantiate(notification, canvas.transform);
             gb.titel.text = message;
             notificationIsOn = true;
-            gb.SetNotiTime(time);
-        }
-    }
-    public void ShowNotiGamePlay(GameObject canvas, string message)
-    {
-        if (!notificationIsOn)
-        {
-            Notification gb = Instantiate(notification, canvas.transform);
-            gb.titel.text = message;
-            notificationIsOn = true;
+            gb.SetNotiTime(time,sprite);
         }
     }
 }

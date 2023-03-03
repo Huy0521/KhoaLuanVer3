@@ -36,7 +36,7 @@
     {
       "level": "4",
       "sobuoc": 16,
-      "star": 3,
+      "star": 0,
       "time": 45,
       "playertime": 22,
       "finishZone": 4,
@@ -59,7 +59,7 @@
   "vonglap": [
     {
       "level": "1",
-      "sobuoc": 0,
+      "sobuoc": 4,
       "star": 3,
       "time": 10,
       "playertime": 7,
@@ -153,19 +153,67 @@
     {
       "level": "3",
       "sobuoc": 5,
-      "star": 3,
+      "star": 2,
       "time": 10,
-      "playertime": 4,
+      "playertime": 35,
       "finishZone": 1,
       "sobuoc_an": 10,
       "buocAo": [
         "up",
+        "up",
+        "if",
+        "if"
+      ],
+      "ifMove": [
+        "UpX",
+        "LeftX"
+      ]
+    },
+    {
+      "level": "4",
+      "sobuoc": 8,
+      "star": 2,
+      "time": 10,
+      "playertime": 16,
+      "finishZone": 1,
+      "sobuoc_an": 10,
+      "buocAo": [
         "if",
         "up",
         "up",
+        "right",
+        "if",
+        "right",
+        "right",
         "up"
       ],
-      "ifMove": []
+      "ifMove": [
+        "UpX",
+        "RightX"
+      ]
+    },
+    {
+      "level": "5",
+      "sobuoc": 8,
+      "star": 2,
+      "time": 10,
+      "playertime": 16,
+      "finishZone": 1,
+      "sobuoc_an": 10,
+      "buocAo": [
+        "if",
+        "up",
+        "up",
+        "right",
+        "if",
+        "right",
+        "right",
+        "up"
+      ],
+      "ifMove": [
+        "UpX",
+        "RightX"
+      ]
     }
   ]
 }

@@ -49,7 +49,6 @@ public class PanelFinish : MonoBehaviour
             star1.color = new Color(0.273f, 0.273f, 0.273f);
             numberStar = numberStar - 1;
         }
-        Debug.Log("ssss: "+PopupManager.Instance.playerController.futurePosition.Count);
         if (PopupManager.Instance.currentLevel.sobuoc_an < PopupManager.Instance.playerController.futurePosition.Count)
         {
             star2.color = new Color(0.273f, 0.273f, 0.273f);
