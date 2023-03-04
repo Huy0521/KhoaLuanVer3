@@ -98,7 +98,7 @@ public class PanelFinish : MonoBehaviour
         write.Write(data);
         write.Close();
         Resources.Load(destination);//tải lại file trong resource để cập nhật giá trị mới
-
+        
     }
     //Chơi lại bàn chơi
     private void Replay_click()
