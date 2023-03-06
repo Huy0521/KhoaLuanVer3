@@ -72,7 +72,7 @@ public class Panel_DieuKhien : MonoBehaviour
                 background.sprite = spaceEnvironment;
                if(PopupManager.instance.currentLevel.level == 3.ToString())
                 {
-                    PopupManager.Instance.ShowNotification(gameObject, "Hố đen đang biến động! Nhưng nhiệm vụ của chúng ta không thay đổi. Hãy đi qua tất cả hố đen", 2f,null);
+                    PopupManager.Instance.ShowNotification(gameObject, "Hố đen đang biến động! Nhưng nhiệm vụ của chúng ta không thay đổi. Hãy đi qua tất cả hố đen!",5f,null);
                     
                 }
                 break;
@@ -83,6 +83,10 @@ public class Panel_DieuKhien : MonoBehaviour
                     customMask.gameObject.SetActive(true);
                     customMask.GetComponent<Canvas>().sortingLayerName = "Ground";
                     description.text = "Mỗi hành tinh đều có cách vận hành riêng, tận dụng được cách vận hành đó sẽ đem lại nhiều lợi ích trên hành trình!";
+                }
+                if (PopupManager.instance.currentLevel.level == 4.ToString())
+                {
+                    PopupManager.Instance.ShowNotification(gameObject, "Hành tinh Vòng Lặp sở hữu cho mình những ngọn lửa ngàn độ. Đừng dại gì mà chạm vào chúng!", 5f, null);
                 }
                 break;
             case Loaibai.renhanh:
@@ -383,7 +387,7 @@ public class Panel_DieuKhien : MonoBehaviour
         Destroy(gameObject);
         Destroy(PopupManager.Instance.currentMap);
         Instantiate(panelSelectlevel, PopupManager.Instance.canvas.transform);
-
+        GameController.Instance.ResetGameController();
     }
     private void OpenMainScreen_click()
     {

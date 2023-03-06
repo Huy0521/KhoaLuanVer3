@@ -18,14 +18,14 @@ public class PanelFinish : MonoBehaviour
     [SerializeField] private Sprite lose;
     [SerializeField] private TMP_Text txt1;
     [SerializeField] private Button btnContinue;
-    [SerializeField] private Button btnBack;
+    [SerializeField] private Button btnHome;
     [SerializeField] private Button btnReplay;
     [SerializeField] private panel_hangmuc panelHangmuc;
     int numberStar = 3;
     private void Start()
     {
         btnContinue.onClick.AddListener(ContinuePlay_click);
-        //btnBack.onClick.AddListener(Back_click);
+        btnHome.onClick.AddListener(Home_click);
         btnReplay.onClick.AddListener(Replay_click);
     }
     //Truyền dữ liệu vào PopUp kết thúc game
@@ -112,6 +112,15 @@ public class PanelFinish : MonoBehaviour
         GameController.Instance.ResetGameController();
 
     }
+    private void Home_click()
+    {
+        AudioManager.Instance.PlaySound(Sound.Button);
+        Destroy(gameObject);
+        Destroy(PopupManager.Instance.currentMap);
+        Destroy(PopupManager.Instance.currentDashboard.gameObject);
+        PopupManager.Instance.menu.SetActive(true);
+        GameController.Instance.ResetGameController();
+    }
     //Chơi bàn chơi tiếp theo
     private void ContinuePlay_click()
     {
@@ -147,10 +156,6 @@ public class PanelFinish : MonoBehaviour
         }
 
         Destroy(gameObject);
-
-    }
-    private void Back_click()
-    {
 
     }
 }

@@ -2505,7 +2505,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listButton: []
   listBtnMain: []
-  listShadedIf: []
   listScreenAdd: []
   run: 0
   shadedRun: 0
@@ -2565,6 +2564,7 @@ MonoBehaviour:
     finishZone: 0
     sobuoc_an: 0
     buocAo: []
+    ifMove: []
   character: 0
   timeRemaining: 0
 --- !u!114 &781540742

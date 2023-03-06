@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private bool checkFootStep = false;
     private bool checkReplay = false;
     int ifNumber = 0;
+    int ifJson = 0;
     private void Awake()
     {
         currentposition = transform.localPosition;
@@ -56,9 +57,12 @@ public class PlayerController : MonoBehaviour
                 }
                 numberLoopScreen++;
                 break;
-            case "btn_If(Clone)":        
+            case "btn_If(Clone)":       
+               
                     string a = "";
                     IfScreen ifScreen = GameController.Instance.listScreenAdd[ifNumber].GetComponent<IfScreen>();
+                if (ifScreen.listBtnIf.Count>0&&ifScreen.listBtndoIf.Count>0)
+                {
                     for (int j = 0; j < ifScreen.listBtnIf.Count; j++)
                     {
                         switch (ifScreen.listBtnIf[j].name)
@@ -80,13 +84,15 @@ public class PlayerController : MonoBehaviour
                                 break;
                         }
                     }
-                    if(string.Equals(a,PopupManager.Instance.currentLevel.ifMove[ifNumber]))
+                    if (string.Equals(a, PopupManager.Instance.currentLevel.ifMove[ifJson]))
                     {
                         for (int k = 0; k < ifScreen.listBtndoIf.Count; k++)
                         {
                             CalculateMove(ifScreen.listBtndoIf[k].name);
                         }
                     }
+                    ifJson++;
+                }
                 ifNumber++;
                 break;
         }
@@ -229,6 +235,8 @@ public class PlayerController : MonoBehaviour
                 ChangeAnimationState("idle_Up");
                 hitPartical.gameObject.SetActive(true);
                 Invoke("Replay", 0.8f);
+                break;
+            case "Teleport":
                 break;
         }
     }
