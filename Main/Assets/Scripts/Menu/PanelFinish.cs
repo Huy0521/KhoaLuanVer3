@@ -21,9 +21,11 @@ public class PanelFinish : MonoBehaviour
     [SerializeField] private Button btnHome;
     [SerializeField] private Button btnReplay;
     [SerializeField] private panel_hangmuc panelHangmuc;
+    [SerializeField] private GameObject main;
     int numberStar = 3;
     private void Start()
     {
+        LeanTween.scale(main,Vector3.one,0.6f).setEaseOutBounce();
         btnContinue.onClick.AddListener(ContinuePlay_click);
         btnHome.onClick.AddListener(Home_click);
         btnReplay.onClick.AddListener(Replay_click);

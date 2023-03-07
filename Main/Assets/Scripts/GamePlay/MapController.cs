@@ -8,6 +8,8 @@ public class MapController : MonoBehaviour
     [SerializeField] private PlayerController cat;
     void Start()
     {
+        gameObject.transform.position = new Vector3(-15,-0.32f,0);
+        LeanTween.moveLocalX(gameObject, -4f, 0.65f).setEaseOutQuad();
         if (PopupManager.Instance.character == Character.astronaut)
         {
             cat.gameObject.SetActive(false);

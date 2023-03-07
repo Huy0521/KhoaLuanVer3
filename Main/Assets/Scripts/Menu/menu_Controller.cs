@@ -19,6 +19,7 @@ public class menu_Controller : MonoBehaviour
     [SerializeField] private GameObject panelLoading;
     private void Start()
     {
+        LeanTween.moveLocalX(btn_NewGame.gameObject, 10, 0.3f).setEaseInOutBounce().setOnComplete(() => { LeanTween.moveLocalX(btn_Setting.gameObject, 10, 0.3f).setEaseInOutBounce().setOnComplete(() => { LeanTween.moveLocalX(btn_Medal.gameObject, 10, 0.3f).setEaseInOutBounce().setOnComplete(()=> { LeanTween.moveLocalX(btn_Exit.gameObject, 10, 0.3f).setEaseInOutBounce(); }); });});
         Menu = gameObject.transform.GetChild(0).gameObject;
         PopupManager.Instance.canvas = gameObject.transform.parent.gameObject;
         PopupManager.Instance.menu = Menu;

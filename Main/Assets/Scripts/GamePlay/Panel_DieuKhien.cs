@@ -13,8 +13,6 @@ public class Panel_DieuKhien : MonoBehaviour
     private int clickState = 0;//Biến điếm dùng để check các bước trong game tutorial
     [Header("GameObject")]
     [SerializeField] private GameObject Zone;//Lấy vị trí GameObject để Instantiate số bước được đi từ json
-    [SerializeField] private GameObject ifZone;
-    [SerializeField] private GameObject doZone;
     [SerializeField] private GameObject postisionForbtn;//Instantiate ô trống vào để điền nút
     [SerializeField] private GameObject IfScreen;
     [SerializeField] private GameObject loopScreen;//Instantiate màn hình cho chủ đề vòng lặp
@@ -22,6 +20,9 @@ public class Panel_DieuKhien : MonoBehaviour
     [SerializeField] private GameObject panelAllsetting;//Chứa Panel cài đặt
     [SerializeField] private GameObject panelSelectlevel;
     [SerializeField] private GameObject switchScreen;//Hỗ trợ việc tắt bật các màn
+    [SerializeField] private GameObject header;
+    [SerializeField] private GameObject body;
+    [SerializeField] private GameObject btnZone;//Khu vực các nút điều khiểu cho GamePlay dùng làm game tutorial
     [Header("Button")]
     [SerializeField] private Button btn_Left;//Nút rẽ trái
     [SerializeField] private Button btn_Right;//Nút rẽ phải
@@ -30,7 +31,7 @@ public class Panel_DieuKhien : MonoBehaviour
     [SerializeField] private Button btn_Loop;//Nút vòng lặp
     [SerializeField] private Button btn_If;
     [SerializeField] private Button btn_Yes;
-    [SerializeField] private Button btn_No;
+    public Button btn_No;
     [SerializeField] private Button btn_Play;//Nút chơi
     [SerializeField] private Button btn_Delete;//Nút xóa
     [SerializeField] private Button btn_Close;//Nút thoát game
@@ -41,7 +42,7 @@ public class Panel_DieuKhien : MonoBehaviour
     [SerializeField] private CountdownTimer Time;//Script đếm thời gian
     [SerializeField] private CustomMask customMask;//Script panel phủ để làm game tutorial
     [Header("UI")]
-    [SerializeField] private RectTransform btnZone;//Khu vực các nút điều khiểu cho GamePlay dùng làm game tutorial
+   
     [SerializeField] private RectTransform mainScreen;//Màn hình chứa các điều khiểu dc chọn cho GamePlay dùng làm gametutorial
     [SerializeField] private RectTransform leftGameSceen;//mà hình bên trái khu hiển thị màn chơi dùng làm gametutorial
     [SerializeField] private Image background;//Nền phía sau
@@ -52,6 +53,12 @@ public class Panel_DieuKhien : MonoBehaviour
     [SerializeField] private Sprite btnPlayOff;
     private void Start()
     {
+        /*header.GetComponent<RectTransform>().localPosition = new Vector3(33,-30,0);
+        btnZone.GetComponent<RectTransform>().localPosition = new Vector3(-0.2f, -700, 0);
+        body.GetComponent<RectTransform>().localPosition = new Vector3(-145, 4.9f, 0);*/
+        LeanTween.moveLocalY(header, 200, 0.65f).setEaseOutQuad();
+        LeanTween.moveLocalY(btnZone, -390, 0.65f).setEaseOutQuad();
+        LeanTween.moveLocalX(body,-450f,0.65f).setEaseOutQuad();
         //Reset giá trị khi mới bắt đầu game
         GameController.Instance.ResetGameController();
         //Bật hướng dẫn chơi
@@ -387,6 +394,7 @@ public class Panel_DieuKhien : MonoBehaviour
         Destroy(gameObject);
         Destroy(PopupManager.Instance.currentMap);
         Instantiate(panelSelectlevel, PopupManager.Instance.canvas.transform);
+        AudioManager.Instance.StopEffect();
         GameController.Instance.ResetGameController();
     }
     private void OpenMainScreen_click()
@@ -429,7 +437,7 @@ public class Panel_DieuKhien : MonoBehaviour
             switch (clickState)
             {
                 case 1:
-                    customMask.target = btnZone;
+                    customMask.target = btnZone.GetComponent<RectTransform>();
                     description.text = "BẢNG ĐIỀU KHIỂN: Dùng để gửi tín hiệu di chuyển cho phi hành gia.";
                     break;
                 case 2:
@@ -504,7 +512,7 @@ public class Panel_DieuKhien : MonoBehaviour
                     description.text = "Do đó phi hành gia phải tự di chuyển trong sương mà ko có tầm nhìn phía trước.";
                     break;
                 case 3:
-                    customMask.target = GameController.Instance.listButton[1].GetComponent<RectTransform>();
+                    customMask.target = GameController.Instance.listButton[0].GetComponent<RectTransform>();
                     description.text = "May thay bạn vẫn có thể xen vào đó các tín hiệu quan trọng giúp anh ấy tránh khỏi nguy hiểm!";
                     break;
                 case 4:
@@ -528,6 +536,9 @@ public class Panel_DieuKhien : MonoBehaviour
                     description.text = "Nơi chứa câu lệnh hành động. Câu lệnh hành động chỉ được thực hiện khi thoải mãn câu lệnh điều kiện.";
                     break;
                 case 9:
+                    description.text = "Bạn đã sẵn sàng chưa? Hãy chinh phục hành tinh này thôi nào!";
+                    break;
+                case 10:
                     GameController.Instance.listScreenAdd[0].SetActive(true);
                     customMask.gameObject.SetActive(false);
                     break;

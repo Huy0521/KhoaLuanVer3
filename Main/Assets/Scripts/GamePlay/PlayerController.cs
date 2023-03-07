@@ -234,6 +234,7 @@ public class PlayerController : MonoBehaviour
                 GameController.Instance.run = false;
                 ChangeAnimationState("idle_Up");
                 hitPartical.gameObject.SetActive(true);
+                AudioManager.Instance.StopEffect();
                 Invoke("Replay", 0.8f);
                 break;
             case "Teleport":

@@ -18,10 +18,12 @@ public class IfScreen : MonoBehaviour
     private void OnEnable()
     {
         GameController.Instance.chooseBtn = SpecialBtn.ifElse;
+        panelDieukhien.btn_No.gameObject.SetActive(true);
     }
     private void OnDisable()
     {
         GameController.Instance.chooseBtn = SpecialBtn.none;
+        panelDieukhien.btn_No.gameObject.SetActive(false);
     }
     public void ShowIfScreen()
     {
@@ -31,5 +33,6 @@ public class IfScreen : MonoBehaviour
         }
         gameObject.SetActive(true);
         panelDieukhien.posOfList = posInLooplist;
+
     }
 }
