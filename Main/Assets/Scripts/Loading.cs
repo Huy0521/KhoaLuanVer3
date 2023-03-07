@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class Loading : MonoBehaviour
 {
     [SerializeField] Slider loadingSlider;
+    [SerializeField] GameObject gb;
     void Update()
     {
         if(loadingSlider.value<100)
@@ -13,6 +14,7 @@ public class Loading : MonoBehaviour
         }
         else if(loadingSlider.value==100)
         {
+            gb.SetActive(true);
             gameObject.SetActive(false);
         }
     }
