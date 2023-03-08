@@ -167,7 +167,7 @@ public class PlayerController : MonoBehaviour
                     {
                         AudioManager.Instance.StopEffect();
                         checkFootStep = true;
-                        Invoke("Replay", 0.6f);
+                        //Invoke("Replay", 1);
                     }
                 }
             }

@@ -3417,7 +3417,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1182440749
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5276,6 +5276,7 @@ GameObject:
   - component: {fileID: 2022272872}
   - component: {fileID: 2022272871}
   - component: {fileID: 2022272874}
+  - component: {fileID: 2022272875}
   m_Layer: 5
   m_Name: btn_NewGame
   m_TagString: Untagged
@@ -5402,6 +5403,18 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &2022272875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022272869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2f9fd2b6b00013438825b1d0f10cdae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2054545571
 GameObject:
   m_ObjectHideFlags: 0

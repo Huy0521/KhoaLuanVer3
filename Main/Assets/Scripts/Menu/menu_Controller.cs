@@ -26,7 +26,7 @@ public class menu_Controller : MonoBehaviour
         SetUp();
         AudioManager.Instance.PlaySound(Sound.Start);
         //Check đi từ cut scene vào
-        if (PopupManager.Instance.goFromCutScene)
+        if (PopupManager.Instance.goFromCutScene==true)
         {
             PopupManager.Instance.currentLevel = PopupManager.Instance.listmap.tuantu[0];
             PopupManager.Instance.listCurrentTopic = listTuantu;
@@ -40,6 +40,7 @@ public class menu_Controller : MonoBehaviour
     private void SetUp()
     {
         btn_Exit.onClick.AddListener(exit_Click);
+        //btn_NewGame.GetComponent<CustomButton>().Click = newgame_Click;
         btn_NewGame.onClick.AddListener(newgame_Click);
         btn_Medal.onClick.AddListener(medal_Click);
         btn_Setting.onClick.AddListener(setting_Click);
