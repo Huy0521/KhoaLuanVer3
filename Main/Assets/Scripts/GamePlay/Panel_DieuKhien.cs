@@ -203,6 +203,10 @@ public class Panel_DieuKhien : MonoBehaviour
                     GameController.Instance.listButton.Add(gb);
                     vitri++;
                 }
+                else
+                {
+                    PopupManager.Instance.ShowNotification(gameObject, "Chuỗi câu lệnh đã đạt số lượng tối đa. Không thể thêm!", 1.8f, null);
+                }
                 break;
             case SpecialBtn.loop:
                 LoopScreen loopScreen = GameController.Instance.listScreenAdd[posOfList].GetComponent<LoopScreen>();
@@ -223,6 +227,10 @@ public class Panel_DieuKhien : MonoBehaviour
                     ifScreen.listBtnIf.Add(gb);
                     ifScreen.vitriIf++;
                 }
+                else
+                {
+                    PopupManager.Instance.ShowNotification(gameObject, "Chuỗi câu lệnh đã đạt số lượng tối đa. Không thể thêm!", 1.8f, null);
+                }
                 break;
             case SpecialBtn.doIf:
                 IfScreen doIfScreen = GameController.Instance.listScreenAdd[posOfList].GetComponent<IfScreen>();
@@ -232,6 +240,10 @@ public class Panel_DieuKhien : MonoBehaviour
                     SetRectransfrom(gb);
                     doIfScreen.listBtndoIf.Add(gb);
                     doIfScreen.vitridoIf++;
+                }
+                else
+                {
+                    PopupManager.Instance.ShowNotification(gameObject, "Chuỗi câu lệnh đã đạt số lượng tối đa. Không thể thêm!", 1.8f, null);
                 }
                 break;
         }
@@ -321,17 +333,25 @@ public class Panel_DieuKhien : MonoBehaviour
     //Add vào danh sách nút vòng lặp
     private void loop_Click()
     {
-        GameObject gb = Instantiate(btn_Loop.gameObject, listBtnPos[vitri].transform);//Instantiate vào vị trí trên màn hình
-        gb.transform.SetPositionAndRotation(listBtnPos[vitri].transform.position, listBtnPos[vitri].transform.rotation);
-        GameController.Instance.listButton.Add(gb);//Add vào danh sách các nút chạy kịch bản
-        vitri++;//Tăng index trong list
-        Button lp = Instantiate(BtnloopScreen, switchScreen.transform);//Add button tắt bật screen đó
-        gb = Instantiate(loopScreen, contentForScreen.transform);//Add screen đó lên
-        lp.onClick.AddListener(gb.GetComponent<LoopScreen>().ShowLoopScreen);//Add sự kiện click
-        GameController.Instance.listScreenAdd.Add(gb);//Add screen mới vào trong list để kiểm soát
-        gb.GetComponent<LoopScreen>().posInLooplist = GameController.Instance.listScreenAdd.Count - 1;
-        gb.GetComponent<LoopScreen>().currentBtn = lp.gameObject;
-
+        AudioManager.Instance.PlaySound(Sound.Button);
+        if (vitri<listBtnPos.Count)
+        {
+            GameObject gb = Instantiate(btn_Loop.gameObject, listBtnPos[vitri].transform);//Instantiate vào vị trí trên màn hình
+            SetRectransfrom(gb);
+            //gb.transform.SetPositionAndRotation(listBtnPos[vitri].transform.position, listBtnPos[vitri].transform.rotation);
+            GameController.Instance.listButton.Add(gb);//Add vào danh sách các nút chạy kịch bản
+            vitri++;//Tăng index trong list
+            Button lp = Instantiate(BtnloopScreen, switchScreen.transform);//Add button tắt bật screen đó
+            gb = Instantiate(loopScreen, contentForScreen.transform);//Add screen đó lên
+            lp.onClick.AddListener(gb.GetComponent<LoopScreen>().ShowLoopScreen);//Add sự kiện click
+            GameController.Instance.listScreenAdd.Add(gb);//Add screen mới vào trong list để kiểm soát
+            gb.GetComponent<LoopScreen>().posInLooplist = GameController.Instance.listScreenAdd.Count - 1;
+            gb.GetComponent<LoopScreen>().currentBtn = lp.gameObject;
+        }
+        else
+        {
+            PopupManager.Instance.ShowNotification(gameObject, "Chuỗi câu lệnh đã đạt số lượng tối đa. Không thể thêm!", 1.8f, null);
+        }
     }
     //Add vào danh sách nút rẽ nhánh
     private void if_Click()
