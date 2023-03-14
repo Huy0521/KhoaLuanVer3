@@ -199,6 +199,7 @@ public class Panel_DieuKhien : MonoBehaviour
                 if (vitri < listBtnPos.Count)
                 {
                     GameObject gb = Instantiate(btn.gameObject, listBtnPos[vitri].transform);
+                    gb.GetComponent<Image>().color = new Color(1,1,1,0.5f);
                     SetRectransfrom(gb);
                     GameController.Instance.listButton.Add(gb);
                     vitri++;
@@ -213,6 +214,7 @@ public class Panel_DieuKhien : MonoBehaviour
                 if (loopScreen.vitriloop < loopScreen.listPosLoop.Count)
                 {
                     GameObject gb = Instantiate(btn.gameObject, loopScreen.listPosLoop[loopScreen.vitriloop].transform);
+                    gb.GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
                     SetRectransfrom(gb);
                     loopScreen.listBtnFor.Add(gb);
                     loopScreen.vitriloop++;
@@ -223,6 +225,7 @@ public class Panel_DieuKhien : MonoBehaviour
                 if (ifScreen.vitriIf < ifScreen.listpostionIf.Count)
                 {
                     GameObject gb = Instantiate(btn.gameObject, ifScreen.listpostionIf[ifScreen.vitriIf].transform);
+                    gb.GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
                     SetRectransfrom(gb);
                     ifScreen.listBtnIf.Add(gb);
                     ifScreen.vitriIf++;
@@ -237,6 +240,7 @@ public class Panel_DieuKhien : MonoBehaviour
                 if (doIfScreen.vitridoIf < doIfScreen.listpostiondoIf.Count)
                 {
                     GameObject gb = Instantiate(btn.gameObject, doIfScreen.listpostiondoIf[doIfScreen.vitridoIf].transform);
+                    gb.GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
                     SetRectransfrom(gb);
                     doIfScreen.listBtndoIf.Add(gb);
                     doIfScreen.vitridoIf++;
@@ -337,6 +341,7 @@ public class Panel_DieuKhien : MonoBehaviour
         if (vitri<listBtnPos.Count)
         {
             GameObject gb = Instantiate(btn_Loop.gameObject, listBtnPos[vitri].transform);//Instantiate vào vị trí trên màn hình
+            gb.GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
             SetRectransfrom(gb);
             //gb.transform.SetPositionAndRotation(listBtnPos[vitri].transform.position, listBtnPos[vitri].transform.rotation);
             GameController.Instance.listButton.Add(gb);//Add vào danh sách các nút chạy kịch bản

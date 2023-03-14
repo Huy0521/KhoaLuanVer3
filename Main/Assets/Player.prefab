@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd1286895ed1ff24aa2b0b99fb738c40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 2.5
   futurePosition: []
   hitPartical: {fileID: 5041627570695909863}
 --- !u!1 &3185014559105523003

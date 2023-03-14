@@ -6,7 +6,7 @@ public class GameController : MonoBehaviour
 {
     public static GameController instance = null;
     public List<GameObject> listButton = new List<GameObject>();
-    public List<string> listBtnMain = new List<string>();
+    public List<GameObject> listBtnMain = new List<GameObject>();
     public List<GameObject> listScreenAdd = new List<GameObject>();
     public bool run = false;
     public bool shadedRun = false;

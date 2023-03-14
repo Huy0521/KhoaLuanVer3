@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     private int finishNumber;
@@ -21,10 +21,10 @@ public class PlayerController : MonoBehaviour
         currentposition = transform.localPosition;
     }
     //tính toán tọa độ bước đi
-    private void CalculateMove(string move)
+    private void CalculateMove(GameObject move)
     {
-       
-        switch (move)
+
+        switch (move.name)
         {
             case "btn_Left(Clone)":
                 currentposition = currentposition + new Vector3(-1.7f, 0, 0);
@@ -52,16 +52,16 @@ public class PlayerController : MonoBehaviour
                 {
                     for (int j = 0; j < loopScreen.listBtnFor.Count; j++)
                     {
-                        CalculateMove(loopScreen.listBtnFor[j].name);
+                        CalculateMove(loopScreen.listBtnFor[j]);
                     }
                 }
                 numberLoopScreen++;
                 break;
-            case "btn_If(Clone)":       
-               
-                    string a = "";
-                    IfScreen ifScreen = GameController.Instance.listScreenAdd[ifNumber].GetComponent<IfScreen>();
-                if (ifScreen.listBtnIf.Count>0&&ifScreen.listBtndoIf.Count>0)
+            case "btn_If(Clone)":
+
+                string a = "";
+                IfScreen ifScreen = GameController.Instance.listScreenAdd[ifNumber].GetComponent<IfScreen>();
+                if (ifScreen.listBtnIf.Count > 0 && ifScreen.listBtndoIf.Count > 0)
                 {
                     for (int j = 0; j < ifScreen.listBtnIf.Count; j++)
                     {
@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
                     {
                         for (int k = 0; k < ifScreen.listBtndoIf.Count; k++)
                         {
-                            CalculateMove(ifScreen.listBtndoIf[k].name);
+                            CalculateMove(ifScreen.listBtndoIf[k]);
                         }
                     }
                     ifJson++;
@@ -104,72 +104,80 @@ public class PlayerController : MonoBehaviour
         GameController.Instance.listBtnMain.Clear();
         for (int i = 0; i < GameController.Instance.listButton.Count; i++)
         {
-            CalculateMove(GameController.Instance.listButton[i].name);
+            CalculateMove(GameController.Instance.listButton[i]);
         }
         GameController.Instance.run = true;
         AudioManager.Instance.PlaySound(Sound.FootStep);
     }
     private void Update()
     {
-        if (GameController.Instance.run == true )
+       
+        if (GameController.Instance.run == true)
         {
-            if(GameController.Instance.listBtnMain.Count > 0)
+            if (GameController.Instance.listBtnMain.Count > 0 )
             {
-                switch (GameController.Instance.listBtnMain[cursorInMainList])
+                if (cursorInMainList < GameController.Instance.listBtnMain.Count)
                 {
-                    case "btn_Left(Clone)":
-                        GetComponent<SpriteRenderer>().flipX = false;
-                        ChangeAnimationState("walk_Side");
-                        break;
-                    case "btn_Right(Clone)":
-                        GetComponent<SpriteRenderer>().flipX = true;
-                        ChangeAnimationState("walk_Side");
-                        break;
-                    case "btn_Up(Clone)":
-                        ChangeAnimationState("walk_Up");
-                        break;
-                    case "btn_Down(Clone)":
-                        ChangeAnimationState("walk_Down");
-                        break;
-                }
-                //di chuyển nhân vật
-                transform.localPosition = Vector3.MoveTowards(transform.localPosition, futurePosition[cursorInMainList], speed * Time.deltaTime);
-                if (transform.localPosition == futurePosition[cursorInMainList])
-                {
-                    cursorInMainList++;
-                }
-                //Check xem đã hết list bước phải đi chưa sau đó chạy anim idle
-                if (cursorInMainList == futurePosition.Count)
-                {
-                    GameController.Instance.run = false;
-                    if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("walk_Up"))
-                    {
-                        ChangeAnimationState("idle_Up");
-                    }
-                    else if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("walk_Down"))
-                    {
-                        ChangeAnimationState("idle_Down");
-                    }
-                    else if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("walk_Side"))
-                    {
-                        if (GameController.Instance.listBtnMain[cursorInMainList - 1] == "btn_Right(Clone)")
+                    LeanTween.alpha(GameController.Instance.listBtnMain[cursorInMainList].GetComponent<RectTransform>(), 1, 0.5f).setOnComplete(() =>{ GameController.Instance.listBtnMain[cursorInMainList].GetComponent<Image>().color = new Color(1, 1, 1, 0.5f); });
+                        switch (GameController.Instance.listBtnMain[cursorInMainList].name)
                         {
-                            GetComponent<SpriteRenderer>().flipX = true;
-                            ChangeAnimationState("idle_Side");
+                            case "btn_Left(Clone)":
+                                GetComponent<SpriteRenderer>().flipX = false;
+                                ChangeAnimationState("walk_Side");
+                                break;
+                            case "btn_Right(Clone)":
+                                GetComponent<SpriteRenderer>().flipX = true;
+                                ChangeAnimationState("walk_Side");
+                                break;
+                            case "btn_Up(Clone)":
+                                ChangeAnimationState("walk_Up");
+                                break;
+                            case "btn_Down(Clone)":
+                                ChangeAnimationState("walk_Down");
+                                break;
                         }
-                        else if (GameController.Instance.listBtnMain[cursorInMainList - 1] == "btn_Left(Clone)")
+                        //di chuyển nhân vật
+                        transform.localPosition = Vector3.MoveTowards(transform.localPosition, futurePosition[cursorInMainList], speed * Time.deltaTime);
+                        if (transform.localPosition == futurePosition[cursorInMainList])
                         {
-                            GetComponent<SpriteRenderer>().flipX = false;
-                            ChangeAnimationState("idle_Side");
+                            cursorInMainList++;
                         }
-                    }
-                    if (checkFootStep == false && checkReplay == false)
-                    {
-                        AudioManager.Instance.StopEffect();
-                        checkFootStep = true;
-                        //Invoke("Replay", 1);
-                    }
+                        //Check xem đã hết list bước phải đi chưa sau đó chạy anim idle
+                        if (cursorInMainList == futurePosition.Count)
+                        {
+                            GameController.Instance.run = false;
+                            if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("walk_Up"))
+                            {
+                                ChangeAnimationState("idle_Up");
+                            }
+                            else if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("walk_Down"))
+                            {
+                                Debug.Log("In_Down");
+                                ChangeAnimationState("idle_Down");
+                            }
+                            else if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("walk_Side"))
+                            {
+                                if (GameController.Instance.listBtnMain[cursorInMainList - 1].name == "btn_Right(Clone)")
+                                {
+                                    GetComponent<SpriteRenderer>().flipX = true;
+                                    ChangeAnimationState("idle_Side");
+                                }
+                                else if (GameController.Instance.listBtnMain[cursorInMainList - 1].name == "btn_Left(Clone)")
+                                {
+                                    GetComponent<SpriteRenderer>().flipX = false;
+                                    ChangeAnimationState("idle_Side");
+                                }
+                            }
+                            if (checkFootStep == false && checkReplay == false)
+                            {
+                                AudioManager.Instance.StopEffect();
+                                checkFootStep = true;
+                                //Invoke("Replay", 1);
+                            }
+                        }
+                    
                 }
+
             }
             else
             {
