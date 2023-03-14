@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (cursorInMainList < GameController.Instance.listBtnMain.Count)
                 {
-                    LeanTween.alpha(GameController.Instance.listBtnMain[cursorInMainList].GetComponent<RectTransform>(), 1, 0.5f).setOnComplete(() =>{ GameController.Instance.listBtnMain[cursorInMainList].GetComponent<Image>().color = new Color(1, 1, 1, 0.5f); });
+                    LeanTween.alpha(GameController.Instance.listBtnMain[cursorInMainList].GetComponent<RectTransform>(), 1, 0.5f);
                         switch (GameController.Instance.listBtnMain[cursorInMainList].name)
                         {
                             case "btn_Left(Clone)":

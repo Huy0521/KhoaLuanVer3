@@ -7,6 +7,7 @@ using TMPro;
 public class CreateAndJoinRoom : MonoBehaviourPunCallbacks
 {
     [SerializeField] private TMP_InputField ipRoomName;
+    [SerializeField] private TMP_InputField ipRoomJoin;
     [SerializeField] private GameObject room;
     [SerializeField] private TMP_Text roomName;
     void Start()
@@ -21,13 +22,15 @@ public class CreateAndJoinRoom : MonoBehaviourPunCallbacks
         }
         
     }
+    
     public void JoinRoom()
     {
-        PhotonNetwork.JoinRoom("a");
+        PhotonNetwork.JoinRoom(ipRoomJoin.text);
     }
     public override void OnJoinedRoom()
     {
         room.SetActive(true);
         roomName.text = PhotonNetwork.CurrentRoom.Name;
+        Debug.Log("Create: " + PhotonNetwork.CurrentRoom.Name);
     }
 }
