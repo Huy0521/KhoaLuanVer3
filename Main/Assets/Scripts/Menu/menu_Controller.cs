@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-public class menu_Controller : MonoBehaviour
+using Photon.Pun;
+public class menu_Controller : MonoBehaviourPunCallbacks
 {
     [SerializeField] private selectLevel_Controller popup_SelectLV;
     [SerializeField] private panel_hangmuc panelHangmuc;
@@ -12,11 +13,14 @@ public class menu_Controller : MonoBehaviour
     [SerializeField] private Button btn_Medal;
     [SerializeField] private Button btn_Exit;
     [SerializeField] private Button btn_Setting;
+    [SerializeField] private Button btn_ArenaZone; 
     [SerializeField] private GameObject medalPanel;
     [SerializeField] private GameObject Menu;
     [SerializeField] private GameObject firstLevel;
     [SerializeField] private List<GameObject> listTuantu;//List cơ bản khi đi từ Cutscene vào
     [SerializeField] private GameObject panelLoading;
+    [SerializeField] private GameObject panelIpName;
+   
     private void Start()
     {
         LeanTween.moveLocalX(btn_NewGame.gameObject, 10, 0.3f).setEaseInOutBounce().setOnComplete(() => { LeanTween.moveLocalX(btn_Setting.gameObject, 10, 0.3f).setEaseInOutBounce().setOnComplete(() => { LeanTween.moveLocalX(btn_Medal.gameObject, 10, 0.3f).setEaseInOutBounce().setOnComplete(()=> { LeanTween.moveLocalX(btn_Exit.gameObject, 10, 0.3f).setEaseInOutBounce(); }); });});
@@ -44,6 +48,7 @@ public class menu_Controller : MonoBehaviour
         btn_NewGame.onClick.AddListener(newgame_Click);
         btn_Medal.onClick.AddListener(medal_Click);
         btn_Setting.onClick.AddListener(setting_Click);
+        btn_ArenaZone.onClick.AddListener(Arena_Click);
     }
     //Vào chọn chủ đề
     private void newgame_Click()
@@ -78,5 +83,18 @@ public class menu_Controller : MonoBehaviour
         AudioManager.Instance.PlaySound(Sound.Button);
         panelSetting.gameObject.SetActive(true);
     }
-
+    private void Arena_Click()
+    {
+        AudioManager.Instance.PlaySound(Sound.Button);
+        panelIpName.SetActive(true);
+        //PhotonNetwork.ConnectUsingSettings();
+    }
+  /*  public override void OnConnectedToMaster()
+    {
+        PhotonNetwork.JoinLobby();
+    }
+    public override void OnJoinedLobby()
+    {
+        SceneManager.LoadScene("ArenaZone");
+    }*/
 }

@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CutScene.unity
     guid: c6781a3dcdf78a34eb50bf44a3ecc5ac
+  - enabled: 1
+    path: Assets/ArenaZone.unity
+    guid: d7da9e3bd24c170418530dc6908ebc75
   m_configObjects: {}
