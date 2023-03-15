@@ -23,7 +23,8 @@ public class menu_Controller : MonoBehaviourPunCallbacks
    
     private void Start()
     {
-        LeanTween.moveLocalX(btn_NewGame.gameObject, 10, 0.3f).setEaseInOutBounce().setOnComplete(() => { LeanTween.moveLocalX(btn_Setting.gameObject, 10, 0.3f).setEaseInOutBounce().setOnComplete(() => { LeanTween.moveLocalX(btn_Medal.gameObject, 10, 0.3f).setEaseInOutBounce().setOnComplete(()=> { LeanTween.moveLocalX(btn_Exit.gameObject, 10, 0.3f).setEaseInOutBounce(); }); });});
+        PopupManager.Instance.isArena = false;
+        LeanTween.moveLocalX(btn_NewGame.gameObject, 10, 0.3f).setEaseInOutBounce().setOnComplete(() => { LeanTween.moveLocalX(btn_Setting.gameObject, 10, 0.3f).setEaseInOutBounce().setOnComplete(() => { LeanTween.moveLocalX(btn_Medal.gameObject, 10, 0.3f).setEaseInOutBounce().setOnComplete(()=> { LeanTween.moveLocalX(btn_ArenaZone.gameObject, 10, 0.3f).setEaseInOutBounce().setOnComplete(()=> { LeanTween.moveLocalX(btn_Exit.gameObject, 10, 0.3f).setEaseInOutBounce(); }); }); });});
         Menu = gameObject.transform.GetChild(0).gameObject;
         PopupManager.Instance.canvas = gameObject.transform.parent.gameObject;
         PopupManager.Instance.menu = Menu;
@@ -87,14 +88,6 @@ public class menu_Controller : MonoBehaviourPunCallbacks
     {
         AudioManager.Instance.PlaySound(Sound.Button);
         panelIpName.SetActive(true);
-        //PhotonNetwork.ConnectUsingSettings();
     }
-  /*  public override void OnConnectedToMaster()
-    {
-        PhotonNetwork.JoinLobby();
-    }
-    public override void OnJoinedLobby()
-    {
-        SceneManager.LoadScene("ArenaZone");
-    }*/
+
 }

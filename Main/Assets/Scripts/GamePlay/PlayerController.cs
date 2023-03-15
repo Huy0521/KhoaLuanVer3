@@ -228,7 +228,7 @@ public class PlayerController : MonoBehaviour
                     AudioManager.Instance.PlaySound(Sound.Teleport);
                     panelWin.GetComponent<PanelFinish>().configView(true);
                     GameController.Instance.run = false;
-                    collision.gameObject.SetActive(false);
+                    
                     checkReplay = true;
                 }
                 else

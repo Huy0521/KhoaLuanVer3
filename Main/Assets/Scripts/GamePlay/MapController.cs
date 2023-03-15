@@ -10,7 +10,7 @@ public class MapController : MonoBehaviour
     {
         gameObject.transform.position = new Vector3(-15,-0.32f,0);
         LeanTween.moveLocalX(gameObject, -4f, 0.65f).setEaseOutQuad();
- /*       if (PopupManager.Instance.character == Character.astronaut)
+        if (PopupManager.Instance.character == Character.astronaut)
         {
             cat.gameObject.SetActive(false);
             astronaut.gameObject.SetActive(true);
@@ -21,6 +21,6 @@ public class MapController : MonoBehaviour
             cat.gameObject.SetActive(true);
             astronaut.gameObject.SetActive(false);
             PopupManager.Instance.playerController = cat;
-        }*/
+        }
     }
 }

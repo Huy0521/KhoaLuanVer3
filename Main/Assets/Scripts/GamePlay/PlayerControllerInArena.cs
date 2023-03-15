@@ -18,7 +18,7 @@ public class PlayerControllerInArena : MonoBehaviour
     int ifNumber = 0;
     int ifJson = 0;
     PhotonView view;
-    private void Awake()
+    private void Start()
     {
         view = GetComponent<PhotonView>();
         currentposition = transform.localPosition;

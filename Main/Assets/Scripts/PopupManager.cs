@@ -30,7 +30,7 @@ public class PopupManager : MonoBehaviour
     public Map currentLevel;//Thông tin của màn chơi hiện tại
     [HideInInspector] public Character character;//Check nhân vật được người chơi chọn
     public float timeRemaining;
-
+    public bool isArena = false;
 
     public static PopupManager Instance
     {

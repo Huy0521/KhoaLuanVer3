@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-public class Panel_DieuKhien : MonoBehaviour
+using Photon.Pun;
+using UnityEngine.SceneManagement;
+using Photon.Realtime;
+
+public class Panel_DieuKhien : MonoBehaviourPunCallbacks
 {
     [Header("List")]
     public List<GameObject> listBtnPos;//List GameObject để Instantiate button
+    [SerializeField] private List<PlayerInfor> listPlayerInfor = new List<PlayerInfor>();
     [Header("Int")]
     private int vitri;//Con trỏ xác định index trong listBtnPos
     public int posOfList; //Con trỏ xác định index trong GameController.Instance.listScreenAdd
@@ -53,6 +58,7 @@ public class Panel_DieuKhien : MonoBehaviour
     [SerializeField] private Sprite btnPlayOff;
     private void Start()
     {
+       
         /*header.GetComponent<RectTransform>().localPosition = new Vector3(33,-30,0);
         btnZone.GetComponent<RectTransform>().localPosition = new Vector3(-0.2f, -700, 0);
         body.GetComponent<RectTransform>().localPosition = new Vector3(-145, 4.9f, 0);*/
@@ -189,6 +195,10 @@ public class Panel_DieuKhien : MonoBehaviour
                 btn_If.gameObject.SetActive(false);
                 btn_Loop.gameObject.SetActive(false);
                 break;
+        }
+        if(PopupManager.Instance.isArena==true)
+        {
+            btn_Loop.gameObject.SetActive(true);
         }
         btn_Yes.gameObject.SetActive(false);
         btn_No.gameObject.SetActive(false);
@@ -433,14 +443,26 @@ public class Panel_DieuKhien : MonoBehaviour
         }
 
     }
+    public override void OnLeftRoom()
+    {
+        SceneManager.LoadScene("SampleScene");
+    }
     private void close_Click()
     {
         AudioManager.Instance.PlaySound(Sound.Button);
-        Destroy(gameObject);
-        Destroy(PopupManager.Instance.currentMap);
-        Instantiate(panelSelectlevel, PopupManager.Instance.canvas.transform);
-        AudioManager.Instance.StopEffect();
-        GameController.Instance.ResetGameController();
+        if (PopupManager.Instance.isArena==false)
+        {
+            Destroy(gameObject);
+            Destroy(PopupManager.Instance.currentMap);
+            Instantiate(panelSelectlevel, PopupManager.Instance.canvas.transform);
+            AudioManager.Instance.StopEffect();
+            GameController.Instance.ResetGameController();
+        }
+        else
+        {
+            PhotonNetwork.LeaveRoom();
+        }
+       
     }
     private void OpenMainScreen_click()
     {
@@ -590,5 +612,17 @@ public class Panel_DieuKhien : MonoBehaviour
             }
         }    
 
+    }
+    public void UpdatePlayerInfor()
+    {
+        int i = 0;
+        if(PhotonNetwork.CurrentRoom !=null)
+        {
+            foreach (KeyValuePair<int, Player> player in PhotonNetwork.CurrentRoom.Players)
+            {
+                listPlayerInfor[i].SetPlayerInfor(player.Value);
+                i++;
+            }
+        }
     }
 }

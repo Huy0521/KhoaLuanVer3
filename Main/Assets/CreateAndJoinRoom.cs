@@ -38,6 +38,15 @@ public class CreateAndJoinRoom : MonoBehaviourPunCallbacks
         roomName.text = PhotonNetwork.CurrentRoom.Name;
         Debug.Log("Create: " + PhotonNetwork.CurrentRoom.Name);*/
         StarGame_Click();
+        PopupManager.Instance.currentDashboard.UpdatePlayerInfor();
+    }
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        PopupManager.Instance.currentDashboard.UpdatePlayerInfor();
+    }
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        PopupManager.Instance.currentDashboard.UpdatePlayerInfor();
     }
     public void LeaveRoom_Click()
     {
