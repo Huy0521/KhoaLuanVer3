@@ -34,9 +34,10 @@ public class CreateAndJoinRoom : MonoBehaviourPunCallbacks
     }
     public override void OnJoinedRoom()
     {
-        room.SetActive(true);
+        /*room.SetActive(true);
         roomName.text = PhotonNetwork.CurrentRoom.Name;
-        Debug.Log("Create: " + PhotonNetwork.CurrentRoom.Name);
+        Debug.Log("Create: " + PhotonNetwork.CurrentRoom.Name);*/
+        StarGame_Click();
     }
     public void LeaveRoom_Click()
     {
