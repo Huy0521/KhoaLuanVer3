@@ -17,7 +17,8 @@ public class PopupManager : MonoBehaviour
     public PanelFinish panel_Finish;//Popup kết thúc màn chơi 
     public Panel_DieuKhien userPlay;//Bảng điều khiển để Instantiate
     [HideInInspector] public Panel_DieuKhien currentDashboard;//Bảng điều khiển hiện tại trên màn hình
-    [HideInInspector] public PlayerController playerController;//Lưu nhân vật hiện tại trên Sceen 
+     public PlayerController playerController;//Lưu nhân vật hiện tại trên Sceen 
+    public PlayerControllerInArena playerControllerInArena;
     [SerializeField] private Notification notification;
     [Header("Bool")]
     [HideInInspector] public bool notificationIsOn;//Check hiện đang có thông báo đang được hiển thị ko

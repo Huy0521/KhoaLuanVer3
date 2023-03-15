@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 2314842425626791425}
   - component: {fileID: 2314842425626791453}
   - component: {fileID: 2314842425626791450}
-  - component: {fileID: 2314842425626791427}
   - component: {fileID: 4428615345165240085}
+  - component: {fileID: 2465829551088877314}
   m_Layer: 0
   m_Name: PlayerforArena
   m_TagString: Player
@@ -118,7 +118,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2314842425626791424}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -158,21 +158,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &2314842425626791427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2314842425626791424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd1286895ed1ff24aa2b0b99fb738c40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2.5
-  futurePosition: []
-  hitPartical: {fileID: 5041627570695909863}
 --- !u!114 &4428615345165240085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,6 +180,21 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &2465829551088877314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2314842425626791424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae9184d6e70e2f44816d892cc907efd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2.5
+  futurePosition: []
+  hitPartical: {fileID: 5041627570695909863}
 --- !u!1 &3185014559105523003
 GameObject:
   m_ObjectHideFlags: 0

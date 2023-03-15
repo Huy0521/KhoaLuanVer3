@@ -108,11 +108,23 @@ public class Panel_DieuKhien : MonoBehaviour
         }
    
         //Instantiate các ô trống để chứa nút
-        for (int i = 0; i < PopupManager.Instance.currentLevel.sobuoc; i++)
+        if (PopupManager.Instance.currentLevel.sobuoc == 0)
         {
-            GameObject gb = Instantiate(postisionForbtn.gameObject, Zone.transform);
-            listBtnPos.Add(gb);
+            for (int i = 0; i < 4; i++)
+            {
+                GameObject gb = Instantiate(postisionForbtn.gameObject, Zone.transform);
+                listBtnPos.Add(gb);
+            }
         }
+        else
+        {
+            for (int i = 0; i < PopupManager.Instance.currentLevel.sobuoc; i++)
+            {
+                GameObject gb = Instantiate(postisionForbtn.gameObject, Zone.transform);
+                listBtnPos.Add(gb);
+            }
+        }
+      
 
         vitri = 0;
         if (PopupManager.Instance.loaibai == Loaibai.renhanh)
@@ -404,7 +416,15 @@ public class Panel_DieuKhien : MonoBehaviour
             btn_Play.enabled = false;
             btn_Delete.enabled = false;
             btn_Play.image.sprite = btnPlayOff;
-            PopupManager.Instance.playerController.playCharacter();
+            if (PopupManager.Instance.playerController != null)
+            {
+                PopupManager.Instance.playerController.playCharacter();
+            }
+            else
+            {
+                PopupManager.Instance.playerControllerInArena.playCharacter();
+            }
+           
             Time.stopTime();
         }
         else
