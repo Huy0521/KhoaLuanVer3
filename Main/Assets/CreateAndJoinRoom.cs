@@ -4,14 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using TMPro;
+using Photon.Realtime;
+
 public class CreateAndJoinRoom : MonoBehaviourPunCallbacks
 {
     [SerializeField] private TMP_InputField ipRoomName;
     [SerializeField] private TMP_InputField ipRoomJoin;
     [SerializeField] private GameObject room;
     [SerializeField] private TMP_Text roomName;
+    [SerializeField] private Button btn_LeaveRoom;
     void Start()
     {
+
         PhotonNetwork.JoinLobby();
     }
     public void CreateRoom()
@@ -22,7 +26,6 @@ public class CreateAndJoinRoom : MonoBehaviourPunCallbacks
         }
         
     }
-    
     public void JoinRoom()
     {
         PhotonNetwork.JoinRoom(ipRoomJoin.text);
@@ -32,5 +35,13 @@ public class CreateAndJoinRoom : MonoBehaviourPunCallbacks
         room.SetActive(true);
         roomName.text = PhotonNetwork.CurrentRoom.Name;
         Debug.Log("Create: " + PhotonNetwork.CurrentRoom.Name);
+    }
+    public void LeaveRoom_Click()
+    {
+        PhotonNetwork.LeaveRoom();
+    }
+    public override void OnLeftRoom()
+    {
+        room.SetActive(false);
     }
 }
