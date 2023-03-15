@@ -8,14 +8,16 @@ using Photon.Realtime;
 
 public class CreateAndJoinRoom : MonoBehaviourPunCallbacks
 {
+    [SerializeField] private GameObject level;
     [SerializeField] private TMP_InputField ipRoomName;
     [SerializeField] private TMP_InputField ipRoomJoin;
     [SerializeField] private GameObject room;
     [SerializeField] private TMP_Text roomName;
     [SerializeField] private Button btn_LeaveRoom;
+
     void Start()
     {
-
+        PopupManager.Instance.canvas = gameObject;
         PhotonNetwork.JoinLobby();
     }
     public void CreateRoom()
@@ -28,7 +30,7 @@ public class CreateAndJoinRoom : MonoBehaviourPunCallbacks
     }
     public void JoinRoom()
     {
-        PhotonNetwork.JoinRoom(ipRoomJoin.text);
+        PhotonNetwork.JoinRoom(ipRoomJoin.text  );
     }
     public override void OnJoinedRoom()
     {
@@ -43,5 +45,10 @@ public class CreateAndJoinRoom : MonoBehaviourPunCallbacks
     public override void OnLeftRoom()
     {
         room.SetActive(false);
+    }
+   public void StarGame_Click()
+    {
+        PopupManager.Instance.currentDashboard = Instantiate(PopupManager.Instance.userPlay, PopupManager.Instance.canvas.transform);
+        PopupManager.Instance.currentMap = Instantiate(level);
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
+  m_IndirectSpecularColor: {r: 0.3708984, g: 0.37837017, b: 0.35722524, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -207,7 +207,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 814492894}
+      - m_Target: {fileID: 703427614}
         m_TargetAssemblyTypeName: CreateAndJoinRoom, Assembly-CSharp
         m_MethodName: LeaveRoom_Click
         m_Mode: 1
@@ -601,9 +601,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 814492894}
+      - m_Target: {fileID: 703427614}
         m_TargetAssemblyTypeName: CreateAndJoinRoom, Assembly-CSharp
-        m_MethodName: LeaveRoom_Click
+        m_MethodName: StarGame_Click
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -735,7 +735,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 814492894}
+      - m_Target: {fileID: 703427614}
         m_TargetAssemblyTypeName: CreateAndJoinRoom, Assembly-CSharp
         m_MethodName: JoinRoom
         m_Mode: 1
@@ -1120,6 +1120,7 @@ GameObject:
   - component: {fileID: 703427612}
   - component: {fileID: 703427611}
   - component: {fileID: 703427610}
+  - component: {fileID: 703427614}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1210,6 +1211,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &703427614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703427609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbcec5f6d6bd27b4882848f6a527a319, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: {fileID: 7651777925957082279, guid: 99eaea5a15c39764db455c3c60a2874f, type: 3}
+  ipRoomName: {fileID: 1987366371}
+  ipRoomJoin: {fileID: 19152361}
+  room: {fileID: 909546579}
+  roomName: {fileID: 1668455613}
+  btn_LeaveRoom: {fileID: 16425484}
 --- !u!1 &814492890
 GameObject:
   m_ObjectHideFlags: 0
@@ -1221,7 +1240,6 @@ GameObject:
   - component: {fileID: 814492891}
   - component: {fileID: 814492893}
   - component: {fileID: 814492892}
-  - component: {fileID: 814492894}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -1291,23 +1309,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 814492890}
   m_CullTransparentMesh: 1
---- !u!114 &814492894
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 814492890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbcec5f6d6bd27b4882848f6a527a319, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ipRoomName: {fileID: 1987366371}
-  ipRoomJoin: {fileID: 19152361}
-  room: {fileID: 909546579}
-  roomName: {fileID: 1668455613}
-  btn_LeaveRoom: {fileID: 16425484}
 --- !u!1 &848924534
 GameObject:
   m_ObjectHideFlags: 0
@@ -1542,7 +1543,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &909546580
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1897,7 +1898,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 814492894}
+      - m_Target: {fileID: 703427614}
         m_TargetAssemblyTypeName: CreateAndJoinRoom, Assembly-CSharp
         m_MethodName: CreateRoom
         m_Mode: 1
