@@ -226,6 +226,17 @@ public class PlayerControllerInArena : MonoBehaviour
         GameController.Instance.ResetGameController();
 
     }
+    [PunRPC]
+    private void ResetforNextFight()
+    {
+        GameController.Instance.ResetGameController();
+        PopupManager.Instance.currentDashboard.ResetPlayClick();
+    }
+    [PunRPC]
+    private void EndGame()
+    {
+        PopupManager.Instance.ShowNotification(PopupManager.Instance.canvas, "EndGame", 1.8f, null);
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         switch (collision.gameObject.tag)
@@ -266,6 +277,10 @@ public class PlayerControllerInArena : MonoBehaviour
                 Invoke("Replay", 0.8f);
                 break;
             case "Teleport":
+                break;
+            case "Player":
+                //view.RPC("ResetforNextFight",RpcTarget.All);
+                view.RPC("EndGame",RpcTarget.All);
                 break;
         }
     }

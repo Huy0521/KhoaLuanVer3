@@ -4796,6 +4796,7 @@ MonoBehaviour:
   earthEnvironment: {fileID: 21300000, guid: e345a27f115ff0a45affba4483706fb4, type: 3}
   spaceEnvironment: {fileID: 21300000, guid: cd3bb1b12cd2dec4ea4ad534b7ca30da, type: 3}
   btnPlayOff: {fileID: 21300000, guid: a93c818358ad96e49a36f157743a0ebd, type: 3}
+  btnPlayOn: {fileID: 21300000, guid: 616398c5e51e07f4ab42ec278385f993, type: 3}
 --- !u!1 &8263950693483687308
 GameObject:
   m_ObjectHideFlags: 0

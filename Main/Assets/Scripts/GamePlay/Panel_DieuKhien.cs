@@ -56,6 +56,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
     [SerializeField] private Sprite earthEnvironment;//Ảnh nền
     [SerializeField] private Sprite spaceEnvironment;//Ảnh nền
     [SerializeField] private Sprite btnPlayOff;
+    [SerializeField] private Sprite btnPlayOn;
     private void Start()
     {
        
@@ -442,6 +443,12 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
             PopupManager.Instance.ShowNotification(PopupManager.Instance.canvas, "Hiện không có câu lệnh để thực hiện!", 1.8f,null);
         }
 
+    }
+    public void ResetPlayClick()
+    {
+        btn_Play.enabled = true;
+        btn_Delete.enabled = true;
+        btn_Play.image.sprite = btnPlayOn;
     }
     public override void OnLeftRoom()
     {
