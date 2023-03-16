@@ -119,7 +119,7 @@ public class PlayerControllerInArena : MonoBehaviour
     {
        if(view.IsMine)
         {
-            if (GameController.Instance.run == true)
+            if (GameController.Instance.run == true && PopupManager.Instance.currentDashboard.numberPlayerAns==2    )
             {
                 if (GameController.Instance.listBtnMain.Count > 0)
                 {
@@ -237,6 +237,15 @@ public class PlayerControllerInArena : MonoBehaviour
     {
         PopupManager.Instance.ShowNotification(PopupManager.Instance.canvas, "EndGame", 1.8f, null);
     }
+    [PunRPC]
+    private void CheckAnsReady()
+    {
+        PopupManager.Instance.currentDashboard.numberPlayerAns++;
+    }
+    public void SendAnsReady()
+    {
+        view.RPC("CheckAnsReady", RpcTarget.All);
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         switch (collision.gameObject.tag)
@@ -274,7 +283,7 @@ public class PlayerControllerInArena : MonoBehaviour
                 ChangeAnimationState("idle_Up");
                 hitPartical.gameObject.SetActive(true);
                 AudioManager.Instance.StopEffect();
-                Invoke("Replay", 0.8f);
+                //Invoke("Replay", 0.8f);
                 break;
             case "Teleport":
                 break;

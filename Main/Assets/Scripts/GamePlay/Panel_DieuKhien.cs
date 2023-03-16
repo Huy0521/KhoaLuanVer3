@@ -16,6 +16,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
     private int vitri;//Con trỏ xác định index trong listBtnPos
     public int posOfList; //Con trỏ xác định index trong GameController.Instance.listScreenAdd
     private int clickState = 0;//Biến điếm dùng để check các bước trong game tutorial
+    public int numberPlayerAns=0;
     [Header("GameObject")]
     [SerializeField] private GameObject Zone;//Lấy vị trí GameObject để Instantiate số bước được đi từ json
     [SerializeField] private GameObject postisionForbtn;//Instantiate ô trống vào để điền nút
@@ -421,7 +422,9 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
     }
     private void play_Click()
     {
+        PopupManager.Instance.playerControllerInArena.SendAnsReady();
         AudioManager.Instance.PlaySound(Sound.Button);
+      
         if (GameController.Instance.listButton.Count > 0)
         {
             btn_Play.enabled = false;
@@ -442,7 +445,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
         {
             PopupManager.Instance.ShowNotification(PopupManager.Instance.canvas, "Hiện không có câu lệnh để thực hiện!", 1.8f,null);
         }
-
+     
     }
     public void ResetPlayClick()
     {
