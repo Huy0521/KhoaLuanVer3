@@ -23,7 +23,7 @@ public class PlayerControllerInArena : MonoBehaviour
     {
         view = GetComponent<PhotonView>();
         animator = GetComponent<Animator>();
-       
+        gameObject.transform.SetParent(PopupManager.Instance.currentMap.transform);
     }
     //tính toán tọa độ bước đi
     private void CalculateMove(GameObject move)
@@ -130,19 +130,29 @@ public class PlayerControllerInArena : MonoBehaviour
                         {
                             case "btn_Left(Clone)":
                                 GetComponent<SpriteRenderer>().flipX = false;
-                                Debug.Log("lefttt");
-                                animator.SetBool("sideB",true);
+                                animator.SetBool("side",true);
+                                animator.SetBool("up", false);
+                                animator.SetBool("down", false);
                                 //ChangeAnimationState("walk_Side");
                                 break;
                             case "btn_Right(Clone)":
                                 GetComponent<SpriteRenderer>().flipX = true;
-                                ChangeAnimationState("walk_Side");
+                                //ChangeAnimationState("walk_Side");
+                                animator.SetBool("side", true);
+                                animator.SetBool("up", false);
+                                animator.SetBool("down", false);
                                 break;
                             case "btn_Up(Clone)":
-                                ChangeAnimationState("walk_Up");
+                                //ChangeAnimationState("walk_Up");
+                                animator.SetBool("up", true);
+                                animator.SetBool("side", false);
+                                animator.SetBool("down", false);
                                 break;
                             case "btn_Down(Clone)":
-                                ChangeAnimationState("walk_Down");
+                                //ChangeAnimationState("walk_Down");
+                                animator.SetBool("down", true);
+                                animator.SetBool("up", false);
+                                animator.SetBool("side", false);
                                 break;
                         }
                         //di chuyển nhân vật
@@ -157,24 +167,28 @@ public class PlayerControllerInArena : MonoBehaviour
                             GameController.Instance.run = false;
                             if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("walk_Up"))
                             {
-                                ChangeAnimationState("idle_Up");
+                                //ChangeAnimationState("idle_Up");
+                                animator.SetBool("idleUP", true);
                             }
                             else if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("walk_Down"))
                             {
                                 Debug.Log("In_Down");
-                                ChangeAnimationState("idle_Down");
+                                // ChangeAnimationState("idle_Down");
+                                animator.SetBool("idleDown", true);
                             }
                             else if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("walk_Side"))
                             {
                                 if (GameController.Instance.listBtnMain[cursorInMainList - 1].name == "btn_Right(Clone)")
                                 {
                                     GetComponent<SpriteRenderer>().flipX = true;
-                                    ChangeAnimationState("idle_Side");
+                                   //ChangeAnimationState("idle_Side");
+                                    animator.SetBool("idleSide", true);
                                 }
                                 else if (GameController.Instance.listBtnMain[cursorInMainList - 1].name == "btn_Left(Clone)")
                                 {
                                     GetComponent<SpriteRenderer>().flipX = false;
-                                    ChangeAnimationState("idle_Side");
+                                    //ChangeAnimationState("idle_Side");
+                                    animator.SetBool("idleSide", true);
                                 }
                             }
                             if (checkFootStep == false && checkReplay == false)
