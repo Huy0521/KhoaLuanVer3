@@ -9,6 +9,7 @@ using Photon.Realtime;
 
 public class Panel_DieuKhien : MonoBehaviourPunCallbacks
 {
+    float otherPlayertime;
     [Header("List")]
     public List<GameObject> listBtnPos;//List GameObject để Instantiate button
     [SerializeField] private List<PlayerInfor> listPlayerInfor = new List<PlayerInfor>();

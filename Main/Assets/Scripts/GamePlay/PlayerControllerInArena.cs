@@ -168,7 +168,7 @@ public class PlayerControllerInArena : MonoBehaviour
                             if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("walk_Up"))
                             {
                                 //ChangeAnimationState("idle_Up");
-                                animator.SetBool("idleUP", true);
+                                animator.SetBool("idleUp", true);
                             }
                             else if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("walk_Down"))
                             {
