@@ -15,13 +15,15 @@ public class PlayerControllerInArena : MonoBehaviour
     [SerializeField] private ParticleSystem hitPartical;
     private bool checkFootStep = false;
     private bool checkReplay = false;
+    private Animator animator;
     int ifNumber = 0;
     int ifJson = 0;
     PhotonView view;
     private void Start()
     {
         view = GetComponent<PhotonView>();
-        currentposition = transform.localPosition;
+        animator = GetComponent<Animator>();
+       
     }
     //tính toán tọa độ bước đi
     private void CalculateMove(GameObject move)
@@ -105,6 +107,7 @@ public class PlayerControllerInArena : MonoBehaviour
         futurePosition.Clear();
 
         GameController.Instance.listBtnMain.Clear();
+        currentposition = transform.localPosition;
         for (int i = 0; i < GameController.Instance.listButton.Count; i++)
         {
             CalculateMove(GameController.Instance.listButton[i]);
@@ -127,7 +130,9 @@ public class PlayerControllerInArena : MonoBehaviour
                         {
                             case "btn_Left(Clone)":
                                 GetComponent<SpriteRenderer>().flipX = false;
-                                ChangeAnimationState("walk_Side");
+                                Debug.Log("lefttt");
+                                animator.SetBool("sideB",true);
+                                //ChangeAnimationState("walk_Side");
                                 break;
                             case "btn_Right(Clone)":
                                 GetComponent<SpriteRenderer>().flipX = true;
