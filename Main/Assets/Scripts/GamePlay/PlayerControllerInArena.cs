@@ -27,7 +27,8 @@ public class PlayerControllerInArena : MonoBehaviour
         gameObject.transform.SetParent(PopupManager.Instance.currentMap.transform);
         if (view.IsMine)
         {
-            LeanTween.rotateAround(isMe, Vector3.up, 360, 3f).setLoopClamp();
+            isMe.gameObject.LeanMoveLocal(new Vector2(isMe.transform.localPosition.x, isMe.transform.localPosition.y + 0.3f), 0.8f ).setLoopPingPong();
+            LeanTween.rotateAround(isMe, Vector3.up, 360, 2.5f).setLoopClamp();
             isMe.SetActive(true);
         }
     }
