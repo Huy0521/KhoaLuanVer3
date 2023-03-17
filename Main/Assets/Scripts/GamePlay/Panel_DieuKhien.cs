@@ -14,7 +14,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
     public List<GameObject> listBtnPos;//List GameObject để Instantiate button
     [SerializeField] private List<PlayerInfor> listPlayerInfor = new List<PlayerInfor>();
     [Header("Int")]
-    private int vitri;//Con trỏ xác định index trong listBtnPos
+    public int vitri;//Con trỏ xác định index trong listBtnPos
     public int posOfList; //Con trỏ xác định index trong GameController.Instance.listScreenAdd
     private int clickState = 0;//Biến điếm dùng để check các bước trong game tutorial
     public int numberPlayerAns=0;
@@ -176,7 +176,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
         btn_Right.onClick.AddListener(right_Click);
         btn_Up.onClick.AddListener(up_Click);
         btn_Down.onClick.AddListener(down_Click);
-        btn_Play.onClick.AddListener(play_Click);
+       
         btn_Delete.onClick.AddListener(delete_Click);
         btn_Loop.onClick.AddListener(loop_Click);
         btn_If.onClick.AddListener(if_Click);
@@ -202,6 +202,11 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
         if(PopupManager.Instance.isArena==true)
         {
             btn_Loop.gameObject.SetActive(true);
+            btn_Play.onClick.AddListener(PlayinArena);
+        }
+        else
+        {
+            btn_Play.onClick.AddListener(play_Click);
         }
         btn_Yes.gameObject.SetActive(false);
         btn_No.gameObject.SetActive(false);
@@ -421,9 +426,27 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
         AudioManager.Instance.PlaySound(Sound.Button);
         move(btn_Down);
     }
+    private void PlayinArena()
+    {
+        AudioManager.Instance.PlaySound(Sound.Button);
+        btn_Play.enabled = false;
+        btn_Delete.enabled = false;
+        btn_Play.image.sprite = btnPlayOff;
+        if (GameController.Instance.listButton.Count > 0)
+        {
+            btn_Play.enabled = false;
+            btn_Delete.enabled = false;
+            btn_Play.image.sprite = btnPlayOff;
+            Time.stopTime();
+            PopupManager.Instance.playerControllerInArena.SendAnsReady();
+        }
+        else
+        {
+            PopupManager.Instance.ShowNotification(PopupManager.Instance.canvas, "Hiện không có câu lệnh để thực hiện!", 1.8f, null);
+        }
+    }
     private void play_Click()
     {
-        PopupManager.Instance.playerControllerInArena.SendAnsReady();
         AudioManager.Instance.PlaySound(Sound.Button);
       
         if (GameController.Instance.listButton.Count > 0)
@@ -431,15 +454,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
             btn_Play.enabled = false;
             btn_Delete.enabled = false;
             btn_Play.image.sprite = btnPlayOff;
-            if (PopupManager.Instance.playerController != null)
-            {
-                PopupManager.Instance.playerController.playCharacter();
-            }
-            else
-            {
-                PopupManager.Instance.playerControllerInArena.playCharacter();
-            }
-           
+            PopupManager.Instance.playerController.playCharacter();
             Time.stopTime();
         }
         else
@@ -453,6 +468,13 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
         btn_Play.enabled = true;
         btn_Delete.enabled = true;
         btn_Play.image.sprite = btnPlayOn;
+        for(int i = 0;i<GameController.Instance.listButton.Count;i++) 
+        {
+            Destroy(listBtnPos[i].transform.GetChild(0).gameObject);
+        }
+        PopupManager.Instance.currentDashboard.numberPlayerAns = 0;
+        vitri = 0;
+        Time.ResetTime();
     }
     public override void OnLeftRoom()
     {

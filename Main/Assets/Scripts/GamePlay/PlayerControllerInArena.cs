@@ -13,22 +13,28 @@ public class PlayerControllerInArena : MonoBehaviour
     public List<Vector3> futurePosition;
     private Vector3 currentposition;
     [SerializeField] private ParticleSystem hitPartical;
-    private bool checkFootStep = false;
-    private bool checkReplay = false;
+    public bool checkFootStep = false;
+    public bool checkReplay = false;
     private Animator animator;
     int ifNumber = 0;
     int ifJson = 0;
     PhotonView view;
+    [SerializeField] private GameObject isMe;
     private void Start()
     {
         view = GetComponent<PhotonView>();
         animator = GetComponent<Animator>();
         gameObject.transform.SetParent(PopupManager.Instance.currentMap.transform);
+        if (view.IsMine)
+        {
+            LeanTween.rotateAround(isMe, Vector3.up, 360, 3f).setLoopClamp();
+            isMe.SetActive(true);
+        }
     }
     //tính toán tọa độ bước đi
     private void CalculateMove(GameObject move)
     {
-
+        Debug.Log("CalculateMove");
         switch (move.name)
         {
             case "btn_Left(Clone)":
@@ -63,7 +69,6 @@ public class PlayerControllerInArena : MonoBehaviour
                 numberLoopScreen++;
                 break;
             case "btn_If(Clone)":
-
                 string a = "";
                 IfScreen ifScreen = GameController.Instance.listScreenAdd[ifNumber].GetComponent<IfScreen>();
                 if (ifScreen.listBtnIf.Count > 0 && ifScreen.listBtndoIf.Count > 0)
@@ -119,7 +124,7 @@ public class PlayerControllerInArena : MonoBehaviour
     {
        if(view.IsMine)
         {
-            if (GameController.Instance.run == true && PopupManager.Instance.currentDashboard.numberPlayerAns==2    )
+            if (GameController.Instance.run == true )
             {
                 if (GameController.Instance.listBtnMain.Count > 0)
                 {
@@ -133,6 +138,9 @@ public class PlayerControllerInArena : MonoBehaviour
                                 animator.SetBool("side",true);
                                 animator.SetBool("up", false);
                                 animator.SetBool("down", false);
+                                animator.SetBool("idleUp", false);
+                                animator.SetBool("idleDown", false);
+                                animator.SetBool("idleSide", false);
                                 //ChangeAnimationState("walk_Side");
                                 break;
                             case "btn_Right(Clone)":
@@ -141,18 +149,27 @@ public class PlayerControllerInArena : MonoBehaviour
                                 animator.SetBool("side", true);
                                 animator.SetBool("up", false);
                                 animator.SetBool("down", false);
+                                animator.SetBool("idleUp", false);
+                                animator.SetBool("idleDown", false);
+                                animator.SetBool("idleSide", false);
                                 break;
                             case "btn_Up(Clone)":
                                 //ChangeAnimationState("walk_Up");
                                 animator.SetBool("up", true);
                                 animator.SetBool("side", false);
                                 animator.SetBool("down", false);
+                                animator.SetBool("idleUp", false);
+                                animator.SetBool("idleDown", false);
+                                animator.SetBool("idleSide", false);
                                 break;
                             case "btn_Down(Clone)":
                                 //ChangeAnimationState("walk_Down");
                                 animator.SetBool("down", true);
                                 animator.SetBool("up", false);
                                 animator.SetBool("side", false);
+                                animator.SetBool("idleUp", false);
+                                animator.SetBool("idleDown", false);
+                                animator.SetBool("idleSide", false);
                                 break;
                         }
                         //di chuyển nhân vật
@@ -169,34 +186,60 @@ public class PlayerControllerInArena : MonoBehaviour
                             {
                                 //ChangeAnimationState("idle_Up");
                                 animator.SetBool("idleUp", true);
+                                animator.SetBool("down", false);
+                                animator.SetBool("up", false);
+                                animator.SetBool("side", false);
+                                AudioManager.Instance.StopEffect();
+                                view.RPC("ResetforNextFight", RpcTarget.All);
                             }
                             else if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("walk_Down"))
                             {
                                 Debug.Log("In_Down");
                                 // ChangeAnimationState("idle_Down");
                                 animator.SetBool("idleDown", true);
+                                animator.SetBool("down", false);
+                                animator.SetBool("up", false);
+                                animator.SetBool("side", false);
+                                AudioManager.Instance.StopEffect();
+                                view.RPC("ResetforNextFight", RpcTarget.All);
                             }
                             else if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("walk_Side"))
                             {
+                                Debug.Log("aaa");
                                 if (GameController.Instance.listBtnMain[cursorInMainList - 1].name == "btn_Right(Clone)")
                                 {
+                                    Debug.Log("bbb");
                                     GetComponent<SpriteRenderer>().flipX = true;
                                    //ChangeAnimationState("idle_Side");
                                     animator.SetBool("idleSide", true);
+                                    animator.SetBool("down", false);
+                                    animator.SetBool("up", false);
+                                    animator.SetBool("side", false);
+                                    AudioManager.Instance.StopEffect();
+                                    view.RPC("ResetforNextFight", RpcTarget.All);
+                             
                                 }
                                 else if (GameController.Instance.listBtnMain[cursorInMainList - 1].name == "btn_Left(Clone)")
                                 {
                                     GetComponent<SpriteRenderer>().flipX = false;
                                     //ChangeAnimationState("idle_Side");
                                     animator.SetBool("idleSide", true);
+                                    animator.SetBool("down", false);
+                                    animator.SetBool("up", false);
+                                    animator.SetBool("side", false);
+                                    AudioManager.Instance.StopEffect();
+                                    view.RPC("ResetforNextFight", RpcTarget.All);
+                                    
                                 }
                             }
-                            if (checkFootStep == false && checkReplay == false)
+                           /* if (checkFootStep == false && checkReplay == false)
                             {
                                 AudioManager.Instance.StopEffect();
-                                checkFootStep = true;
+                                //checkFootStep = true;
+                                view.RPC("ResetforNextFight", RpcTarget.All);
                                 //Invoke("Replay", 1);
-                            }
+                            }*/
+                            
                         }
 
                     }
@@ -229,8 +272,11 @@ public class PlayerControllerInArena : MonoBehaviour
     [PunRPC]
     private void ResetforNextFight()
     {
-        GameController.Instance.ResetGameController();
+        cursorInMainList = 0;
+        numberLoopScreen = 0;
         PopupManager.Instance.currentDashboard.ResetPlayClick();
+        GameController.Instance.ResetGameController();
+     
     }
     [PunRPC]
     private void EndGame()
@@ -241,6 +287,11 @@ public class PlayerControllerInArena : MonoBehaviour
     private void CheckAnsReady()
     {
         PopupManager.Instance.currentDashboard.numberPlayerAns++;
+        if(PopupManager.Instance.currentDashboard.numberPlayerAns==2)
+        {
+            PopupManager.Instance.playerControllerInArena.playCharacter();
+        
+        }
     }
     public void SendAnsReady()
     {

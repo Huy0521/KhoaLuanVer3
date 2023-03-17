@@ -38,8 +38,15 @@ public class GameController : MonoBehaviour
     public void ResetGameController()
     {
         listButton.Clear();
-        listBtnMain.Clear();
+
+       listBtnMain.Clear();
+        for (int i=0;i<listScreenAdd.Count;i++)
+        {
+            Destroy(listScreenAdd[i].GetComponent<LoopScreen>().currentBtn);
+            Destroy(listScreenAdd[i]);
+        }
         listScreenAdd.Clear();
+
         run = false;
         shadedRun = false;
         chooseBtn = SpecialBtn.none;

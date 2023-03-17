@@ -27,4 +27,9 @@ public class CountdownTimer : MonoBehaviour
         timerIsRunning = false;
         timeRemaining = 0;
     }
+    public void ResetTime()
+    {
+        timeRemaining = 0; 
+        timerIsRunning = true;
+    }
 }
