@@ -31,7 +31,7 @@ public class PopupManager : MonoBehaviour
     [HideInInspector] public Character character;//Check nhân vật được người chơi chọn
     public float timeRemaining;
     public bool isArena = false;
-
+    public GameObject arenaEndGame;
     public static PopupManager Instance
     {
         get

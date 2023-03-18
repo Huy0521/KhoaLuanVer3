@@ -202,7 +202,9 @@ MonoBehaviour:
   hitPartical: {fileID: 5041627570695909863}
   checkFootStep: 0
   checkReplay: 0
+  view: {fileID: 0}
   isMe: {fileID: 8718375304322924310}
+  endGame: {fileID: 6242086254286070345, guid: 79364c1d5b2600547852a8da5101adb8, type: 3}
 --- !u!114 &-4169374280416073818
 MonoBehaviour:
   m_ObjectHideFlags: 0

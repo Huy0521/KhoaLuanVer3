@@ -9,7 +9,8 @@ using Photon.Realtime;
 
 public class Panel_DieuKhien : MonoBehaviourPunCallbacks
 {
-    float otherPlayertime;
+    public float otherPlayerTime;
+    public float myTime;
     [Header("List")]
     public List<GameObject> listBtnPos;//List GameObject để Instantiate button
     [SerializeField] private List<PlayerInfor> listPlayerInfor = new List<PlayerInfor>();
@@ -30,6 +31,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject header;
     [SerializeField] private GameObject body;
     [SerializeField] private GameObject btnZone;//Khu vực các nút điều khiểu cho GamePlay dùng làm game tutorial
+   
     [Header("Button")]
     [SerializeField] private Button btn_Left;//Nút rẽ trái
     [SerializeField] private Button btn_Right;//Nút rẽ phải
@@ -46,7 +48,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
     [SerializeField] private Button BtnIfScreen;//Nút bật màn rẽ nhánh
     [SerializeField] private Button BtnMainScreen;//Nút bật màn hình chính
     [Header("Scripts")]
-    [SerializeField] private CountdownTimer Time;//Script đếm thời gian
+    public CountdownTimer Time;//Script đếm thời gian
     [SerializeField] private CustomMask customMask;//Script panel phủ để làm game tutorial
     [Header("UI")]
    
@@ -61,7 +63,16 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
     [SerializeField] private Sprite btnPlayOn;
     private void Start()
     {
-       
+       if(PopupManager.Instance.isArena==true)
+        {
+            listPlayerInfor[0].gameObject.SetActive(true);
+            listPlayerInfor[1].gameObject.SetActive(true);
+        }
+        else
+        {
+            listPlayerInfor[0].gameObject.SetActive(false);
+            listPlayerInfor[1].gameObject.SetActive(false);
+        }
         /*header.GetComponent<RectTransform>().localPosition = new Vector3(33,-30,0);
         btnZone.GetComponent<RectTransform>().localPosition = new Vector3(-0.2f, -700, 0);
         body.GetComponent<RectTransform>().localPosition = new Vector3(-145, 4.9f, 0);*/
@@ -436,8 +447,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
         {
             btn_Play.enabled = false;
             btn_Delete.enabled = false;
-            btn_Play.image.sprite = btnPlayOff;
-            Time.stopTime();
+            btn_Play.image.sprite = btnPlayOff; 
             PopupManager.Instance.playerControllerInArena.SendAnsReady();
         }
         else
@@ -480,7 +490,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
     {
         SceneManager.LoadScene("SampleScene");
     }
-    private void close_Click()
+    public void close_Click()
     {
         AudioManager.Instance.PlaySound(Sound.Button);
         if (PopupManager.Instance.isArena==false)
@@ -494,6 +504,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
         else
         {
             PhotonNetwork.LeaveRoom();
+            PhotonNetwork.Disconnect();
         }
        
     }
@@ -646,6 +657,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
         }    
 
     }
+
     public void UpdatePlayerInfor()
     {
         int i = 0;
@@ -655,6 +667,13 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
             {
                 listPlayerInfor[i].SetPlayerInfor(player.Value);
                 i++;
+            }
+            if(i==2)
+            {
+                if(PopupManager.Instance.playerControllerInArena!=null)
+                {
+                    PopupManager.Instance.playerControllerInArena.view.RPC("StartTime", RpcTarget.All);
+                }    
             }
         }
     }

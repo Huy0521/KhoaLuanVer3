@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using Photon.Realtime;
+
 public class PlayerControllerInArena : MonoBehaviour
 {
     private int finishNumber;
@@ -18,16 +20,23 @@ public class PlayerControllerInArena : MonoBehaviour
     private Animator animator;
     int ifNumber = 0;
     int ifJson = 0;
-    PhotonView view;
+    public PhotonView view;
     [SerializeField] private GameObject isMe;
-    private void Start()
+    [SerializeField] private GameObject endGame;
+
+    private void Awake()
     {
         view = GetComponent<PhotonView>();
+    }
+    private void Start()
+    {
+
         animator = GetComponent<Animator>();
         gameObject.transform.SetParent(PopupManager.Instance.currentMap.transform);
+       
         if (view.IsMine)
         {
-            isMe.gameObject.LeanMoveLocal(new Vector2(isMe.transform.localPosition.x, isMe.transform.localPosition.y + 0.3f), 0.8f ).setLoopPingPong();
+            isMe.gameObject.LeanMoveLocal(new Vector2(isMe.transform.localPosition.x, isMe.transform.localPosition.y + 0.3f), 0.8f).setLoopPingPong();
             LeanTween.rotateAround(isMe, Vector3.up, 360, 2.5f).setLoopClamp();
             isMe.SetActive(true);
         }
@@ -123,9 +132,9 @@ public class PlayerControllerInArena : MonoBehaviour
     }
     private void Update()
     {
-       if(view.IsMine)
+        if (view.IsMine)
         {
-            if (GameController.Instance.run == true )
+            if (GameController.Instance.run == true)
             {
                 if (GameController.Instance.listBtnMain.Count > 0)
                 {
@@ -136,7 +145,7 @@ public class PlayerControllerInArena : MonoBehaviour
                         {
                             case "btn_Left(Clone)":
                                 GetComponent<SpriteRenderer>().flipX = false;
-                                animator.SetBool("side",true);
+                                animator.SetBool("side", true);
                                 animator.SetBool("up", false);
                                 animator.SetBool("down", false);
                                 animator.SetBool("idleUp", false);
@@ -211,14 +220,14 @@ public class PlayerControllerInArena : MonoBehaviour
                                 {
                                     Debug.Log("bbb");
                                     GetComponent<SpriteRenderer>().flipX = true;
-                                   //ChangeAnimationState("idle_Side");
+                                    //ChangeAnimationState("idle_Side");
                                     animator.SetBool("idleSide", true);
                                     animator.SetBool("down", false);
                                     animator.SetBool("up", false);
                                     animator.SetBool("side", false);
                                     AudioManager.Instance.StopEffect();
                                     view.RPC("ResetforNextFight", RpcTarget.All);
-                             
+
                                 }
                                 else if (GameController.Instance.listBtnMain[cursorInMainList - 1].name == "btn_Left(Clone)")
                                 {
@@ -230,17 +239,17 @@ public class PlayerControllerInArena : MonoBehaviour
                                     animator.SetBool("side", false);
                                     AudioManager.Instance.StopEffect();
                                     view.RPC("ResetforNextFight", RpcTarget.All);
-                                    
+
                                 }
                             }
-                           /* if (checkFootStep == false && checkReplay == false)
-                            {
-                                AudioManager.Instance.StopEffect();
-                                //checkFootStep = true;
-                                view.RPC("ResetforNextFight", RpcTarget.All);
-                                //Invoke("Replay", 1);
-                            }*/
-                            
+                            /* if (checkFootStep == false && checkReplay == false)
+                             {
+                                 AudioManager.Instance.StopEffect();
+                                 //checkFootStep = true;
+                                 view.RPC("ResetforNextFight", RpcTarget.All);
+                                 //Invoke("Replay", 1);
+                             }*/
+
                         }
 
                     }
@@ -277,22 +286,41 @@ public class PlayerControllerInArena : MonoBehaviour
         numberLoopScreen = 0;
         PopupManager.Instance.currentDashboard.ResetPlayClick();
         GameController.Instance.ResetGameController();
-     
+
     }
     [PunRPC]
     private void EndGame()
     {
-        PopupManager.Instance.ShowNotification(PopupManager.Instance.canvas, "EndGame", 1.8f, null);
+        if (PopupManager.Instance.arenaEndGame == null)
+        {
+            PopupManager.Instance.arenaEndGame = Instantiate(endGame, PopupManager.Instance.canvas.transform);
+        }
     }
     [PunRPC]
     private void CheckAnsReady()
     {
         PopupManager.Instance.currentDashboard.numberPlayerAns++;
-        if(PopupManager.Instance.currentDashboard.numberPlayerAns==2)
+        if (view.IsMine == false)
+        {
+            PopupManager.Instance.currentDashboard.otherPlayerTime = PopupManager.Instance.currentDashboard.Time.otherPlayerTime;
+            PopupManager.Instance.currentDashboard.Time.stopOtherPlayerTime();
+        }
+        else
+        {
+            PopupManager.Instance.currentDashboard.myTime = PopupManager.Instance.currentDashboard.Time.timeRemaining;
+            PopupManager.Instance.currentDashboard.Time.stopTime();
+        }
+        if (PopupManager.Instance.currentDashboard.numberPlayerAns == 2)
         {
             PopupManager.Instance.playerControllerInArena.playCharacter();
-        
+
         }
+    }
+    [PunRPC]
+    public void StartTime()
+    {
+        PopupManager.Instance.currentDashboard.Time.timerIsRunning = true;
+        PopupManager.Instance.currentDashboard.Time.otherTimeisRunning = true;
     }
     public void SendAnsReady()
     {
@@ -341,7 +369,7 @@ public class PlayerControllerInArena : MonoBehaviour
                 break;
             case "Player":
                 //view.RPC("ResetforNextFight",RpcTarget.All);
-                view.RPC("EndGame",RpcTarget.All);
+                view.RPC("EndGame", RpcTarget.All);
                 break;
         }
     }
