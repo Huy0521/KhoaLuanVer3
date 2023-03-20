@@ -11,9 +11,6 @@ public class CreateAndJoinRoom : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject level;
     [SerializeField] private TMP_InputField ipRoomName;
     [SerializeField] private TMP_InputField ipRoomJoin;
-    [SerializeField] private GameObject room;
-    [SerializeField] private TMP_Text roomName;
-    [SerializeField] private Button btn_LeaveRoom;
 
     void Start()
     {
@@ -51,10 +48,6 @@ public class CreateAndJoinRoom : MonoBehaviourPunCallbacks
     public void LeaveRoom_Click()
     {
         PhotonNetwork.LeaveRoom();
-    }
-    public override void OnLeftRoom()
-    {
-        room.SetActive(false);
     }
    public void StarGame_Click()
     {
