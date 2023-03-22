@@ -40,7 +40,6 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
     [SerializeField] private Button btn_Down;//Nút đi xuống
     [SerializeField] private Button btn_Loop;//Nút vòng lặp
     [SerializeField] private Button btn_If;
-    [SerializeField] private Button btn_Yes;
     public Button btn_No;
     [SerializeField] private Button btn_Play;//Nút chơi
     [SerializeField] private Button btn_Delete;//Nút xóa
@@ -193,7 +192,6 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
         btn_Loop.onClick.AddListener(loop_Click);
         btn_If.onClick.AddListener(if_Click);
         btn_No.onClick.AddListener(no_Click);
-        btn_Yes.onClick.AddListener(yes_Click);
         btn_Close.onClick.AddListener(close_Click);
         //Tắt bật các nút hỗ trợ cho từng chức năng
         switch (PopupManager.Instance.loaibai)
@@ -220,7 +218,6 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
         {
             btn_Play.onClick.AddListener(play_Click);
         }
-        btn_Yes.gameObject.SetActive(false);
         btn_No.gameObject.SetActive(false);
     }
     //Set kích cỡ cho các nút 
@@ -409,10 +406,6 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
         GameController.Instance.listButton.Add(gb);
         vitri++;
         btn_If.gameObject.SetActive(false);
-    }
-    private void yes_Click()
-    {
-        move(btn_Yes);
     }
     private void no_Click()
     {

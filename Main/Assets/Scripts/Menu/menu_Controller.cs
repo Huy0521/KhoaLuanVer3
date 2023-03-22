@@ -20,7 +20,8 @@ public class menu_Controller : MonoBehaviourPunCallbacks
     [SerializeField] private List<GameObject> listTuantu;//List cơ bản khi đi từ Cutscene vào
     [SerializeField] private GameObject panelLoading;
     [SerializeField] private GameObject panelIpName;
-   
+    [SerializeField] private Button btn_Fb;
+    [SerializeField] private Button btn_Gm;
     private void Start()
     {
         PopupManager.Instance.isArena = false;
@@ -50,6 +51,8 @@ public class menu_Controller : MonoBehaviourPunCallbacks
         btn_Medal.onClick.AddListener(medal_Click);
         btn_Setting.onClick.AddListener(setting_Click);
         btn_ArenaZone.onClick.AddListener(Arena_Click);
+        btn_Fb.onClick.AddListener(Fb_Click);
+        btn_Gm.onClick.AddListener(Gmail_Click);
     }
     //Vào chọn chủ đề
     private void newgame_Click()
@@ -89,5 +92,13 @@ public class menu_Controller : MonoBehaviourPunCallbacks
         AudioManager.Instance.PlaySound(Sound.Button);
         panelIpName.SetActive(true);
     }
-
+    private void Fb_Click()
+    {
+        Application.OpenURL("");
+    }
+    private void Gmail_Click()
+    {
+        string t = "mailto:thankhuya4@gmail.com?subject=PhanhoiveGame";
+        Application.OpenURL(t);
+    }
 }
