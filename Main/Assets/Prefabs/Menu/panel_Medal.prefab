@@ -717,25 +717,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8416909399837585021}
     m_Modifications:
-    - target: {fileID: 1716864695083190308, guid: 58786e641756d714a922f78624c4eaf0, type: 3}
-      propertyPath: m_text
-      value: ????????
-      objectReference: {fileID: 0}
     - target: {fileID: 1810691931801967722, guid: 58786e641756d714a922f78624c4eaf0, type: 3}
       propertyPath: m_Name
       value: ItemMedal
-      objectReference: {fileID: 0}
-    - target: {fileID: 1810691931801967724, guid: 58786e641756d714a922f78624c4eaf0, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1810691931801967724, guid: 58786e641756d714a922f78624c4eaf0, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1810691931801967724, guid: 58786e641756d714a922f78624c4eaf0, type: 3}
-      propertyPath: m_Color.r
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1810691931801967725, guid: 58786e641756d714a922f78624c4eaf0, type: 3}
       propertyPath: m_Pivot.x
@@ -821,27 +805,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2858178903264864480, guid: 58786e641756d714a922f78624c4eaf0, type: 3}
-      propertyPath: m_text
-      value: ???
-      objectReference: {fileID: 0}
-    - target: {fileID: 8428922974864576079, guid: 58786e641756d714a922f78624c4eaf0, type: 3}
-      propertyPath: imgMedal
-      value: 
-      objectReference: {fileID: 2160416452833838106}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58786e641756d714a922f78624c4eaf0, type: 3}
---- !u!114 &2160416452833838106 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1810691931801967724, guid: 58786e641756d714a922f78624c4eaf0, type: 3}
-  m_PrefabInstance: {fileID: 350025020051478646}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &2160416452833838107 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1810691931801967725, guid: 58786e641756d714a922f78624c4eaf0, type: 3}

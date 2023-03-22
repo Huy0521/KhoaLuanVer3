@@ -50,19 +50,20 @@ public class PanelMedal : MonoBehaviour
         }
         if (playstar == tongstar)
         {
-            listMedal[0].configView("Phi hành gia hoàn hảo", "Ghi nhận thành tích hoàn hảo của bạn khi vượt qua tất cả các mà chơi với số sao tuyệt đối.");
+            listMedal[0].configView("Phi hành gia hoàn hảo", "Ghi nhận thành tích hoàn hảo của bạn khi vượt qua tất cả các mà chơi với số sao tuyệt đối.",true);
+
         }
         if (time == playertime)
         {
-            listMedal[2].configView("Phi hành gia siêu tốc", "Ghi nhận tư duy thần tốc của bạn khi hoàn thành bài chơi ít hơn thời gian quy định.");
+            listMedal[2].configView("Phi hành gia siêu tốc", "Ghi nhận tư duy thần tốc của bạn khi hoàn thành bài chơi ít hơn thời gian quy định.",true);
         }
         if (check2sao == listAllMap.Count)
         {
-            listMedal[1].configView("Phi hành cao cấp", "Ghi nhận sự thông hiểu của bạn đối với các thuật toán được đưa ra.");
+            listMedal[1].configView("Phi hành cao cấp", "Ghi nhận sự thông hiểu của bạn đối với các thuật toán được đưa ra.", true);
         }
         if (playstar > 0)
         {
-            listMedal[9].configView("Mọi câu truyện đều có khởi đầu", "Đánh dấu lần đầu tiên bạn hoàn thành 1 bài chơi.");
+            listMedal[9].configView("Mọi câu truyện đều có khởi đầu", "Đánh dấu lần đầu tiên bạn hoàn thành 1 bài chơi.", true);
         }
     }
 }
