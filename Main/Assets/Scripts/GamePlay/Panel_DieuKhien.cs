@@ -9,6 +9,7 @@ using Photon.Realtime;
 
 public class Panel_DieuKhien : MonoBehaviourPunCallbacks
 {
+    public bool enoughPlayer = false;
     public float otherPlayerTime;
     public float myTime;
     [Header("List")]
@@ -18,7 +19,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
     public int vitri;//Con trỏ xác định index trong listBtnPos
     public int posOfList; //Con trỏ xác định index trong GameController.Instance.listScreenAdd
     private int clickState = 0;//Biến điếm dùng để check các bước trong game tutorial
-    public int numberPlayerAns=0;
+    public int numberPlayerAns = 0;
     [Header("GameObject")]
     [SerializeField] private GameObject Zone;//Lấy vị trí GameObject để Instantiate số bước được đi từ json
     [SerializeField] private GameObject postisionForbtn;//Instantiate ô trống vào để điền nút
@@ -31,7 +32,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject header;
     [SerializeField] private GameObject body;
     [SerializeField] private GameObject btnZone;//Khu vực các nút điều khiểu cho GamePlay dùng làm game tutorial
-   
+
     [Header("Button")]
     [SerializeField] private Button btn_Left;//Nút rẽ trái
     [SerializeField] private Button btn_Right;//Nút rẽ phải
@@ -51,7 +52,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
     public CountdownTimer Time;//Script đếm thời gian
     [SerializeField] private CustomMask customMask;//Script panel phủ để làm game tutorial
     [Header("UI")]
-   
+
     [SerializeField] private RectTransform mainScreen;//Màn hình chứa các điều khiểu dc chọn cho GamePlay dùng làm gametutorial
     [SerializeField] private RectTransform leftGameSceen;//mà hình bên trái khu hiển thị màn chơi dùng làm gametutorial
     [SerializeField] private Image background;//Nền phía sau
@@ -63,7 +64,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
     [SerializeField] private Sprite btnPlayOn;
     private void Start()
     {
-       if(PopupManager.Instance.isArena==true)
+        if (PopupManager.Instance.isArena == true)
         {
             listPlayerInfor[0].gameObject.SetActive(true);
             listPlayerInfor[1].gameObject.SetActive(true);
@@ -78,7 +79,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
         body.GetComponent<RectTransform>().localPosition = new Vector3(-145, 4.9f, 0);*/
         LeanTween.moveLocalY(header, 200, 0.65f).setEaseOutQuad();
         LeanTween.moveLocalY(btnZone, -390, 0.65f).setEaseOutQuad();
-        LeanTween.moveLocalX(body,-450f,0.65f).setEaseOutQuad();
+        LeanTween.moveLocalX(body, -450f, 0.65f).setEaseOutQuad();
         //Reset giá trị khi mới bắt đầu game
         GameController.Instance.ResetGameController();
         //Bật hướng dẫn chơi
@@ -97,15 +98,15 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
         {
             case Loaibai.tuantu:
                 background.sprite = spaceEnvironment;
-               if(PopupManager.instance.currentLevel.level == 3.ToString())
+                if (PopupManager.instance.currentLevel.level == 3.ToString())
                 {
-                    PopupManager.Instance.ShowNotification(gameObject, "Hố đen đang biến động! Nhưng nhiệm vụ của chúng ta không thay đổi. Hãy đi qua tất cả hố đen!",5f,null);
-                    
+                    PopupManager.Instance.ShowNotification(gameObject, "Hố đen đang biến động! Nhưng nhiệm vụ của chúng ta không thay đổi. Hãy đi qua tất cả hố đen!", 5f, null);
+
                 }
                 break;
             case Loaibai.vonglap:
                 background.sprite = lavaEnvironment;
-                if(PopupManager.Instance.listmap.vonglap[0].star < 1)
+                if (PopupManager.Instance.listmap.vonglap[0].star < 1)
                 {
                     customMask.gameObject.SetActive(true);
                     customMask.GetComponent<Canvas>().sortingLayerName = "Ground";
@@ -126,7 +127,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
                 }
                 break;
         }
-   
+
         //Instantiate các ô trống để chứa nút
         if (PopupManager.Instance.currentLevel.sobuoc == 0)
         {
@@ -144,7 +145,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
                 listBtnPos.Add(gb);
             }
         }
-      
+
 
         vitri = 0;
         if (PopupManager.Instance.loaibai == Loaibai.renhanh)
@@ -187,7 +188,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
         btn_Right.onClick.AddListener(right_Click);
         btn_Up.onClick.AddListener(up_Click);
         btn_Down.onClick.AddListener(down_Click);
-       
+
         btn_Delete.onClick.AddListener(delete_Click);
         btn_Loop.onClick.AddListener(loop_Click);
         btn_If.onClick.AddListener(if_Click);
@@ -210,7 +211,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
                 btn_Loop.gameObject.SetActive(false);
                 break;
         }
-        if(PopupManager.Instance.isArena==true)
+        if (PopupManager.Instance.isArena == true)
         {
             btn_Loop.gameObject.SetActive(true);
             btn_Play.onClick.AddListener(PlayinArena);
@@ -240,7 +241,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
                 if (vitri < listBtnPos.Count)
                 {
                     GameObject gb = Instantiate(btn.gameObject, listBtnPos[vitri].transform);
-                    gb.GetComponent<Image>().color = new Color(1,1,1,0.5f);
+                    gb.GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
                     SetRectransfrom(gb);
                     GameController.Instance.listButton.Add(gb);
                     vitri++;
@@ -324,13 +325,13 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
                     }
                     else
                     {
-                        PopupManager.Instance.ShowNotification(PopupManager.Instance.canvas, "Không thể xóa các bước đi cố định!",1.8f,null);
+                        PopupManager.Instance.ShowNotification(PopupManager.Instance.canvas, "Không thể xóa các bước đi cố định!", 1.8f, null);
                     }
 
                 }
                 else
                 {
-                    PopupManager.Instance.ShowNotification(PopupManager.Instance.canvas, "Hiện không còn lệnh nào để xóa!", 1.8f,null);
+                    PopupManager.Instance.ShowNotification(PopupManager.Instance.canvas, "Hiện không còn lệnh nào để xóa!", 1.8f, null);
                 }
                 break;
             case SpecialBtn.loop:
@@ -343,7 +344,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
                 }
                 else
                 {
-                    PopupManager.Instance.ShowNotification(gameObject, "Hiện không còn lệnh nào để xóa!", 1.8f,null);
+                    PopupManager.Instance.ShowNotification(gameObject, "Hiện không còn lệnh nào để xóa!", 1.8f, null);
                 }
                 break;
             case SpecialBtn.ifElse:
@@ -357,7 +358,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
                 }
                 else
                 {
-                    PopupManager.Instance.ShowNotification(gameObject, "Hiện không còn lệnh nào để xóa!", 1.8f,null);
+                    PopupManager.Instance.ShowNotification(gameObject, "Hiện không còn lệnh nào để xóa!", 1.8f, null);
                 }
                 break;
             case SpecialBtn.doIf:
@@ -370,7 +371,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
                 }
                 else
                 {
-                    PopupManager.Instance.ShowNotification(gameObject, "Hiện không còn lệnh nào để xóa!", 1.8f,null);
+                    PopupManager.Instance.ShowNotification(gameObject, "Hiện không còn lệnh nào để xóa!", 1.8f, null);
                 }
                 break;
         }
@@ -379,7 +380,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
     private void loop_Click()
     {
         AudioManager.Instance.PlaySound(Sound.Button);
-        if (vitri<listBtnPos.Count)
+        if (vitri < listBtnPos.Count)
         {
             GameObject gb = Instantiate(btn_Loop.gameObject, listBtnPos[vitri].transform);//Instantiate vào vị trí trên màn hình
             gb.GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
@@ -440,25 +441,33 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
     private void PlayinArena()
     {
         AudioManager.Instance.PlaySound(Sound.Button);
-        btn_Play.enabled = false;
-        btn_Delete.enabled = false;
-        btn_Play.image.sprite = btnPlayOff;
-        if (GameController.Instance.listButton.Count > 0)
+        /*        btn_Play.enabled = false;
+                btn_Delete.enabled = false;
+                btn_Play.image.sprite = btnPlayOff;*/
+        if(enoughPlayer ==true)
         {
-            btn_Play.enabled = false;
-            btn_Delete.enabled = false;
-            btn_Play.image.sprite = btnPlayOff; 
-            PopupManager.Instance.playerControllerInArena.SendAnsReady();
+            if (GameController.Instance.listButton.Count > 0)
+            {
+                btn_Play.enabled = false;
+                btn_Delete.enabled = false;
+                btn_Play.image.sprite = btnPlayOff;
+                PopupManager.Instance.playerControllerInArena.SendAnsReady();
+            }
+            else
+            {
+                PopupManager.Instance.ShowNotification(PopupManager.Instance.canvas, "Hiện không có câu lệnh để thực hiện!", 1.8f, null);
+            }
         }
         else
         {
-            PopupManager.Instance.ShowNotification(PopupManager.Instance.canvas, "Hiện không có câu lệnh để thực hiện!", 1.8f, null);
+            PopupManager.Instance.ShowNotification(PopupManager.Instance.canvas, "Cần đủ 2 người để bắt đầu thi đấu!", 1.8f, null);
         }
+       
     }
     private void play_Click()
     {
         AudioManager.Instance.PlaySound(Sound.Button);
-      
+
         if (GameController.Instance.listButton.Count > 0)
         {
             btn_Play.enabled = false;
@@ -469,16 +478,16 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
         }
         else
         {
-            PopupManager.Instance.ShowNotification(PopupManager.Instance.canvas, "Hiện không có câu lệnh để thực hiện!", 1.8f,null);
+            PopupManager.Instance.ShowNotification(PopupManager.Instance.canvas, "Hiện không có câu lệnh để thực hiện!", 1.8f, null);
         }
-     
+
     }
     public void ResetPlayClick()
     {
         btn_Play.enabled = true;
         btn_Delete.enabled = true;
         btn_Play.image.sprite = btnPlayOn;
-        for(int i = 0;i<GameController.Instance.listButton.Count;i++) 
+        for (int i = 0; i < GameController.Instance.listButton.Count; i++)
         {
             Destroy(listBtnPos[i].transform.GetChild(0).gameObject);
         }
@@ -493,7 +502,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
     public void close_Click()
     {
         AudioManager.Instance.PlaySound(Sound.Button);
-        if (PopupManager.Instance.isArena==false)
+        if (PopupManager.Instance.isArena == false)
         {
             Destroy(gameObject);
             Destroy(PopupManager.Instance.currentMap);
@@ -506,7 +515,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
             PhotonNetwork.LeaveRoom();
             PhotonNetwork.Disconnect();
         }
-       
+
     }
     private void OpenMainScreen_click()
     {
@@ -543,7 +552,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
     public void Tutorial_click()
     {
         clickState++;
-        if(PopupManager.Instance.loaibai==Loaibai.tuantu)
+        if (PopupManager.Instance.loaibai == Loaibai.tuantu)
         {
             switch (clickState)
             {
@@ -575,7 +584,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
                     break;
             }
         }
-        else if(PopupManager.Instance.loaibai==Loaibai.vonglap)
+        else if (PopupManager.Instance.loaibai == Loaibai.vonglap)
         {
             switch (clickState)
             {
@@ -610,7 +619,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
                     break;
             }
         }
-        else if(PopupManager.Instance.loaibai==Loaibai.renhanh)
+        else if (PopupManager.Instance.loaibai == Loaibai.renhanh)
         {
             IfScreen ifScreen = GameController.Instance.listScreenAdd[0].GetComponent<IfScreen>();
             switch (clickState)
@@ -654,26 +663,26 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
                     customMask.gameObject.SetActive(false);
                     break;
             }
-        }    
+        }
 
     }
 
     public void UpdatePlayerInfor()
     {
         int i = 0;
-        if(PhotonNetwork.CurrentRoom !=null)
+        if (PhotonNetwork.CurrentRoom != null)
         {
             foreach (KeyValuePair<int, Player> player in PhotonNetwork.CurrentRoom.Players)
             {
                 listPlayerInfor[i].SetPlayerInfor(player.Value);
                 i++;
             }
-            if(i==2)
+            if (i == 2)
             {
-                if(PopupManager.Instance.playerControllerInArena!=null)
+                if (PopupManager.Instance.playerControllerInArena != null)
                 {
                     PopupManager.Instance.playerControllerInArena.view.RPC("StartTime", RpcTarget.All);
-                }    
+                }
             }
         }
     }

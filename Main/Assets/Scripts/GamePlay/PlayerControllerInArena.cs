@@ -215,32 +215,38 @@ public class PlayerControllerInArena : MonoBehaviour
                             }
                             else if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("walk_Side"))
                             {
-                                Debug.Log("aaa");
-                                if (GameController.Instance.listBtnMain[cursorInMainList - 1].name == "btn_Right(Clone)")
-                                {
-                                    Debug.Log("bbb");
-                                    GetComponent<SpriteRenderer>().flipX = true;
-                                    //ChangeAnimationState("idle_Side");
-                                    animator.SetBool("idleSide", true);
-                                    animator.SetBool("down", false);
-                                    animator.SetBool("up", false);
-                                    animator.SetBool("side", false);
-                                    AudioManager.Instance.StopEffect();
-                                    view.RPC("ResetforNextFight", RpcTarget.All);
+                                /*       Debug.Log("aaa");
+                                       if (GameController.Instance.listBtnMain[cursorInMainList - 1].name == "btn_Right(Clone)")
+                                       {
+                                           Debug.Log("bbb");
+                                           GetComponent<SpriteRenderer>().flipX = true;
+                                           //ChangeAnimationState("idle_Side");
+                                           animator.SetBool("idleSide", true);
+                                           animator.SetBool("down", false);
+                                           animator.SetBool("up", false);
+                                           animator.SetBool("side", false);
+                                           AudioManager.Instance.StopEffect();
+                                           view.RPC("ResetforNextFight", RpcTarget.All);
 
-                                }
-                                else if (GameController.Instance.listBtnMain[cursorInMainList - 1].name == "btn_Left(Clone)")
-                                {
-                                    GetComponent<SpriteRenderer>().flipX = false;
-                                    //ChangeAnimationState("idle_Side");
-                                    animator.SetBool("idleSide", true);
-                                    animator.SetBool("down", false);
-                                    animator.SetBool("up", false);
-                                    animator.SetBool("side", false);
-                                    AudioManager.Instance.StopEffect();
-                                    view.RPC("ResetforNextFight", RpcTarget.All);
+                                       }
+                                       else if (GameController.Instance.listBtnMain[cursorInMainList - 1].name == "btn_Left(Clone)")
+                                       {
+                                           GetComponent<SpriteRenderer>().flipX = false;
+                                           //ChangeAnimationState("idle_Side");
+                                           animator.SetBool("idleSide", true);
+                                           animator.SetBool("down", false);
+                                           animator.SetBool("up", false);
+                                           animator.SetBool("side", false);
+                                           AudioManager.Instance.StopEffect();
+                                           view.RPC("ResetforNextFight", RpcTarget.All);
 
-                                }
+                                       }*/
+                                animator.SetBool("idleUp", true);
+                                animator.SetBool("down", false);
+                                animator.SetBool("up", false);
+                                animator.SetBool("side", false);
+                                AudioManager.Instance.StopEffect();
+                                view.RPC("ResetforNextFight", RpcTarget.All);
                             }
                             /* if (checkFootStep == false && checkReplay == false)
                              {
@@ -321,6 +327,7 @@ public class PlayerControllerInArena : MonoBehaviour
     {
         PopupManager.Instance.currentDashboard.Time.timerIsRunning = true;
         PopupManager.Instance.currentDashboard.Time.otherTimeisRunning = true;
+        PopupManager.Instance.currentDashboard.enoughPlayer = true;
     }
     public void SendAnsReady()
     {

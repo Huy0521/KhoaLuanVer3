@@ -172,7 +172,7 @@ public class PlayerController : MonoBehaviour
                             {
                                 AudioManager.Instance.StopEffect();
                                 checkFootStep = true;
-                                //Invoke("Replay", 1);
+                                Invoke("Replay",2);
                             }
                         }
                     
@@ -198,6 +198,7 @@ public class PlayerController : MonoBehaviour
     {
         GameController.Instance.run = false;
         AudioManager.Instance.PlaySound(Sound.Button);
+        AudioManager.Instance.StopEffect();
         Destroy(PopupManager.Instance.currentMap);
         Destroy(PopupManager.Instance.currentDashboard.gameObject);
         Destroy(gameObject);

@@ -40,10 +40,13 @@ public class GameController : MonoBehaviour
         listButton.Clear();
 
        listBtnMain.Clear();
-        for (int i=0;i<listScreenAdd.Count;i++)
+        if(PopupManager.Instance.isArena==true)
         {
-            Destroy(listScreenAdd[i].GetComponent<LoopScreen>().currentBtn);
-            Destroy(listScreenAdd[i]);
+            for (int i = 0; i < listScreenAdd.Count; i++)
+            {
+                Destroy(listScreenAdd[i].GetComponent<LoopScreen>().currentBtn);
+                Destroy(listScreenAdd[i]);
+            }
         }
         listScreenAdd.Clear();
 

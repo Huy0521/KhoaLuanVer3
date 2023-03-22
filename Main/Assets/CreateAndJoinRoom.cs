@@ -21,13 +21,15 @@ public class CreateAndJoinRoom : MonoBehaviourPunCallbacks
     {
         if(ipRoomName.text.Length>=1)
         {
-            PhotonNetwork.CreateRoom(ipRoomName.text);
+            RoomOptions options = new RoomOptions();
+            options.MaxPlayers = 2;
+            PhotonNetwork.CreateRoom(ipRoomName.text, options,TypedLobby.Default);
         }
         
     }
     public void JoinRoom()
     {
-        PhotonNetwork.JoinRoom(ipRoomJoin.text  );
+        PhotonNetwork.JoinRoom(ipRoomJoin.text);
     }
     public override void OnJoinedRoom()
     {
