@@ -43,6 +43,8 @@ MonoBehaviour:
   - EndGame
   - CheckAnsReady
   - StartTime
+  - HitWall
+  - CheckplayerMove
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

@@ -197,14 +197,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae9184d6e70e2f44816d892cc907efd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cursorInMainList: 0
   speed: 2.5
   futurePosition: []
   hitPartical: {fileID: 5041627570695909863}
   checkFootStep: 0
   checkReplay: 0
+  animator: {fileID: 0}
   view: {fileID: 0}
   isMe: {fileID: 8718375304322924310}
-  endGame: {fileID: 6242086254286070345, guid: 79364c1d5b2600547852a8da5101adb8, type: 3}
+  endGame: {fileID: 3232566736848849251, guid: 79364c1d5b2600547852a8da5101adb8, type: 3}
 --- !u!114 &-4169374280416073818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,9 +223,9 @@ MonoBehaviour:
     SynchronizeEnabled: 1
     TeleportEnabled: 1
     TeleportIfDistanceGreaterThan: 3
-    InterpolateOption: 2
+    InterpolateOption: 4
     InterpolateMoveTowardsSpeed: 1
-    InterpolateLerpSpeed: 1
+    InterpolateLerpSpeed: 10
     ExtrapolateOption: 0
     ExtrapolateSpeed: 1
     ExtrapolateIncludingRoundTripTime: 1

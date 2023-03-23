@@ -20,6 +20,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
     public int posOfList; //Con trỏ xác định index trong GameController.Instance.listScreenAdd
     private int clickState = 0;//Biến điếm dùng để check các bước trong game tutorial
     public int numberPlayerAns = 0;
+    public int playerEndMove = 0;
     [Header("GameObject")]
     [SerializeField] private GameObject Zone;//Lấy vị trí GameObject để Instantiate số bước được đi từ json
     [SerializeField] private GameObject postisionForbtn;//Instantiate ô trống vào để điền nút
@@ -437,7 +438,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
         /*        btn_Play.enabled = false;
                 btn_Delete.enabled = false;
                 btn_Play.image.sprite = btnPlayOff;*/
-        if(enoughPlayer ==true)
+        if (enoughPlayer == true)
         {
             if (GameController.Instance.listButton.Count > 0)
             {
@@ -455,7 +456,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
         {
             PopupManager.Instance.ShowNotification(PopupManager.Instance.canvas, "Cần đủ 2 người để bắt đầu thi đấu!", 1.8f, null);
         }
-       
+
     }
     private void play_Click()
     {

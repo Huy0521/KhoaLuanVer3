@@ -5,11 +5,12 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class PlayerControllerInArena : MonoBehaviour
+public class PlayerControllerInArena : MonoBehaviourPun
 {
     private int finishNumber;
     private int numberLoopScreen = 0;
-    private int cursorInMainList = 0;
+    public int cursorInMainList = 0;
+  
     public float speed = 6;
     private string currentAnimaton;
     public List<Vector3> futurePosition;
@@ -17,23 +18,24 @@ public class PlayerControllerInArena : MonoBehaviour
     [SerializeField] private ParticleSystem hitPartical;
     public bool checkFootStep = false;
     public bool checkReplay = false;
-    private Animator animator;
+    public Animator animator;
     int ifNumber = 0;
     int ifJson = 0;
     public PhotonView view;
     [SerializeField] private GameObject isMe;
-    [SerializeField] private GameObject endGame;
+    [SerializeField] private PanelArenaEnd endGame;
 
     private void Awake()
     {
         view = GetComponent<PhotonView>();
+        animator = GetComponent<Animator>();
     }
     private void Start()
     {
 
-        animator = GetComponent<Animator>();
+
         gameObject.transform.SetParent(PopupManager.Instance.currentMap.transform);
-       
+
         if (view.IsMine)
         {
             isMe.gameObject.LeanMoveLocal(new Vector2(isMe.transform.localPosition.x, isMe.transform.localPosition.y + 0.3f), 0.8f).setLoopPingPong();
@@ -184,6 +186,7 @@ public class PlayerControllerInArena : MonoBehaviour
                         }
                         //di chuyển nhân vật
                         transform.localPosition = Vector3.MoveTowards(transform.localPosition, futurePosition[cursorInMainList], speed * Time.deltaTime);
+                        Debug.Log("runnnn");
                         if (transform.localPosition == futurePosition[cursorInMainList])
                         {
                             cursorInMainList++;
@@ -200,7 +203,10 @@ public class PlayerControllerInArena : MonoBehaviour
                                 animator.SetBool("up", false);
                                 animator.SetBool("side", false);
                                 AudioManager.Instance.StopEffect();
-                                view.RPC("ResetforNextFight", RpcTarget.All);
+                                ResetforNextFight();
+                                //Invoke("CheckplayerEndMove", 1f);
+                                //CheckplayerEndMove();
+                                //view.RPC("CheckplayerEndMove", RpcTarget.All);
                             }
                             else if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("walk_Down"))
                             {
@@ -211,7 +217,10 @@ public class PlayerControllerInArena : MonoBehaviour
                                 animator.SetBool("up", false);
                                 animator.SetBool("side", false);
                                 AudioManager.Instance.StopEffect();
-                                view.RPC("ResetforNextFight", RpcTarget.All);
+                                //Invoke("CheckplayerEndMove", 1f);
+                                ResetforNextFight();
+                                //CheckplayerEndMove();
+                                //view.RPC("CheckplayerEndMove", RpcTarget.All);
                             }
                             else if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("walk_Side"))
                             {
@@ -246,7 +255,10 @@ public class PlayerControllerInArena : MonoBehaviour
                                 animator.SetBool("up", false);
                                 animator.SetBool("side", false);
                                 AudioManager.Instance.StopEffect();
-                                view.RPC("ResetforNextFight", RpcTarget.All);
+                                ResetforNextFight();
+                                //Invoke("CheckplayerEndMove",1f);
+                                //CheckplayerEndMove();
+                                //view.RPC("CheckplayerEndMove", RpcTarget.All);
                             }
                             /* if (checkFootStep == false && checkReplay == false)
                              {
@@ -290,6 +302,7 @@ public class PlayerControllerInArena : MonoBehaviour
     {
         cursorInMainList = 0;
         numberLoopScreen = 0;
+        PopupManager.Instance.currentDashboard.playerEndMove = 0;
         PopupManager.Instance.currentDashboard.ResetPlayClick();
         GameController.Instance.ResetGameController();
 
@@ -331,7 +344,7 @@ public class PlayerControllerInArena : MonoBehaviour
     }
     public void SendAnsReady()
     {
-        view.RPC("CheckAnsReady", RpcTarget.All);
+        photonView.RPC("CheckAnsReady", RpcTarget.All);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -366,18 +379,60 @@ public class PlayerControllerInArena : MonoBehaviour
                 }
                 break;
             case "Boundary":
+                Debug.Log("va vao tuong");
                 GameController.Instance.run = false;
                 ChangeAnimationState("idle_Up");
                 hitPartical.gameObject.SetActive(true);
                 AudioManager.Instance.StopEffect();
+                animator.SetBool("idleUp", true);
+                animator.SetBool("down", false);
+                animator.SetBool("up", false);
+                animator.SetBool("side", false);
+                photonView.RPC("HitWall", RpcTarget.All);
+                //view.RPC("ResetforNextFight", RpcTarget.All);
+
                 //Invoke("Replay", 0.8f);
                 break;
             case "Teleport":
                 break;
             case "Player":
                 //view.RPC("ResetforNextFight",RpcTarget.All);
-                view.RPC("EndGame", RpcTarget.All);
+                photonView.RPC("EndGame", RpcTarget.All);
                 break;
+        }
+    }
+    [PunRPC]
+    private void HitWall()
+    {
+        if (PopupManager.Instance.arenaEndGame == null)
+        {
+            PopupManager.Instance.arenaEndGame = Instantiate(endGame, PopupManager.Instance.canvas.transform);
+            if (view.IsMine)
+            {
+                PopupManager.Instance.arenaEndGame.checkIsMine = 1;
+            }
+            else
+            {
+                PopupManager.Instance.arenaEndGame.checkIsMine = 0;
+            }
+        }
+
+    }
+
+    private void CheckplayerEndMove()
+    {
+        photonView.RPC("CheckplayerMove", RpcTarget.All);
+        //view.RPC();
+    }
+    [PunRPC]
+    private void CheckplayerMove()
+    {
+        PopupManager.Instance.currentDashboard.playerEndMove++;
+        Debug.Log("----");
+        if (PopupManager.Instance.currentDashboard.playerEndMove == 2)
+        {
+            Debug.Log("aaaaa1");
+            photonView.RPC("ResetforNextFight", RpcTarget.All);
         }
     }
 }

@@ -17,8 +17,8 @@ public class ArenaMapController : MonoBehaviour
                 playerNumberInRoom++;
             }
         }
-        gameObject.transform.position = new Vector3(-15, -0.32f, 0);
-        LeanTween.moveLocalX(gameObject, -4f, 0.65f).setEaseOutQuad();
+      /*  gameObject.transform.position = new Vector3(-15, -0.32f, 0);
+        LeanTween.moveLocalX(gameObject, -4f, 0.65f).setEaseOutQuad();*/
         GameObject pl = PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);
         pl.transform.SetParent(PopupManager.Instance.currentMap.transform);
         pl.transform.localPosition = listSpawposition[playerNumberInRoom].transform.localPosition;

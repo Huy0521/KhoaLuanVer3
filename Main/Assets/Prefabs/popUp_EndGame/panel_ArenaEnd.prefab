@@ -824,6 +824,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   des: {fileID: 6309129525075321802}
+  checkIsMine: 2
 --- !u!1 &6242086254319843448
 GameObject:
   m_ObjectHideFlags: 0

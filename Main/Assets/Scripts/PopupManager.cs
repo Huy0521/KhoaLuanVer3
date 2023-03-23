@@ -31,7 +31,7 @@ public class PopupManager : MonoBehaviour
     [HideInInspector] public Character character;//Check nhân vật được người chơi chọn
     public float timeRemaining;
     public bool isArena = false;
-    public GameObject arenaEndGame;
+    public PanelArenaEnd arenaEndGame;
     public static PopupManager Instance
     {
         get
@@ -63,7 +63,7 @@ public class PopupManager : MonoBehaviour
         //Lưu thông tin màn chơi từ Json
         listmap = JsonUtility.FromJson<ListMap>(manchoi.text);
         //Chỉ định FPS tốt nhất game có thể đạt được
-        Application.targetFrameRate = 300;
+        Application.targetFrameRate = 60;
     }
     //Hàm hiển thị thông báo
     public void ShowNotification(GameObject canvas, string message,float time, Sprite sprite)
