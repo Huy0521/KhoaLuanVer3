@@ -5,17 +5,22 @@ using UnityEngine.UI;
 using Photon.Pun;
 using TMPro;
 using Photon.Realtime;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CreateAndJoinRoom : MonoBehaviourPunCallbacks
 {
     [SerializeField] private GameObject level;
     [SerializeField] private TMP_InputField ipRoomName;
     [SerializeField] private TMP_InputField ipRoomJoin;
+    [SerializeField] private Button btnClose;
+    [SerializeField] private GameObject panelExit;
 
     void Start()
     {
         PopupManager.Instance.canvas = gameObject;
         PhotonNetwork.JoinLobby();
+        btnClose.onClick.AddListener(Close_Click);
     }
     public void CreateRoom()
     {
@@ -56,4 +61,9 @@ public class CreateAndJoinRoom : MonoBehaviourPunCallbacks
         PopupManager.Instance.currentDashboard = Instantiate(PopupManager.Instance.userPlay, PopupManager.Instance.canvas.transform);
         PopupManager.Instance.currentMap = Instantiate(level);
     }
+    private void Close_Click()
+    {
+        panelExit.SetActive(true);
+     
+    }    
 }

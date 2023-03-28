@@ -46,7 +46,6 @@ public class PlayerControllerInArena : MonoBehaviourPun
     //tính toán tọa độ bước đi
     private void CalculateMove(GameObject move)
     {
-        Debug.Log("CalculateMove");
         switch (move.name)
         {
             case "btn_Left(Clone)":
@@ -186,7 +185,6 @@ public class PlayerControllerInArena : MonoBehaviourPun
                         }
                         //di chuyển nhân vật
                         transform.localPosition = Vector3.MoveTowards(transform.localPosition, futurePosition[cursorInMainList], speed * Time.deltaTime);
-                        Debug.Log("runnnn");
                         if (transform.localPosition == futurePosition[cursorInMainList])
                         {
                             cursorInMainList++;

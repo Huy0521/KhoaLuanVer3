@@ -6,6 +6,7 @@ using TMPro;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
 using Photon.Realtime;
+using BaseClass;
 
 public class Panel_DieuKhien : MonoBehaviourPunCallbacks
 {
@@ -33,7 +34,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject header;
     [SerializeField] private GameObject body;
     [SerializeField] private GameObject btnZone;//Khu vực các nút điều khiểu cho GamePlay dùng làm game tutorial
-
+    [SerializeField] private GameObject panelExit;
     [Header("Button")]
     [SerializeField] private Button btn_Left;//Nút rẽ trái
     [SerializeField] private Button btn_Right;//Nút rẽ phải
@@ -488,6 +489,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
         PopupManager.Instance.currentDashboard.numberPlayerAns = 0;
         vitri = 0;
         Time.ResetTime();
+        Time.ResetOtherTime();
     }
     public override void OnLeftRoom()
     {
@@ -503,9 +505,11 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
             Instantiate(panelSelectlevel, PopupManager.Instance.canvas.transform);
             AudioManager.Instance.StopEffect();
             GameController.Instance.ResetGameController();
+            PopupManager.Instance.currentLevel = new Map();
         }
         else
         {
+            GameController.Instance.ResetGameController();
             PhotonNetwork.LeaveRoom();
             PhotonNetwork.Disconnect();
         }

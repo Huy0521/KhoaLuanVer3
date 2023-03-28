@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum Loaibai { tuantu, vonglap, renhanh, phuongthuc };
+public enum Loaibai {  tuantu, vonglap, renhanh, phuongthuc, none};
 public enum Character { astronaut, cat };
 public class PopupManager : MonoBehaviour
 {
@@ -16,7 +16,7 @@ public class PopupManager : MonoBehaviour
     [Header("Scripts")]
     public PanelFinish panel_Finish;//Popup kết thúc màn chơi 
     public Panel_DieuKhien userPlay;//Bảng điều khiển để Instantiate
-    [HideInInspector] public Panel_DieuKhien currentDashboard;//Bảng điều khiển hiện tại trên màn hình
+     public Panel_DieuKhien currentDashboard;//Bảng điều khiển hiện tại trên màn hình
      public PlayerController playerController;//Lưu nhân vật hiện tại trên Sceen 
     public PlayerControllerInArena playerControllerInArena;
     [SerializeField] private Notification notification;

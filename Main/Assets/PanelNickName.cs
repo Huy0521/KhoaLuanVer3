@@ -26,6 +26,7 @@ public class PanelNickName : MonoBehaviourPunCallbacks
             textConnect.text = "Đang tải...";
             PopupManager.Instance.isArena = true;
             PhotonNetwork.ConnectUsingSettings();
+            PopupManager.Instance.loaibai = Loaibai.tuantu;
             
         }
         else
