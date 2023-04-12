@@ -80,7 +80,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
         body.GetComponent<RectTransform>().localPosition = new Vector3(-145, 4.9f, 0);*/
         LeanTween.moveLocalY(header, 200, 0.65f).setEaseOutQuad();
         LeanTween.moveLocalY(btnZone, -390, 0.65f).setEaseOutQuad();
-        LeanTween.moveLocalX(body, -450f, 0.65f).setEaseOutQuad();
+        LeanTween.moveLocalX(body, -480f, 0.65f).setEaseOutQuad();
         //Reset giá trị khi mới bắt đầu game
         GameController.Instance.ResetGameController();
         //Bật hướng dẫn chơi
@@ -575,9 +575,12 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
                     description.text = "Màn hình hiển thị vị trí của phi hành gia.";
                     break;
                 case 6:
-                    description.text = "Xem chừng bạn đã sẵn sàng. Hãy bắt đầu thôi nào!";
+                    description.text = "Hiện tại ta đang ở hành tinh tuần tự. Tại đây các khối lệnh sẽ được thực hiện lần lượt từ trái sang phải.";
                     break;
                 case 7:
+                    description.text = "Xem chừng bạn đã sẵn sàng. Hãy bắt đầu thôi nào!";
+                    break;
+                case 8:
                     customMask.gameObject.SetActive(false);
                     break;
             }

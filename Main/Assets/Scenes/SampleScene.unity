@@ -2967,7 +2967,7 @@ MonoBehaviour:
   notification: {fileID: 1595768861641450270, guid: 22c5a3a54a69dee4ca65a8c9fd738112, type: 3}
   notificationIsOn: 0
   goFromCutScene: 0
-  manchoi: {fileID: 4900000, guid: a229eb4d0cf876c40b1acf3b355899a5, type: 3}
+  manchoi: {fileID: 4900000, guid: 1de981395cdb0e94988d6630e0c42e9b, type: 3}
   listmap:
     tuantu: []
     vonglap: []
@@ -4586,7 +4586,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1193917831
 RectTransform:
   m_ObjectHideFlags: 0

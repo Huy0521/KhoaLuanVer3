@@ -165,15 +165,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19932928, guid: c34a02a9677f6bb47b7aef417e2828be, type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19932928, guid: c34a02a9677f6bb47b7aef417e2828be, type: 3}
       propertyPath: m_SortingOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 19932928, guid: c34a02a9677f6bb47b7aef417e2828be, type: 3}
       propertyPath: m_SortingLayerID
-      value: -1345894371
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19932928, guid: c34a02a9677f6bb47b7aef417e2828be, type: 3}
       propertyPath: m_Materials.Array.size
@@ -181,15 +181,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19973056, guid: c34a02a9677f6bb47b7aef417e2828be, type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19973056, guid: c34a02a9677f6bb47b7aef417e2828be, type: 3}
       propertyPath: m_SortingOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 19973056, guid: c34a02a9677f6bb47b7aef417e2828be, type: 3}
       propertyPath: m_SortingLayerID
-      value: -1345894371
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19973056, guid: c34a02a9677f6bb47b7aef417e2828be, type: 3}
       propertyPath: m_Materials.Array.size
@@ -205,15 +205,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19983924, guid: c34a02a9677f6bb47b7aef417e2828be, type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19983924, guid: c34a02a9677f6bb47b7aef417e2828be, type: 3}
       propertyPath: m_SortingOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 19983924, guid: c34a02a9677f6bb47b7aef417e2828be, type: 3}
       propertyPath: m_SortingLayerID
-      value: -1345894371
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19983924, guid: c34a02a9677f6bb47b7aef417e2828be, type: 3}
       propertyPath: m_MaxParticleSize

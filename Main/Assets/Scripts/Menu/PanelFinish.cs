@@ -51,7 +51,7 @@ public class PanelFinish : MonoBehaviour
             star1.color = new Color(0.273f, 0.273f, 0.273f);
             numberStar = numberStar - 1;
         }
-        if (PopupManager.Instance.currentLevel.sobuoc_an < PopupManager.Instance.playerController.futurePosition.Count)
+        if (PopupManager.Instance.currentLevel.sobuoc_an < GameController.Instance.listButton.Count)
         {
             star2.color = new Color(0.273f, 0.273f, 0.273f);
             numberStar = numberStar - 1;
@@ -100,7 +100,7 @@ public class PanelFinish : MonoBehaviour
         write.Write(data);
         write.Close();
         Resources.Load(destination);//tải lại file trong resource để cập nhật giá trị mới
-        
+        Debug.Log("Res");
     }
     //Chơi lại bàn chơi
     private void Replay_click()
