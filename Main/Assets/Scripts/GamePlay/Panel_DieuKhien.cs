@@ -89,6 +89,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
             customMask.gameObject.SetActive(true);
             customMask.GetComponent<Canvas>().sortingLayerName = "Ground";
             description.text = "Sau khi bị hút vào hố đen phi hành gia đang lạc ở một hành tinh xa lạ. Hãy giúp anh ấy trở về nhà nhé!";
+            Time.enabled = false;
         }
         else
         {
@@ -110,6 +111,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
                 if (PopupManager.Instance.listmap.vonglap[0].star < 1)
                 {
                     customMask.gameObject.SetActive(true);
+                    Time.enabled = false;
                     customMask.GetComponent<Canvas>().sortingLayerName = "Ground";
                     description.text = "Mỗi hành tinh đều có cách vận hành riêng, tận dụng được cách vận hành đó sẽ đem lại nhiều lợi ích trên hành trình!";
                 }
@@ -123,6 +125,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
                 if (PopupManager.Instance.listmap.renhanh[0].star < 1)
                 {
                     customMask.gameObject.SetActive(true);
+                    Time.enabled = false;
                     customMask.GetComponent<Canvas>().sortingLayerName = "Ground";
                     description.text = "Thời tiết thật tồi tệ! Xem ra chúng ta đang ở hành tinh Rẽ Nhánh.";
                 }
@@ -582,6 +585,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
                     break;
                 case 8:
                     customMask.gameObject.SetActive(false);
+                    Time.enabled = true;
                     break;
             }
         }
@@ -617,6 +621,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
                 case 7:
                     GameController.Instance.listScreenAdd[0].SetActive(false);
                     customMask.gameObject.SetActive(false);
+                    Time.enabled = true;
                     break;
             }
         }
@@ -662,6 +667,7 @@ public class Panel_DieuKhien : MonoBehaviourPunCallbacks
                 case 10:
                     GameController.Instance.listScreenAdd[0].SetActive(true);
                     customMask.gameObject.SetActive(false);
+                    Time.enabled = true;
                     break;
             }
         }
