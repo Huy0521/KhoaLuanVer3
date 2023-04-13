@@ -1,1 +1,216 @@
-{"tuantu":[{"level":"1","sobuoc":4,"star":3,"time":60,"playertime":5,"finishZone":1,"sobuoc_an":4,"buocAo":[],"ifMove":[]},{"level":"2","sobuoc":7,"star":3,"time":45,"playertime":31,"finishZone":1,"sobuoc_an":5,"buocAo":[],"ifMove":[]},{"level":"3","sobuoc":11,"star":2,"time":45,"playertime":69,"finishZone":2,"sobuoc_an":11,"buocAo":[],"ifMove":[]},{"level":"4","sobuoc":16,"star":3,"time":60,"playertime":19,"finishZone":4,"sobuoc_an":13,"buocAo":[],"ifMove":[]},{"level":"5","sobuoc":16,"star":3,"time":30,"playertime":8,"finishZone":1,"sobuoc_an":16,"buocAo":[],"ifMove":[]}],"vonglap":[{"level":"1","sobuoc":4,"star":3,"time":45,"playertime":4,"finishZone":1,"sobuoc_an":1,"buocAo":[],"ifMove":[]},{"level":"2","sobuoc":5,"star":3,"time":60,"playertime":10,"finishZone":1,"sobuoc_an":1,"buocAo":[],"ifMove":[]},{"level":"3","sobuoc":5,"star":3,"time":60,"playertime":12,"finishZone":1,"sobuoc_an":3,"buocAo":[],"ifMove":[]},{"level":"4","sobuoc":16,"star":3,"time":60,"playertime":30,"finishZone":1,"sobuoc_an":7,"buocAo":[],"ifMove":[]},{"level":"5","sobuoc":16,"star":0,"time":60,"playertime":62,"finishZone":5,"sobuoc_an":14,"buocAo":[],"ifMove":[]}],"renhanh":[{"level":"1","sobuoc":5,"star":0,"time":60,"playertime":8,"finishZone":1,"sobuoc_an":2,"buocAo":["if","up","up","up","up"],"ifMove":["UpX"]},{"level":"2","sobuoc":8,"star":0,"time":60,"playertime":18,"finishZone":1,"sobuoc_an":10,"buocAo":["right","if","right"],"ifMove":["RightX"]},{"level":"3","sobuoc":5,"star":0,"time":60,"playertime":23,"finishZone":1,"sobuoc_an":10,"buocAo":["up","up","if","if"],"ifMove":["UpX","LeftX"]},{"level":"4","sobuoc":8,"star":0,"time":60,"playertime":20,"finishZone":1,"sobuoc_an":10,"buocAo":["if","up","up","right","if","right","right","up"],"ifMove":["UpX","RightX"]},{"level":"5","sobuoc":8,"star":0,"time":60,"playertime":16,"finishZone":1,"sobuoc_an":10,"buocAo":["if","up","up","right","if","right","right","up"],"ifMove":["UpX","RightX"]}]}
+{
+  "tuantu": [
+    {
+      "level": "1",
+      "sobuoc": 4,
+      "star": 3,
+      "time": 60,
+      "playertime": 5,
+      "finishZone": 1,
+      "sobuoc_an": 4,
+      "buocAo": [],
+      "ifMove": []
+    },
+    {
+      "level": "2",
+      "sobuoc": 7,
+      "star": 3,
+      "time": 45,
+      "playertime": 31,
+      "finishZone": 1,
+      "sobuoc_an": 5,
+      "buocAo": [],
+      "ifMove": []
+    },
+    {
+      "level": "3",
+      "sobuoc": 11,
+      "star": 2,
+      "time": 45,
+      "playertime": 69,
+      "finishZone": 2,
+      "sobuoc_an": 11,
+      "buocAo": [],
+      "ifMove": []
+    },
+    {
+      "level": "4",
+      "sobuoc": 16,
+      "star": 3,
+      "time": 60,
+      "playertime": 19,
+      "finishZone": 4,
+      "sobuoc_an": 13,
+      "buocAo": [],
+      "ifMove": []
+    },
+    {
+      "level": "5",
+      "sobuoc": 16,
+      "star": 3,
+      "time": 30,
+      "playertime": 8,
+      "finishZone": 1,
+      "sobuoc_an": 16,
+      "buocAo": [],
+      "ifMove": []
+    }
+  ],
+  "vonglap": [
+    {
+      "level": "1",
+      "sobuoc": 4,
+      "star": 3,
+      "time": 45,
+      "playertime": 4,
+      "finishZone": 1,
+      "sobuoc_an": 1,
+      "buocAo": [],
+      "ifMove": []
+    },
+    {
+      "level": "2",
+      "sobuoc": 5,
+      "star": 3,
+      "time": 60,
+      "playertime": 10,
+      "finishZone": 1,
+      "sobuoc_an": 1,
+      "buocAo": [],
+      "ifMove": []
+    },
+    {
+      "level": "3",
+      "sobuoc": 5,
+      "star": 3,
+      "time": 60,
+      "playertime": 12,
+      "finishZone": 1,
+      "sobuoc_an": 3,
+      "buocAo": [],
+      "ifMove": []
+    },
+    {
+      "level": "4",
+      "sobuoc": 16,
+      "star": 3,
+      "time": 60,
+      "playertime": 30,
+      "finishZone": 1,
+      "sobuoc_an": 7,
+      "buocAo": [],
+      "ifMove": []
+    },
+    {
+      "level": "5",
+      "sobuoc": 16,
+      "star": 0,
+      "time": 60,
+      "playertime": 62,
+      "finishZone": 5,
+      "sobuoc_an": 14,
+      "buocAo": [],
+      "ifMove": []
+    }
+  ],
+  "renhanh": [
+    {
+      "level": "1",
+      "sobuoc": 5,
+      "star": 3,
+      "time": 60,
+      "playertime": 8,
+      "finishZone": 1,
+      "sobuoc_an": 5,
+      "buocAo": [
+        "if",
+        "up",
+        "up",
+        "up",
+        "up"
+      ],
+      "ifMove": [
+        "UpX"
+      ]
+    },
+    {
+      "level": "2",
+      "sobuoc": 8,
+      "star": 3,
+      "time": 60,
+      "playertime": 18,
+      "finishZone": 1,
+      "sobuoc_an": 5,
+      "buocAo": [
+        "right",
+        "if",
+        "right"
+      ],
+      "ifMove": [
+        "RightX"
+      ]
+    },
+    {
+      "level": "3",
+      "sobuoc": 5,
+      "star": 3,
+      "time": 60,
+      "playertime": 23,
+      "finishZone": 1,
+      "sobuoc_an": 5,
+      "buocAo": [
+        "up",
+        "up",
+        "if",
+        "if"
+      ],
+      "ifMove": [
+        "UpX",
+        "LeftX"
+      ]
+    },
+    {
+      "level": "4",
+      "sobuoc": 8,
+      "star": 3,
+      "time": 60,
+      "playertime": 20,
+      "finishZone": 1,
+      "sobuoc_an": 8,
+      "buocAo": [
+        "if",
+        "up",
+        "up",
+        "right",
+        "if",
+        "right",
+        "right",
+        "up"
+      ],
+      "ifMove": [
+        "UpX",
+        "RightX"
+      ]
+    },
+    {
+      "level": "5",
+      "sobuoc": 8,
+      "star": 0,
+      "time": 60,
+      "playertime": 16,
+      "finishZone": 1,
+      "sobuoc_an": 8,
+      "buocAo": [
+        "if",
+        "up",
+        "up",
+        "right",
+        "if"
+      ],
+      "ifMove": [
+        "UpX",
+        "RightX"
+      ]
+    }
+  ]
+}
