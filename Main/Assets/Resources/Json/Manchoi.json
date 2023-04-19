@@ -3,7 +3,7 @@
     {
       "level": "1",
       "sobuoc": 4,
-      "star": 3,
+      "star": 0,
       "time": 60,
       "playertime": 5,
       "finishZone": 1,
@@ -14,7 +14,7 @@
     {
       "level": "2",
       "sobuoc": 7,
-      "star": 3,
+      "star": 0,
       "time": 45,
       "playertime": 31,
       "finishZone": 1,
@@ -25,7 +25,7 @@
     {
       "level": "3",
       "sobuoc": 11,
-      "star": 2,
+      "star": 0,
       "time": 45,
       "playertime": 69,
       "finishZone": 2,
@@ -36,7 +36,7 @@
     {
       "level": "4",
       "sobuoc": 16,
-      "star": 3,
+      "star": 0,
       "time": 60,
       "playertime": 19,
       "finishZone": 4,
@@ -47,7 +47,7 @@
     {
       "level": "5",
       "sobuoc": 16,
-      "star": 3,
+      "star": 0,
       "time": 30,
       "playertime": 8,
       "finishZone": 1,
@@ -60,7 +60,7 @@
     {
       "level": "1",
       "sobuoc": 4,
-      "star": 3,
+      "star": 0,
       "time": 45,
       "playertime": 4,
       "finishZone": 1,
@@ -71,7 +71,7 @@
     {
       "level": "2",
       "sobuoc": 5,
-      "star": 3,
+      "star": 0,
       "time": 60,
       "playertime": 10,
       "finishZone": 1,
@@ -82,18 +82,18 @@
     {
       "level": "3",
       "sobuoc": 5,
-      "star": 3,
+      "star": 0,
       "time": 60,
       "playertime": 12,
       "finishZone": 1,
-      "sobuoc_an": 3,
+      "sobuoc_an": 2,
       "buocAo": [],
       "ifMove": []
     },
     {
       "level": "4",
       "sobuoc": 16,
-      "star": 3,
+      "star": 0,
       "time": 60,
       "playertime": 30,
       "finishZone": 1,
@@ -105,10 +105,10 @@
       "level": "5",
       "sobuoc": 16,
       "star": 0,
-      "time": 60,
+      "time": 100,
       "playertime": 62,
       "finishZone": 5,
-      "sobuoc_an": 14,
+      "sobuoc_an": 6,
       "buocAo": [],
       "ifMove": []
     }
@@ -117,7 +117,7 @@
     {
       "level": "1",
       "sobuoc": 5,
-      "star": 3,
+      "star": 0,
       "time": 60,
       "playertime": 8,
       "finishZone": 1,
@@ -136,11 +136,11 @@
     {
       "level": "2",
       "sobuoc": 8,
-      "star": 3,
+      "star": 0,
       "time": 60,
       "playertime": 18,
       "finishZone": 1,
-      "sobuoc_an": 5,
+      "sobuoc_an": 6,
       "buocAo": [
         "right",
         "if",
@@ -153,7 +153,7 @@
     {
       "level": "3",
       "sobuoc": 5,
-      "star": 3,
+      "star": 0,
       "time": 60,
       "playertime": 23,
       "finishZone": 1,
@@ -161,18 +161,16 @@
       "buocAo": [
         "up",
         "up",
-        "if",
         "if"
       ],
       "ifMove": [
-        "UpX",
-        "LeftX"
+        "UpX"
       ]
     },
     {
       "level": "4",
       "sobuoc": 8,
-      "star": 3,
+      "star": 0,
       "time": 60,
       "playertime": 20,
       "finishZone": 1,

@@ -61,7 +61,9 @@ public class PopupManager : MonoBehaviour
     private void Start()
     {
         //Lưu thông tin màn chơi từ Json
-        listmap = JsonUtility.FromJson<ListMap>(manchoi.text);
+        PlayerPrefs.SetString("manchoi", manchoi.text);
+        listmap = JsonUtility.FromJson<ListMap>(PlayerPrefs.GetString("manchoi")); 
+        
         //Chỉ định FPS tốt nhất game có thể đạt được
         Application.targetFrameRate = 60;
     }

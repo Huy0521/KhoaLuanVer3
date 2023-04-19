@@ -90,7 +90,8 @@ public class PanelFinish : MonoBehaviour
                 break;
         }
         string tojson = JsonUtility.ToJson(PopupManager.Instance.listmap);
-        SaveFile(tojson);
+        PlayerPrefs.SetString("manchoi", tojson);
+        //SaveFile(tojson);
     }
     //Lưu file 
     public void SaveFile(string data)
